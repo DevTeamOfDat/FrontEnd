@@ -1,0 +1,66 @@
+.section-title {
+  font-family: "Raleway", sans-serif;
+  font-size: 50px;
+  font-weight: 100;
+  margin-bottom: 50px;
+  text-align: center;
+}
+.latest-product .owl-nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.latest-product .owl-nav div,
+.related-products-wrapper .owl-nav div {
+  background: #fa8072;
+  color: #fff;
+  display: inline-block;
+  margin-left: 15px;
+  padding: 1px 10px;
+}
+.latest-product .owl-nav div:hover,
+.brand-wrapper .owl-nav div:hover,
+.related-products-wrapper .owl-nav div:hover {
+  color: #fff;
+  background: #f95f5f;
+}
+.single-product h2 a:hover {
+  color: #5a88ca;
+}
+.single-product-area .zigzag-bottom {
+  background-color: #f4f4f4;
+}
+.single-product-area {
+  padding: 80px 0 130px;
+}
+.single-product h2 {
+  font-size: 18px;
+  line-height: 25px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  font-weight: unset;
+}
+.single-product h2 a {
+  color: #222;
+}
+.single-product p {
+  color: #5a88ca;
+  font-weight: 700;
+}
+.product-f-image {
+  position: relative;
+}
+.single-product {
+  overflow: hidden;
+}
+.single-product:hover {
+}
+.single-product:hover .product-hover a.add-to-cart-link {
+  top: 32%;
+}
+.single-product:hover .product-hover a.view-details-link {
+  bottom: 32%;
+}
+.single-product:hover .product-hover:after {
+  left: 0;
+}

@@ -1,0 +1,227 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formGroup" (ngSubmit)="save()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ma_tai_khoan">Mã tài khoản</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="ma_tai_khoan"
+              id="ma_tai_khoan"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['ma_tai_khoan'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['ma_tai_khoan'].errors?.required"
+                style="id: red"
+              >
+                * Mã tài khoản không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Tên đăng nhập</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="ten_dang_nhap"
+              id="ten_dang_nhap"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['ten_dang_nhap'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['ten_dang_nhap'].errors?.required"
+                style="color: red"
+              >
+                * Tên đăng nhập không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="mat_khau">Mật khẩu</label>
+            <input
+              type="password"
+              name=""
+              class="form-control"
+              formControlName="mat_khau"
+              id="mat_khau"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['mat_khau'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['mat_khau'].errors?.required"
+                style="id: red"
+              >
+                * Mật khẩu không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Họ tên</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="ho_ten"
+              id="ho_ten"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['ho_ten'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['ho_ten'].errors?.required"
+                style="color: red"
+              >
+                * Họ tên không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Địa chỉ</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="dia_chi"
+              id="dia_chi"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['dia_chi'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['dia_chi'].errors?.required"
+                style="color: red"
+              >
+                * Địa chỉ không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="so_dien_thoai">Số điện thoại</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="so_dien_thoai"
+              id="so_dien_thoai"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['so_dien_thoai'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['url'].errors?.required"
+                style="id: red"
+              >
+                * Số điện thoại không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="hinh_anh">Hình ảnh</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="hinh_anh"
+              id="hinh_anh"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['hinh_anh'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['hinh_anh'].errors?.required"
+                style="id: red"
+              >
+                * Hình ảnh không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="loai_tai_khoan">Loại tài khoản</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="loai_tai_khoan"
+              id="loai_tai_khoan"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['loai_tai_khoan'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['loai_tai_khoan'].errors?.required"
+                style="id: red"
+              >
+                * Loại tài khoản không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+      <div class="form-group" align="center">
+        <button
+          [hidden]="checkButton"
+          type="submit"
+          class="btn btn-success"
+          style="width: 100px"
+          *ngIf="isEdit || isAdd"
+        >
+          Lưu
+        </button>
+        <button
+          class="btn btn-danger"
+          style="width: 100px"
+          (click)="modal.dismiss('Cross click')"
+        >
+          Thoát
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

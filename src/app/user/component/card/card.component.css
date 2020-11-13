@@ -1,0 +1,14 @@
+.product-bit-title h2 {
+  font-family: raleway;
+  font-size: 50px;
+  font-weight: 200;
+  margin: 0;
+  padding: 50px 0;
+  color: #fff;
+}
+.sidebar-title {
+  color: #fead53;
+  font-size: 25px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}

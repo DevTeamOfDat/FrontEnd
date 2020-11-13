@@ -1,0 +1,147 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formGroup" novalidate (ngSubmit)="save()">
+      <div class="form-group">
+        <label>Mã sản phẩm</label>
+        <input
+          type="text"
+          name=""
+          class="form-control"
+          formControlName="ma_san_pham"
+          id="ma_san_pham"
+          [(ngModel)]="update_ma_san_pham"
+        />
+        <div *ngIf="submitted && formGroup.controls['ma_san_pham'].errors?.required">
+          <div
+            *ngIf="formGroup.controls['ma_san_pham'].errors?.required"
+            style="color: red"
+          >
+            * Mã sản phẩm không được để trống
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Thương hiệu</label>
+        <select class="form-control" name="" formControlName="ma_thuong_hieu" id="">
+          <option *ngFor="let e of danhsachthuonghieu" value="{{e.ma_thuong_hieu}}">{{e.ten_thuong_hieu}}</option>
+        </select>
+        <div *ngIf="submitted && formGroup.controls['ma_thuong_hieu'].errors?.required">
+          <div
+            *ngIf="formGroup.controls['ma_thuong_hieu'].errors?.required"
+            style="color: red"
+          >
+            * Mã thương hiệu không được để trống
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Mã loại sản phẩm</label>
+        <select class="form-control" name="" formControlName="ma_loai_san_pham" id="">
+          <option *ngFor="let e of danhsachloaisanpham" value="{{e.ma_loai_san_pham}}">{{e.ten_loai_san_pham}}</option>
+        </select>
+        <div *ngIf="submitted && formGroup.controls['ma_loai_san_pham'].errors?.required">
+          <div
+            *ngIf="formGroup.controls['ma_loai_san_pham'].errors?.required"
+            style="color: red"
+          >
+            * Mã loại sản phẩm không được để trống
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="form-group">
+        <label>Tên sản phẩm</label>
+        <input
+          type="text"
+          name=""
+          class="form-control"
+          formControlName="ten_san_pham"
+          id="ten_san_pham"
+        />
+        <div *ngIf="submitted && formGroup.controls['ten_san_pham'].errors?.required">
+          <div
+            *ngIf="formGroup.controls['ten_san_pham'].errors?.required"
+            style="color: red"
+          >
+            * Tên sản phẩm không được để trống
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Giá bán</label>
+        <input
+          type="text"
+          name=""
+          class="form-control"
+          formControlName="gia_ban"
+          id="gia_ban"
+        />
+        <div *ngIf="submitted && formGroup.controls['gia_ban'].errors?.required">
+          <div
+            *ngIf="formGroup.controls['gia_ban'].errors?.required"
+            style="color: red"
+          >
+            * Giá bán không được để trống
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>Số lượng</label>
+        <input
+          type="text"
+          name=""
+          class="form-control"
+          formControlName="so_luong"
+          id="so_luong"
+        />
+        <div *ngIf="submitted && formGroup.controls['so_luong'].errors?.required">
+          <div
+            *ngIf="formGroup.controls['so_luong'].errors?.required"
+            style="color: red"
+          >
+            * Giá bán không được để trống
+          </div>
+        </div>
+      </div>
+
+      
+
+
+      <div class="form-group" align="center">
+        <button
+          [hidden]="checkButton"
+          type="submit"
+          class="btn btn-success"
+          style="width: 100px"
+          *ngIf="isEdit || isAdd"
+        >
+          Lưu
+        </button>
+        <button
+          class="btn btn-danger"
+          style="width: 100px"
+          (click)="modal.dismiss('Cross click')"
+        >
+          Thoát
+        </button>
+      </div>
+     
+    </form>
+  </div>
+</ng-template>

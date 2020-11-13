@@ -1,0 +1,68 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formGroup" novalidate (ngSubmit)="save()">
+      <div class="form-group">
+        <label>Mã voucher</label>
+        <input
+          type="text"
+          name=""
+          class="form-control"
+          formControlName="ma_voicher"
+          id="ma_voicher"
+          [(ngModel)]="update_ma_voucher"
+        />
+        <div *ngIf="submitted && formGroup.controls['ma_voicher'].errors?.required">
+          <div
+            *ngIf="formGroup.controls['ma_voicher'].errors?.required"
+            style="color: red"
+          >
+            * Mã voicher không được để trống
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Mục voucher</label>
+        <input
+          type="date"
+          name=""
+          class="form-control"
+          formControlName="muc_voucher"
+          id="muc_voucher"
+        />
+      </div>
+
+
+      <div class="form-group" align="center">
+        <button
+          [hidden]="checkButton"
+          type="submit"
+          class="btn btn-success"
+          style="width: 100px"
+          *ngIf="isEdit || isAdd"
+        >
+          Lưu
+        </button>
+        <button
+          class="btn btn-danger"
+          style="width: 100px"
+          (click)="modal.dismiss('Cross click')"
+        >
+          Thoát
+        </button>
+      </div>
+     
+    </form>
+  </div>
+</ng-template>

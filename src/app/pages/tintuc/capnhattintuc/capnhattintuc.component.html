@@ -1,0 +1,205 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formGroup" (ngSubmit)="save()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="id">id</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="id"
+              id="id"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['id'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['id'].errors?.required"
+                style="id: red"
+              >
+                * id không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Tiêu đề</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="tieu_de"
+              id="tieu_de"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['tieu_de'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['tieu_de'].errors?.required"
+                style="color: red"
+              >
+                * Tiêu đề không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="noi_dung">Nội dung</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="noi_dung"
+              id="noi_dung"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['noi_dung'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['noi_dung'].errors?.required"
+                style="id: red"
+              >
+                * nội dung không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Highlight</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="highlight"
+              id="highlight"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['highlight'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['highlight'].errors?.required"
+                style="color: red"
+              >
+                * Highlight không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>highlight</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="highlight"
+              id="highlight"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['highlight'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['highlight'].errors?.required"
+                style="color: red"
+              >
+                * Highlight không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="url">URL</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="url"
+              id="url"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['url'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['url'].errors?.required"
+                style="id: red"
+              >
+                * URL không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ngay_dang">Ngày đăng</label>
+            <input
+              type="text"
+              name=""
+              class="form-control"
+              formControlName="ngay_dang"
+              id="ngay_dang"
+            />
+            <div
+              *ngIf="submitted && formGroup.controls['ngay_dang'].errors?.required"
+            >
+              <div
+                *ngIf="formGroup.controls['url'].errors?.required"
+                style="id: red"
+              >
+                * Ngày đăng không được để trống
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+      </div>
+      <div class="form-group" align="center">
+        <button
+          [hidden]="checkButton"
+          type="submit"
+          class="btn btn-success"
+          style="width: 100px"
+          *ngIf="isEdit || isAdd"
+        >
+          Lưu
+        </button>
+        <button
+          class="btn btn-danger"
+          style="width: 100px"
+          (click)="modal.dismiss('Cross click')"
+        >
+          Thoát
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

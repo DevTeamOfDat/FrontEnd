@@ -1,0 +1,20 @@
+.block-slider .caption-group {
+  position: absolute;
+  top: 26%;
+  right: 16%;
+}
+.block-slider .caption-group .title {
+  margin: 0;
+}
+.block-slider .caption-group .subtitle {
+  margin: 0;
+  margin-top: 5px;
+}
+.block-slider .caption-group .button-radius {
+  margin-top: 27px;
+}
+.block-slider .caption-group .primary {
+  color: #1bd172;
+}
+.block-slider .caption-group .caption {
+}

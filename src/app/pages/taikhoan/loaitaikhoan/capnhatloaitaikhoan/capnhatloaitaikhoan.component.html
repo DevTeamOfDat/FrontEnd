@@ -1,0 +1,94 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formGroup" novalidate (ngSubmit)="save()">
+      <div class="form-group">
+        <label>ID</label>
+        <input
+          type="text"
+          name=""
+          class="form-control"
+          formControlName="id"
+          id="id"
+          [(ngModel)]="update_id"
+        />
+        <div *ngIf="submitted && formGroup.controls['id'].errors?.required">
+          <div
+            *ngIf="formGroup.controls['id'].errors?.required"
+            style="color: red"
+          >
+            * ID không được để trống
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Giá trị</label>
+        <input
+          type="text"
+          name=""
+          class="form-control"
+          formControlName="gia_tri"
+          id="gia_tri"
+        />
+        <div *ngIf="submitted && formGroup.controls['gia_tri'].errors?.required">
+          <div
+            *ngIf="formGroup.controls['gia_tri'].errors?.required"
+            style="color: red"
+          >
+            * Giá trị không được để trống
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Mô tả</label>
+        <input
+          type="text"
+          name=""
+          class="form-control"
+          formControlName="mo_ta"
+          id="mo_ta"
+        />
+        <div *ngIf="submitted && formGroup.controls['mo_ta'].errors?.required">
+          <div
+            *ngIf="formGroup.controls['mo_ta'].errors?.required"
+            style="color: red"
+          >
+            * mô tả không được để trống
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" align="center">
+        <button
+          [hidden]="checkButton"
+          type="submit"
+          class="btn btn-success"
+          style="width: 100px"
+          *ngIf="isEdit || isAdd"
+        >
+          Lưu
+        </button>
+        <button
+          class="btn btn-danger"
+          style="width: 100px"
+          (click)="modal.dismiss('Cross click')"
+        >
+          Thoát
+        </button>
+      </div>
+     
+    </form>
+  </div>
+</ng-template>

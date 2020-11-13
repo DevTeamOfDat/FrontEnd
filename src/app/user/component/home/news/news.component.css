@@ -1,0 +1,32 @@
+.container{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+}
+.title-news{
+    margin-top: 0;
+    margin-bottom: 40px;
+    width: 100%;
+}
+.title-news h2{
+    font-family: 'Roboto',sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 150%;
+    text-align: center;
+    color: #2f54ad;
+}
+.title-news p{
+    margin-left: 32%;
+    margin-right: 32%;
+    font-family: 'Roboto',sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 150%;
+    text-align: center;
+    color: #666;
+}
