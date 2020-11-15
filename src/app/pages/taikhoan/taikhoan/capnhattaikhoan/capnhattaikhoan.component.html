@@ -14,43 +14,23 @@
     <form [formGroup]="formGroup" (ngSubmit)="save()">
       <div class="row">
         <div class="col-md-6">
-          <div class="form-group">
-            <label for="ma_tai_khoan">Mã tài khoản</label>
-            <input
-              type="text"
-              name=""
-              class="form-control"
-              formControlName="ma_tai_khoan"
-              id="ma_tai_khoan"
-            />
-            <div
-              *ngIf="submitted && formGroup.controls['ma_tai_khoan'].errors?.required"
-            >
-              <div
-                *ngIf="formGroup.controls['ma_tai_khoan'].errors?.required"
-                style="id: red"
-              >
-                * Mã tài khoản không được để trống
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="col-md-6">
           <div class="form-group">
-            <label>Tên đăng nhập</label>
+            <label>Email</label>
             <input
               type="text"
               name=""
               class="form-control"
-              formControlName="ten_dang_nhap"
-              id="ten_dang_nhap"
+              formControlName="email"
+              id="email"
             />
             <div
-              *ngIf="submitted && formGroup.controls['ten_dang_nhap'].errors?.required"
+              *ngIf="submitted && formGroup.controls['email'].errors?.required"
             >
               <div
-                *ngIf="formGroup.controls['ten_dang_nhap'].errors?.required"
+                *ngIf="formGroup.controls['email'].errors?.required"
                 style="color: red"
               >
                 * Tên đăng nhập không được để trống

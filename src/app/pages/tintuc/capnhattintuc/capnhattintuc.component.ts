@@ -50,22 +50,22 @@ export class CapnhattintucComponent implements OnInit {
         this.isEdit = false;
         this.isAdd = true;
         this.title = `Thêm mới thông tin tin tức`;
-        this.update_id= this.arrCheck.length+1;
+        // this.update_id= this.arrCheck.length+1;
         console.log(this.arrCheck);
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
-        this.title = `Xem chi tiết thông tin tin tức`;
+        // this.title = `Xem chi tiết thông tin tin tức`;
         this.update_id = this.model.id;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
-        this.title = `Chỉnh sửa thông tin thương hiệu`;
-        this.update_id = this.model.id;
+        this.title = `Chỉnh sửa thông tin tin tức`;
+        // this.update_id = this.model.id;
         break;
       default:
         this.isInfo = false;
@@ -85,7 +85,6 @@ export class CapnhattintucComponent implements OnInit {
    
     if (model.id === null || model.id === undefined) {
       this.formGroup = this.fb.group({
-        id: [ null, [Validators.required]],
         tieu_de: [ null, [Validators.required]],
         noi_dung: [ null, [Validators.required]],
         highlight: [ null, [Validators.required]],
@@ -96,7 +95,6 @@ export class CapnhattintucComponent implements OnInit {
       });
     } else {
       this.formGroup = this.fb.group({
-        id: [{value: this.model.id, disabled: this.isInfo}, [Validators.required]],
         tieu_de: [{value: this.model.tieu_de, disabled: this.isInfo}, [Validators.required]],
         noi_dung: [{value: this.model.noi_dung, disabled: this.isInfo}, [Validators.required]],
         highlight: [{value: this.model.highlight, disabled: this.isInfo}, [Validators.required]],
@@ -146,7 +144,7 @@ export class CapnhattintucComponent implements OnInit {
     }
     if (this.isEdit) {
       tintuc = {
-        id: this.formGroup.get('ID')?.value,
+        id: this.model.id,
         tieu_de: this.formGroup.get('tieu_de')?.value,
         noi_dung: this.formGroup.get('noi_dung')?.value,
         highlight:this.formGroup.get('highlight')?.value,
@@ -156,7 +154,7 @@ export class CapnhattintucComponent implements OnInit {
       };
     } else {
       tintuc = {
-        id: this.formGroup.get('ID')?.value,
+        id: this.model.id,
         tieu_de: this.formGroup.get('tieu_de')?.value,
         noi_dung: this.formGroup.get('noi_dung')?.value,
         highlight:this.formGroup.get('highlight')?.value,

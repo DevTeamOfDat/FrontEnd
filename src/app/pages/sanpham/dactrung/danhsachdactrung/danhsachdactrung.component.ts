@@ -43,8 +43,8 @@ export class DanhsachdactrungComponent implements OnInit {
   fetchDanhSachDacTrung(){
     this.isLoading =  true;
     this.dactrungService.getAll().subscribe(data => {
-      this.danhsachdactrung = data;
-      this.listFilterResult = data;
+      this.danhsachdactrung = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;

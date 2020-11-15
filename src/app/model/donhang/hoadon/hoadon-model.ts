@@ -6,6 +6,8 @@ export interface hoadonModel{
     loai_don?: number,
     trang_thai?: number,
     tong_tien?: number,
+    ten_nhan_vien?: string,
+    ten_khach_hang?: string,
     isActive? : boolean,
     checked?:  boolean
  }

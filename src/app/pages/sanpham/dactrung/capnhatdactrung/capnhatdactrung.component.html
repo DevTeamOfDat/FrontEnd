@@ -12,25 +12,7 @@
   </div>
   <div class="modal-body">
     <form [formGroup]="formGroup" novalidate (ngSubmit)="save()">
-      <div class="form-group">
-        <label>Loại đặc trưng</label>
-        <input
-          type="text"
-          name=""
-          class="form-control"
-          formControlName="loai_dac_trung"
-          id="loai_dac_trung"
-          [(ngModel)]="update_loai_dac_trung"
-        />
-        <div *ngIf="submitted && formGroup.controls['loai_dac_trung'].errors?.required">
-          <div
-            *ngIf="formGroup.controls['loai_dac_trung'].errors?.required"
-            style="color: red"
-          >
-            * Mã đặc trưng không được để trống
-          </div>
-        </div>
-      </div>
+      
 
       <div class="form-group">
         <label>Tên đặc trưng</label>

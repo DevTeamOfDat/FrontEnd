@@ -41,8 +41,8 @@ export class DanhsachhoadonComponent implements OnInit {
   fetchDanhSachhoadon(){
     this.isLoading =  true;
     this.hoadonService.getAll().subscribe(data => {
-      this.danhsachhoadon = data;
-      this.listFilterResult = data;
+      this.danhsachhoadon = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;

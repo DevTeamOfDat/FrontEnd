@@ -41,8 +41,8 @@ export class DanhsachsanphamComponent implements OnInit {
   fetchDanhsachsanpham(){
     this.isLoading =  true;
     this.sanphamService.getAll().subscribe(data => {
-      this.danhsachsanpham = data;
-      this.listFilterResult = data;
+      this.danhsachsanpham = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;

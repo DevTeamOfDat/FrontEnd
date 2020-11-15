@@ -62,7 +62,7 @@ export class CapnhatphieunhapComponent implements OnInit {
   fetchDanhsachnhanvien(){
     this.isLoading =  true;
     this.nhanvienService.getAll().subscribe(data => {
-      this.danhsachtaikhoan = data;
+      this.danhsachtaikhoan = data.data;
       this.arrbyNV = this.danhsachtaikhoan.filter(function (khachhang) {
         return khachhang.loai_tai_khoan === "NV";
       });
@@ -75,7 +75,7 @@ export class CapnhatphieunhapComponent implements OnInit {
   fetchDanhsachtrangthai(){
     this.isLoading =  true;
     this.trangthaiService.getAll().subscribe(data => {
-      this.danhsachtrangthai = data;
+      this.danhsachtrangthai = data.data;
     },
     err => {
         this.isLoading = false;
@@ -85,7 +85,7 @@ export class CapnhatphieunhapComponent implements OnInit {
   fetchDanhsachnhacungcap(){
     this.isLoading =  true;
     this.nhacungcapService.getAll().subscribe(data => {
-      this.danhsachnhacungcap = data;
+      this.danhsachnhacungcap = data.data;
     },
     err => {
         this.isLoading = false;
@@ -99,21 +99,21 @@ export class CapnhatphieunhapComponent implements OnInit {
         this.isEdit = false;
         this.isAdd = true;
         this.title = `Thêm mới thông tin trạng thái`;
-        this.update_ma_phieu_nhap = this.arrCheck.length+1;
+        // this.update_ma_phieu_nhap = this.arrCheck.length+1;
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
         this.title = `Xem chi tiết thông tin trạng thái`;
-        this.update_ma_phieu_nhap = this.model.ma_phieu_nhap;
+        // this.update_ma_phieu_nhap = this.model.ma_phieu_nhap;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
         this.title = `Chỉnh sửa thông tin đặc trưng`;
-        this.update_ma_phieu_nhap = this.model.ma_phieu_nhap;
+        // this.update_ma_phieu_nhap = this.model.ma_phieu_nhap;
         break;
       default:
         this.isInfo = false;
@@ -133,7 +133,6 @@ export class CapnhatphieunhapComponent implements OnInit {
    
     if (model.ma_phieu_nhap === null || model.ma_phieu_nhap === undefined) {
       this.formGroup = this.fb.group({
-        ma_phieu_nhap: [ null, [Validators.required]],
         ma_nhan_vien: [ null, [Validators.required]],
         ma_nha_cung_cap: [ null, [Validators.required]],
         ngay_nhap: [ null, [Validators.required]],
@@ -143,7 +142,6 @@ export class CapnhatphieunhapComponent implements OnInit {
       });
     } else {
       this.formGroup = this.fb.group({
-        ma_phieu_nhap: [{value: this.model.ma_phieu_nhap, disabled: this.isInfo}, [Validators.required]],
         ma_nhan_vien: [{value: this.model.ma_nhan_vien, disabled: this.isInfo}, [Validators.required]],
         ma_nha_cung_cap: [{value: this.model.ma_nha_cung_cap, disabled: this.isInfo}, [Validators.required]],
         ngay_nhap: [{value: this.model.ngay_nhap, disabled: this.isInfo}, [Validators.required]],
@@ -192,7 +190,7 @@ export class CapnhatphieunhapComponent implements OnInit {
     }
     if (this.isEdit) {
       phieunhap = {
-        ma_phieu_nhap: this.formGroup.get('ma_phieu_nhap')?.value,
+        ma_phieu_nhap: this.model.ma_phieu_nhap,
         ma_nhan_vien: this.formGroup.get('ma_nhan_vien')?.value,
         ma_nha_cung_cap: this.formGroup.get('ma_nha_cung_cap')?.value,
         ngay_nhap: this.formGroup.get('ngay_nhap')?.value,
@@ -201,7 +199,6 @@ export class CapnhatphieunhapComponent implements OnInit {
       };
     } else {
       phieunhap = {
-        ma_phieu_nhap: this.formGroup.get('ma_phieu_nhap')?.value,
         ma_nhan_vien: this.formGroup.get('ma_nhan_vien')?.value,
         ma_nha_cung_cap: this.formGroup.get('ma_nha_cung_cap')?.value,
         ngay_nhap: this.formGroup.get('ngay_nhap')?.value,

@@ -41,8 +41,8 @@ export class DanhsachngaykhuyenmaiComponent implements OnInit {
   fetchDanhsachngaykhuyenmai(){
     this.isLoading =  true;
     this.ngaykhuyenmaiService.getAll().subscribe(data => {
-      this.danhsachngaykhuyenmai = data;
-      this.listFilterResult = data;
+      this.danhsachngaykhuyenmai = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;

@@ -41,8 +41,8 @@ export class DanhsachvoucherComponent implements OnInit {
   fetchDanhsachvoucher(){
     this.isLoading =  true;
     this.voucherService.getAll().subscribe(data => {
-      this.danhsachvoucher = data;
-      this.listFilterResult = data;
+      this.danhsachvoucher = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;
@@ -86,7 +86,7 @@ export class DanhsachvoucherComponent implements OnInit {
   changeModel() {
     const selectedHometowns = this.listFilterResult
       .filter((voucher) => voucher.checked)
-      .map((p) => p.ma_voicher);
+      .map((p) => p.ma_voucher);
     if (selectedHometowns.length > 0) {
       this.isDelete = false;
 
@@ -104,7 +104,7 @@ export class DanhsachvoucherComponent implements OnInit {
     }
     selectedvoucher = this.listFilterResult
       .filter((voucher) => voucher.checked)
-      .map((p) => p.ma_voicher);
+      .map((p) => p.ma_voucher);
     if (selectedvoucher.length === 0) {
       this.toastr.error('Chọn ít nhất một bản ghi để xóa.');
       return;

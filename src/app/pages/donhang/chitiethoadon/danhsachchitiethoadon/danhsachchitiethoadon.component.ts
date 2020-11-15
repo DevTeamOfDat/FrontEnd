@@ -41,8 +41,8 @@ export class DanhsachchitiethoadonComponent implements OnInit {
   fetchDanhSachchitiethoadon(){
     this.isLoading =  true;
     this.chitiethoadonService.getAll().subscribe(data => {
-      this.danhsachchitiethoadon = data;
-      this.listFilterResult = data;
+      this.danhsachchitiethoadon = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;

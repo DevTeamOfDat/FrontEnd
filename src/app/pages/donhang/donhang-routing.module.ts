@@ -13,10 +13,10 @@ const routes: Routes = [{
   path: '',
   component: DonhangComponent,
   children: [
-    {
-      path: 'loaidon/danhsachloaidon',
-      component: DanhsachloaidonComponent,
-    },
+    // {
+    //   path: 'loaidon/danhsachloaidon',
+    //   component: DanhsachloaidonComponent,
+    // },
     {
       path: 'hoadon/danhsachhoadon',
       component: DanhsachhoadonComponent,

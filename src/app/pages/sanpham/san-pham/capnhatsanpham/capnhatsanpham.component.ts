@@ -54,7 +54,7 @@ export class CapnhatsanphamComponent implements OnInit {
   fetchDanhsachthuonghieu(){
     this.isLoading =  true;
     this.thuonghieuService.getAll().subscribe(data => {
-      this.danhsachthuonghieu = data;
+      this.danhsachthuonghieu = data.data;
     },
     err => {
         this.isLoading = false;
@@ -64,7 +64,7 @@ export class CapnhatsanphamComponent implements OnInit {
   fetchDanhsachloaisanpham(){
     this.isLoading =  true;
     this.loaisanphamService.getAll().subscribe(data => {
-      this.danhsachloaisanpham = data;
+      this.danhsachloaisanpham = data.data;
     },
     err => {
         this.isLoading = false;
@@ -79,22 +79,22 @@ export class CapnhatsanphamComponent implements OnInit {
         this.isInfo = false;
         this.isEdit = false;
         this.isAdd = true;
-        this.title = `Thêm mới thông tin thương hiệu`;
-        this.update_ma_san_pham = this.arrCheck.length+1;
+        this.title = `Thêm mới thông tin sản phẩm`;
+        // this.update_ma_san_pham = this.arrCheck.length+1;
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
-        this.title = `Xem chi tiết thông tin thương hiệu`;
-        this.update_ma_san_pham = this.model.ma_san_pham;
+        this.title = `Xem chi tiết thông tin sản phẩm`;
+        // this.update_ma_san_pham = this.model.ma_san_pham;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
-        this.title = `Chỉnh sửa thông tin thương hiệu`;
-        this.update_ma_san_pham = this.model.ma_san_pham;
+        this.title = `Chỉnh sửa thông tin sản phẩm`;
+        // this.update_ma_san_pham = this.model.ma_san_pham;
         break;
       default:
         this.isInfo = false;
@@ -114,7 +114,6 @@ export class CapnhatsanphamComponent implements OnInit {
    
     if (model.ma_san_pham === null || model.ma_san_pham === undefined) {
       this.formGroup = this.fb.group({
-        ma_san_pham :[ null, [Validators.required]],
         ma_thuong_hieu: [ null, [Validators.required]],
         ma_loai_san_pham: [ null, [Validators.required]],
         ten_san_pham: [ null, [Validators.required]],
@@ -124,7 +123,6 @@ export class CapnhatsanphamComponent implements OnInit {
       });
     } else {
       this.formGroup = this.fb.group({
-        ma_san_pham : [{value: this.model.ma_san_pham, disabled: this.isInfo}, [Validators.required]],
         ma_thuong_hieu: [{value: this.model.ma_thuong_hieu, disabled: this.isInfo}, [Validators.required]],
         ma_loai_san_pham: [{value: this.model.ma_loai_san_pham, disabled: this.isInfo}, [Validators.required]],
         ten_san_pham: [{value: this.model.ten_san_pham, disabled: this.isInfo}, [Validators.required]],
@@ -173,7 +171,7 @@ export class CapnhatsanphamComponent implements OnInit {
     }
     if (this.isEdit) {
       sanpham = {
-        ma_san_pham : this.formGroup.get('ma_san_pham')?.value,
+        ma_san_pham : this.model.ma_san_pham,
         ma_thuong_hieu: this.formGroup.get('ma_thuong_hieu')?.value,
         ma_loai_san_pham: this.formGroup.get('ma_loai_san_pham')?.value,
         ten_san_pham: this.formGroup.get('ten_san_pham')?.value,
@@ -182,7 +180,7 @@ export class CapnhatsanphamComponent implements OnInit {
       };
     } else {
       sanpham = {
-        ma_san_pham : this.formGroup.get('ma_san_pham')?.value,
+        ma_san_pham : this.model.ma_san_pham,
         ma_thuong_hieu: this.formGroup.get('ma_thuong_hieu')?.value,
         ma_loai_san_pham: this.formGroup.get('ma_loai_san_pham')?.value,
         ten_san_pham: this.formGroup.get('ten_san_pham')?.value,

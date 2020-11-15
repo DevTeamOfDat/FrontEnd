@@ -5,6 +5,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { VoucherService } from 'app/services/khuyen-mai/voucher/voucher.service';
+import { taikhoanModel } from 'app/model/taikhoan/taikhoan-model';
+import { TaikhoanService } from 'app/services/taikhoan/taikhoan.service';
 
 @Component({
   selector: 'ngx-capnhatvoucher',
@@ -15,6 +17,8 @@ export class CapnhatvoucherComponent implements OnInit {
 
   @ViewChild('content') public childModal!: ModalDirective;
   @Input() danhsachvoucher: Array<voucherModel>;
+  danhsachtaikhoan: Array<taikhoanModel> = [];
+  arrbyKH: Array<taikhoanModel> = [];
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
   checkButton = false;
   closeResult: String;
@@ -29,18 +33,34 @@ export class CapnhatvoucherComponent implements OnInit {
   type: any;
   model: voucherModel;
   arrCheck = [];
-  update_ma_voicher:any;
+  update_ma_voucher:any;
   constructor(
     private modalService: NgbModal,
     private toastr: ToastrService,
     private fb: FormBuilder,
+    private khachhangService: TaikhoanService,
     private voucherService: VoucherService,) {
     }
 
   ngOnInit(): void {
     this.submitted = false;
     
-    
+    this.fetchDanhsachkhachhang();
+  }
+
+  fetchDanhsachkhachhang(){
+    this.isLoading =  true;
+    const arrr=[];
+    this.khachhangService.getAll().subscribe(data => {
+      this.danhsachtaikhoan = data.data;
+      this.arrbyKH = this.danhsachtaikhoan.filter(function (khachhang) {
+        return khachhang.loai_tai_khoan === "KH";
+      });
+      console.log(this.arrbyKH);
+    },   
+    err => {
+        this.isLoading = false;
+      })
   }
   updateFormType(type: any) {
     switch (type) {
@@ -48,22 +68,22 @@ export class CapnhatvoucherComponent implements OnInit {
         this.isInfo = false;
         this.isEdit = false;
         this.isAdd = true;
-        this.title = `Thêm mới thông tin ngày khuyến mãi`;
-        this.update_ma_voicher = this.arrCheck.length+1;
+        this.title = `Thêm mới thông tin voucher`;
+        // this.update_ma_voucher = this.arrCheck.length+1;
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
-        this.title = `Xem chi tiết thông tin ngày khuyến mãi`;
-        this.update_ma_voicher = this.model.ma_voicher;
+        this.title = `Xem chi tiết thông tin voucher`;
+        // this.update_ma_voucher = this.model.ma_voucher;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
-        this.title = `Chỉnh sửa thông tin ngày khuyến mãi`;
-        this.update_ma_voicher = this.model.ma_voicher;
+        this.title = `Chỉnh sửa thông tin voucher`;
+        // this.update_ma_voucher = this.model.ma_voucher;
         break;
       default:
         this.isInfo = false;
@@ -81,17 +101,15 @@ export class CapnhatvoucherComponent implements OnInit {
     this.submitted = false;
     this.updateFormType(type);
    
-    if (model.ma_voicher === null || model.ma_voicher === undefined) {
+    if (model.ma_voucher === null || model.ma_voucher === undefined) {
       this.formGroup = this.fb.group({
-        ma_voicher: [ null, [Validators.required]],
-        muc_voicher: [ null, [Validators.required]],
-        
+        ma_voucher: [ null, [Validators.required]],
+        ma_khach_hang: [ null, [Validators.required]],
       });
     } else {
       this.formGroup = this.fb.group({
-        ma_voicher:  [{value: this.model.ma_voicher, disabled: this.isInfo}, [Validators.required]],
-        muc_voicher: [{value: this.model.muc_voicher, disabled: this.isInfo}, [Validators.required]],
-
+        ma_voucher: [{value: this.model.ma_voucher, disabled: this.isInfo}, [Validators.required]],
+        ma_khach_hang: [{value: this.model.ma_khach_hang, disabled: this.isInfo}, [Validators.required]],
       });
 
       console.log(this.formGroup);
@@ -135,19 +153,21 @@ export class CapnhatvoucherComponent implements OnInit {
     }
     if (this.isEdit) {
       voicher = {
-        ma_voicher: this.formGroup.get('ma_voicher')?.value,
-        muc_voicher: this.formGroup.get('muc_voicher')?.value,
+        ma_voucher: this.model.ma_voucher,
+        muc_voucher: this.formGroup.get('muc_voucher')?.value,
+        ma_khach_hang: this.model.ma_khach_hang,
       };
     } else {
       voicher = {
-        ma_voicher: this.formGroup.get('ma_voicher')?.value,
-        muc_voicher: this.formGroup.get('muc_voicher')?.value,
+        ma_voucher: this.model.ma_voucher,
+        muc_voucher: this.formGroup.get('muc_voucher')?.value,
+        ma_khach_hang: this.model.ma_khach_hang,
       };
     }
     console.log(this.arrCheck.length);
     if (this.isAdd) {
       for (let i = 0; i < this.arrCheck.length; i++) {
-        if (this.arrCheck[i].ma_voicher === voicher.ma_voicher) {
+        if (this.arrCheck[i].ma_voucher === voicher.ma_voucher) {
           check = true;
           break;
         }
@@ -168,7 +188,7 @@ export class CapnhatvoucherComponent implements OnInit {
         });
     }
     if (this.isEdit) {
-      this.voucherService.update(voicher.ma_voicher, voicher).subscribe(res => {
+      this.voucherService.update(voicher.ma_voucher, voicher).subscribe(res => {
           this.closeModalReloadData();
           this.toastr.success('Sửa thành công');
           this.modalReference.dismiss();

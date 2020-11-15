@@ -12,39 +12,18 @@
   </div>
   <div class="modal-body">
     <form [formGroup]="formGroup" novalidate (ngSubmit)="save()">
-      <div class="form-group">
-        <label>Mã voucher</label>
-        <input
-          type="text"
-          name=""
-          class="form-control"
-          formControlName="ma_voicher"
-          id="ma_voicher"
-          [(ngModel)]="update_ma_voicher"
-        />
-        <div *ngIf="submitted && formGroup.controls['ma_voicher'].errors?.required">
-          <div
-            *ngIf="formGroup.controls['ma_voicher'].errors?.required"
-            style="color: red"
-          >
-            * Mã voicher không được để trống
-          </div>
-        </div>
-      </div>
-
-
      <div class="form-group">
-        <label for="muc_voicher">Mục voucher</label>
+        <label for="muc_voucher">Mục voucher</label>
         <input
           type="text"
           name=""
           class="form-control"
-          formControlName="muc_voicher"
-          id="muc_voicher"
+          formControlName="muc_voucher"
+          id="muc_voucher"
         />
-        <div *ngIf="submitted && formGroup.controls['muc_voicher'].errors?.required">
+        <div *ngIf="submitted && formGroup.controls['muc_voucher'].errors?.required">
           <div
-            *ngIf="formGroup.controls['muc_voicher'].errors?.required"
+            *ngIf="formGroup.controls['muc_voucher'].errors?.required"
             style="color: red"
           >
             * Mục voicher không được để trống
@@ -53,6 +32,21 @@
 
         
       </div>
+
+      <div class="form-group">
+               <label>Tên khách hàng</label>
+               <select class="form-control" name="" formControlName="ma_khach_hang" id="">
+                  <option *ngFor="let e of arrbyKH" value="{{e.ma_tai_khoan}}">{{e.ho_ten}}</option>
+               </select>
+               <div *ngIf="submitted && formGroup.controls['ma_khach_hang'].errors?.required">
+                  <div
+                     *ngIf="formGroup.controls['ma_khach_hang'].errors?.required"
+                     style="color: red"
+                     >
+                     * Tên khách hàng không được để trống
+                  </div>
+               </div>
+            </div>
       <div class="form-group" align="center">
         <button
           [hidden]="checkButton"

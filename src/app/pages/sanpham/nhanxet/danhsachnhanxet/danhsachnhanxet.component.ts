@@ -41,8 +41,8 @@ export class DanhsachnhanxetComponent implements OnInit {
   fetchDanhsachnhanxet(){
     this.isLoading =  true;
     this.nhanxetService.getAll().subscribe(data => {
-      this.danhsachnhanxet = data;
-      this.listFilterResult = data;
+      this.danhsachnhanxet = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;

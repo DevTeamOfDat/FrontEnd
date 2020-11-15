@@ -41,8 +41,8 @@ export class DanhsachphieunhapComponent implements OnInit {
   fetchDanhSachphieunhap(){
     this.isLoading =  true;
     this.phieunhapService.getAll().subscribe(data => {
-      this.danhsachphieunhap = data;
-      this.listFilterResult = data;
+      this.danhsachphieunhap = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;

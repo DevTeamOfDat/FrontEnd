@@ -48,22 +48,22 @@ export class CapnhatloaitaikhoanComponent implements OnInit {
         this.isInfo = false;
         this.isEdit = false;
         this.isAdd = true;
-        this.title = `Thêm mới thông tin đặc trưng`;
-        this.update_id= this.arrCheck.length+1;
+        this.title = `Thêm mới thông tin loại tài khoản`;
+        // this.update_id= this.arrCheck.length+1;
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
-        this.title = `Xem chi tiết thông tin đặc trưng`;
-        this.update_id = this.model.id;
+        this.title = `Xem chi tiết thông tin loại tài khoản`;
+        // this.update_id = this.model.id;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
-        this.title = `Chỉnh sửa thông tin đặc trưng`;
-        this.update_id = this.model.id;
+        this.title = `Chỉnh sửa thông tin loại tài khoản`;
+        // this.update_id = this.model.id;
         break;
       default:
         this.isInfo = false;
@@ -83,7 +83,6 @@ export class CapnhatloaitaikhoanComponent implements OnInit {
    
     if (model.id === null || model.id === undefined) {
       this.formGroup = this.fb.group({
-        id: [ null, [Validators.required]],
         gia_tri: [ null, [Validators.required]],
         mo_ta: [null,  [Validators.required]],
         
@@ -91,7 +90,6 @@ export class CapnhatloaitaikhoanComponent implements OnInit {
       console.log("1");
     } else {
       this.formGroup = this.fb.group({
-        id:  [{value: this.model.id, disabled: this.isInfo}, [Validators.required]],
         gia_tri: [{value: this.model.gia_tri, disabled: this.isInfo}, [Validators.required]],
         mo_ta: [{value: this.model.mo_ta, disabled: this.isInfo}, [Validators.required]],
 
@@ -136,13 +134,13 @@ export class CapnhatloaitaikhoanComponent implements OnInit {
     }
     if (this.isEdit) {
       loaitaikhoan = {
-        id: this.formGroup.get('id')?.value,
+        id: this.model.id,
         gia_tri: this.formGroup.get('gia_tri')?.value,
         mo_ta: this.formGroup.get('mo_ta').value,
       };
     } else {
       loaitaikhoan = {
-        id: this.formGroup.get('id')?.value,
+        id: this.model.id,
         gia_tri: this.formGroup.get('gia_tri')?.value,
         mo_ta: this.formGroup.get('mo_ta').value,
       };

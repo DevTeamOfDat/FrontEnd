@@ -20,10 +20,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Đơn hàng',
     icon: 'layout-outline',
     children: [
-      {
-        title: 'Loại đơn',
-        link: '/pages/donhang/loaidon/danhsachloaidon',
-      },
+      // {
+      //   title: 'Loại đơn',
+      //   link: '/pages/donhang/loaidon/danhsachloaidon',
+      // },
       {
         title: 'Phiếu nhập',
         link: '/pages/donhang/phieunhap/danhsachphieunhap',
@@ -40,10 +40,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Chi tiết hóa Đơn',
         link: '/pages/donhang/chitiethoadon/danhsachchitiethoadon',
       },
-      {
-        title: 'Trạng thái',
-        link: '/pages/donhang/trangthai/danhsachtrangthai',
-      },
+      // {
+      //   title: 'Trạng thái',
+      //   link: '/pages/donhang/trangthai/danhsachtrangthai',
+      // },
     ],
   },
   {
@@ -119,18 +119,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Hình ảnh sản phẩm',
         link: '/pages/sanpham/hinhanhsanpham/danhsachhinhanhsanpham',
       },
-      {
-        title: 'Nhận xét',
-        link: '/pages/sanpham/nhanxet/danhsachnhanxet',
-      },
-      {
-        title: 'Nhập hàng',
-        link: '/pages/modal-overlays/popover',
-      },
-      {
-        title: 'Chuyển hàng',
-        link: '/pages/modal-overlays/toastr',
-      },
+      // {
+      //   title: 'Nhận xét',
+      //   link: '/pages/sanpham/nhanxet/danhsachnhanxet',
+      // },
+      // {
+      //   title: 'Nhập hàng',
+      //   link: '/pages/modal-overlays/popover',
+      // },
+      // {
+      //   title: 'Chuyển hàng',
+      //   link: '/pages/modal-overlays/toastr',
+      // },
       {
         title: 'Thương hiệu',
         link: '/pages/sanpham/thuonghieu/danhsachthuonghieu',
@@ -138,26 +138,26 @@ export const MENU_ITEMS: NbMenuItem[] = [
       
     ],
   },
-  {
-    title: 'Auth',
-    icon: 'lock-outline',
-    children: [
-      {
-        title: 'Login',
-        link: '/auth/login',
-      },
-      {
-        title: 'Register',
-        link: '/auth/register',
-      },
-      {
-        title: 'Request Password',
-        link: '/auth/request-password',
-      },
-      {
-        title: 'Reset Password',
-        link: '/auth/reset-password',
-      },
-    ],
-  },
+  // {
+  //   title: 'Auth',
+  //   icon: 'lock-outline',
+  //   children: [
+  //     {
+  //       title: 'Login',
+  //       link: '/auth/login',
+  //     },
+  //     {
+  //       title: 'Register',
+  //       link: '/auth/register',
+  //     },
+  //     {
+  //       title: 'Request Password',
+  //       link: '/auth/request-password',
+  //     },
+  //     {
+  //       title: 'Reset Password',
+  //       link: '/auth/reset-password',
+  //     },
+  //   ],
+  // },
 ];

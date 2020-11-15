@@ -1,25 +1,152 @@
+<!--
+Author: Colorlib
+Author URL: https://colorlib.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Creative Colorlib SignUp Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<!-- //Custom Theme files -->
+<!-- web font -->
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- //web font -->
+</head>
+<body>
+	<!-- main -->
+	<div class="main-w3layouts wrapper">
+		<h1>Creative SignUp Form</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form [formGroup]="formRegister" (ngSubmit)="save()">
+            <h1>Register</h1>
+            <p class="text-muted">Create your account</p>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+              </div>
+              <input type="text" class="form-control" formControlName="email" placeholder="Email"
+                      autocomplete="email" required>
+            </div>
+            <div
+              *ngIf="submitted && formRegister.controls['email'].errors?.required || formRegister.controls['email'].errors?.pattern">
+              <div *ngIf="formRegister.controls['email'].errors?.required" style="color: red">
+                * Email không được để trống
+              </div>
+              <div *ngIf="formRegister.controls['email'].errors?.pattern" style="color: red">
+                * Nhập đúng định dạng email
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-user"></i></span>
+              </div>
+              <input type="text" class="form-control" formControlName="ho_ten" placeholder="Họ tên"
+                      autocomplete="ho_ten" required>
+            </div>
+            <div
+              *ngIf="submitted && formRegister.controls['ho_ten'].errors?.required">
+              <div *ngIf="formRegister.controls['ho_ten'].errors?.required" style="color: red">
+                * Họ tên không được để trống
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-phone"></i></span>
+              </div>
+              <input type="text" class="form-control" formControlName="so_dien_thoai"
+                      placeholder="Số điện thoại"
+                      autocomplete="so_dien_thoai"
+                      required>
+            </div>
+            <div
+              *ngIf="submitted && formRegister.controls['so_dien_thoai'].errors?.required || formRegister.controls['so_dien_thoai'].errors?.pattern">
+              <div *ngIf="formRegister.controls['so_dien_thoai'].errors?.required" style="color: red">
+                * Số diện thoại không được để trống
+              </div>
+              <div *ngIf="formRegister.controls['so_dien_thoai'].errors?.pattern" style="color: red">
+                * Nhập đúng định dạng số điện thoại
+              </div>
+            </div>
 
-<div class="login-box">
-  <img id="img" src="../../../../assets/img/logo.png" />
-  <br />
-  <h1>Sign up to Utosa</h1>
-  <form>
-    <!-- USERNAME INPUT -->
-    <label for="username">Họ và tên</label>
-    <input type="text" class="form-control" formControlName="username" placeholder="Username">
-    <!-- Email  input-->
-    <label for="username">Email</label>
-    <input type="text" class="form-control" formControlName="email" placeholder="Email">
-    <!-- PASSWORD INPUT -->
-    <label for="password">Password</label>
-    <input type="password" />
-    <!-- Confirm password -->
-    <label for="password">Confirm Password</label>
-    <input type="password" />
-    <label for="username">Địa chỉ</label>
-    <input type="text" />
-    <label for="username">Số điện thoại</label>
-    <input type="text" />
-    <input type="submit" value="Sign Up" />
-  </form>
-</div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-user"></i></span>
+              </div>
+              <input type="text" class="form-control" formControlName="dia_chi" placeholder="Địa chỉ"
+                      autocomplete="dia_chi" required>
+            </div>
+            <div
+              *ngIf="submitted && formRegister.controls['dia_chi'].errors?.required || formRegister.controls['dia_chi'].errors?.pattern">
+              <div *ngIf="formRegister.controls['dia_chi'].errors?.required" style="color: red">
+                * Đia chỉ không được để trống
+              </div>
+              <div *ngIf="formRegister.controls['dia_chi'].errors?.pattern" style="color: red">
+                * Đia chỉ tối thiểu 4 kí tự
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-lock"></i></span>
+              </div>
+              <input type="password" class="form-control" formControlName="mat_khau" placeholder="Mật khẩu"
+                      autocomplete="new-password"
+                      required>
+            </div>
+            <div
+              *ngIf="submitted && formRegister.controls['mat_khau'].errors?.required || formRegister.controls['mat_khau'].errors?.pattern">
+              <div *ngIf="formRegister.controls['mat_khau'].errors?.required" style="color: red">
+                * Mật khẩu không được để trống
+              </div>
+              <div *ngIf="formRegister.controls['mat_khau'].errors?.pattern" style="color: red">
+                * Mật khẩu tối thiểu 8 kí tự
+              </div>
+            </div>
+            <div class="input-group mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-lock"></i></span>
+              </div>
+              <input type="password" class="form-control" formControlName="confirm_mat_khau"
+                      placeholder="Nhập lại mât khẩu"
+                      autocomplete="new-password"
+                      required>
+            </div>
+            <div
+              *ngIf="submitted && formRegister.controls['confirm_mat_khau'].errors?.required || formRegister.controls['confirm_mat_khau'].errors?.pattern">
+              <div *ngIf="formRegister.controls['confirm_mat_khau'].errors?.required" style="color: red">
+                * Mật khẩu không được để trống
+              </div>
+              <div *ngIf="formRegister.controls['confirm_mat_khau'].errors?.pattern" style="color: red">
+                * Mật khẩu tối thiểu 8 kí tự
+              </div>
+            </div>
+            <button type="submit" class="btn btn-block btn-success">Create Account</button>
+          </form>
+          <p>Don't have an Account? <a [routerLink]="['/login']"> Login Now!</a></p>
+			</div>
+		</div>
+		<!-- copyright -->
+		<div class="colorlibcopy-agile">
+			<p>© 2018 Colorlib Signup Form. All rights reserved | Design by <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+		</div>
+		<!-- //copyright -->
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<!-- //main -->
+</body>
+</html>

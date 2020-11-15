@@ -55,7 +55,7 @@ export class CapnhatdactrungsanphamComponent implements OnInit {
   fetchDanhSachDacTrung(){
     this.isLoading =  true;
     this.dactrungService.getAll().subscribe(data => {
-      this.danhsachdactrung = data;
+      this.danhsachdactrung = data.data;
     },
     err => {
         this.isLoading = false;
@@ -65,7 +65,7 @@ export class CapnhatdactrungsanphamComponent implements OnInit {
   fetchDanhsachsanpham(){
     this.isLoading =  true;
     this.sanphamService.getAll().subscribe(data => {
-      this.danhsachsanpham = data;
+      this.danhsachsanpham = data.data;
     },
     err => {
         this.isLoading = false;

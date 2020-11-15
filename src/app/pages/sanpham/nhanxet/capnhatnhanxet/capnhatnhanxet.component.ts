@@ -58,7 +58,7 @@ export class CapnhatnhanxetComponent implements OnInit {
   fetchDanhsachsanpham(){
     this.isLoading =  true;
     this.sanphamService.getAll().subscribe(data => {
-      this.danhsachsanpham = data;
+      this.danhsachsanpham = data.data;
     },
     err => {
         this.isLoading = false;
@@ -67,10 +67,8 @@ export class CapnhatnhanxetComponent implements OnInit {
 
   fetchDanhsachkhachhang(){
     this.isLoading =  true;
-    const arrr=[];
     this.khachhangService.getAll().subscribe(data => {
-      this.danhsachkhachhang = data;
-      console.log(this.danhsachkhachhang);
+      this.danhsachkhachhang = data.data;
       this.arrbyLoaitaikhoan = this.danhsachkhachhang.filter(function (khachhang) {
         return khachhang.loai_tai_khoan === "KH";
       });

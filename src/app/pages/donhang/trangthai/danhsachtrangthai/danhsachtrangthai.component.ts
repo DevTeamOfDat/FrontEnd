@@ -41,8 +41,8 @@ export class DanhsachtrangthaiComponent implements OnInit {
   fetchDanhSachtrangthai(){
     this.isLoading =  true;
     this.trangthaiService.getAll().subscribe(data => {
-      this.danhsachtrangthai = data;
-      this.listFilterResult = data;
+      this.danhsachtrangthai = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;

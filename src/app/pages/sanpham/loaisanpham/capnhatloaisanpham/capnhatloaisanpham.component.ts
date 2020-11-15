@@ -48,22 +48,22 @@ export class CapnhatloaisanphamComponent implements OnInit {
         this.isInfo = false;
         this.isEdit = false;
         this.isAdd = true;
-        this.title = `Thêm mới thông tin thương hiệu`;
-        this.update_ma_loai_san_pham = this.arrCheck.length+1;
+        this.title = `Thêm mới thông tin loại sản phẩm`;
+        // this.update_ma_loai_san_pham = this.arrCheck.length+1;
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
-        this.title = `Xem chi tiết thông tin  thương hiệu`;
-        this.update_ma_loai_san_pham = this.model.ma_loai_san_pham;
+        this.title = `Xem chi tiết thông tin loại sản phẩm`;
+        // this.update_ma_loai_san_pham = this.model.ma_loai_san_pham;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
-        this.title = `Chỉnh sửa thông tin đặc trưng`;
-        this.update_ma_loai_san_pham = this.model.ma_loai_san_pham;
+        this.title = `Chỉnh sửa thông tin loại sản phẩm`;
+        // this.update_ma_loai_san_pham = this.model.ma_loai_san_pham;
         break;
       default:
         this.isInfo = false;
@@ -83,14 +83,12 @@ export class CapnhatloaisanphamComponent implements OnInit {
    
     if (model.ma_loai_san_pham === null || model.ma_loai_san_pham === undefined) {
       this.formGroup = this.fb.group({
-        ma_loai_san_pham: [ null, [Validators.required]],
         ten_loai_san_pham: [ null, [Validators.required]],
         mo_ta : [ null, [Validators.required]],
         
       });
     } else {
       this.formGroup = this.fb.group({
-        ma_loai_san_pham:  [{value: this.model.ma_loai_san_pham, disabled: this.isInfo}, [Validators.required]],
         ten_loai_san_pham: [{value: this.model.ten_loai_san_pham, disabled: this.isInfo}, [Validators.required]],
         mo_ta : [{value: this.model.mo_ta, disabled: this.isInfo}, [Validators.required]],
       });
@@ -136,13 +134,12 @@ export class CapnhatloaisanphamComponent implements OnInit {
     }
     if (this.isEdit) {
       loaisanpham = {
-        ma_loai_san_pham: this.formGroup.get('ma_loai_san_pham')?.value,
+        ma_loai_san_pham: this.model.ma_loai_san_pham,
         ten_loai_san_pham: this.formGroup.get('ten_loai_san_pham')?.value,
         mo_ta : this.formGroup.get('mo_ta')?.value,
       };
     } else {
       loaisanpham = {
-        ma_loai_san_pham: this.formGroup.get('ma_loai_san_pham')?.value,
         ten_loai_san_pham: this.formGroup.get('ten_loai_san_pham')?.value,
         mo_ta : this.formGroup.get('mo_ta')?.value,
       };

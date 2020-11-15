@@ -41,8 +41,8 @@ export class DanhsachtaikhoanComponent implements OnInit {
   fetchDanhsachtaikhoan(){
     this.isLoading =  true;
     this.taikhoanService.getAll().subscribe(data => {
-      this.danhsachtaikhoan = data;
-      this.listFilterResult = data;
+      this.danhsachtaikhoan = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;

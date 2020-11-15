@@ -18,16 +18,16 @@
           type="text"
           name=""
           class="form-control"
-          formControlName="ma_voicher"
-          id="ma_voicher"
+          formControlName="ma_ngay_khuyen_mai"
+          id="ma_ngay_khuyen_mai"
           [(ngModel)]="update_ma_voucher"
         />
-        <div *ngIf="submitted && formGroup.controls['ma_voicher'].errors?.required">
+        <div *ngIf="submitted && formGroup.controls['ma_ngay_khuyen_mai'].errors?.required">
           <div
-            *ngIf="formGroup.controls['ma_voicher'].errors?.required"
+            *ngIf="formGroup.controls['ma_ngay_khuyen_mai'].errors?.required"
             style="color: red"
           >
-            * Mã voicher không được để trống
+            * Mã ngày khuyến mãi không được để trống
           </div>
         </div>
       </div>
@@ -38,8 +38,8 @@
           type="date"
           name=""
           class="form-control"
-          formControlName="muc_voucher"
-          id="muc_voucher"
+          formControlName="ngay_gio"
+          id="ngay_gio"
         />
       </div>
 

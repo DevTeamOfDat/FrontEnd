@@ -58,7 +58,6 @@
                            (change)="checkAllCheckBox($event)"
                            />
                         <th>STT</th>
-                        <th>Mã thương hiệu</th>
                         <th>Tên thương hiệu </th>
                         <th>Trạng thái</th>
                         <th>Thao tác</th>
@@ -81,7 +80,7 @@
                            value="{{ e.ma_thuong_hieu }}"
                            />
                         <td>{{ i + 1 }}</td>
-                        <td [innerHTML]="e.ma_thuong_hieu | highlight : searchedKeyword"></td>
+
                         <td [innerHTML]="e.ten_thuong_hieu | highlight : searchedKeyword"></td>
                         <td class="justify-content-center">
                            <div class="status"
@@ -94,44 +93,9 @@
                            </div>
                         </td>
                         <td>
-                           <ng-template #mymodal let-modal>
-                              <div class="modal-header">
-                                 <h4 class="modal-title" id="modal-basic-title">
-                                    Xác nhận xóa thông tin
-                                 </h4>
-                                 <button
-                                    type="button"
-                                    class="close"
-                                    aria-label="Close"
-                                    (click)="modal.dismiss('Cross click')"
-                                    >
-                                 <span aria-hidden="true">x</span>
-                                 </button>
-                              </div>
-                              <div class="modal-body">
-                                 Bạn có chắc chắn muốn xóa thông tin của {{ e.ten_thuong_hieu }} ?
-                              </div>
-                              <div class="modal-footer">
-                                 <button
-                                    class="btn btn-danger"
-                                    style="width: 80px"
-                                    (click)="xoathuonghieu(e.ma_thuong_hieu)"
-                                    >
-                                 Có
-                                 </button>
-                                 <button
-                                    class="btn btn-outline-dark"
-                                    style="width: 80px"
-                                    (click)="modal.dismiss('Cross click')"
-                                    >
-                                 Không
-                                 </button>
-                              </div>
-                           </ng-template>
                            <div class="row justify-content-center">
                               <button (click)="initModal(e,'show')"  class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></button>
                               <button (click)="initModal(e,'edit')"  class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
-                              <button class="delete"  (click)="open(mymodal)" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
                            </div>
                         </td>
                      </tr>

@@ -50,7 +50,7 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
   fetchDanhsachsanpham(){
     this.isLoading =  true;
     this.sanphamService.getAll().subscribe(data => {
-      this.danhsachsanpham = data;
+      this.danhsachsanpham = data.data;
     },
     err => {
         this.isLoading = false;

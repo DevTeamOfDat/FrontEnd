@@ -49,7 +49,7 @@ export class CapnhatthuonghieuComponent implements OnInit {
         this.isEdit = false;
         this.isAdd = true;
         this.title = `Thêm mới thông tin thương hiệu`;
-        this.update_ma_thuong_hieu = this.arrCheck.length+1;
+        // this.update_ma_thuong_hieu = this.arrCheck.length+1;
         console.log(this.arrCheck);
         break;
       case 'show':
@@ -57,14 +57,14 @@ export class CapnhatthuonghieuComponent implements OnInit {
         this.isEdit = false;
         this.isAdd = false;
         this.title = `Xem chi tiết thông tin thương hiệu`;
-        this.update_ma_thuong_hieu = this.model.ma_thuong_hieu;
+        // this.update_ma_thuong_hieu = this.model.ma_thuong_hieu;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
         this.title = `Chỉnh sửa thông tin thương hiệu`;
-        this.update_ma_thuong_hieu = this.model.ma_thuong_hieu;
+        // this.update_ma_thuong_hieu = this.model.ma_thuong_hieu;
         break;
       default:
         this.isInfo = false;
@@ -84,13 +84,11 @@ export class CapnhatthuonghieuComponent implements OnInit {
    
     if (model.ma_thuong_hieu === null || model.ma_thuong_hieu === undefined) {
       this.formGroup = this.fb.group({
-        ma_thuong_hieu: [ null, [Validators.required]],
         ten_thuong_hieu: [ null, [Validators.required]],
         
       });
     } else {
       this.formGroup = this.fb.group({
-        ma_thuong_hieu:  [{value: this.model.ma_thuong_hieu, disabled: this.isInfo}, [Validators.required]],
         ten_thuong_hieu: [{value: this.model.ten_thuong_hieu, disabled: this.isInfo}, [Validators.required]],
 
       });
@@ -136,12 +134,12 @@ export class CapnhatthuonghieuComponent implements OnInit {
     }
     if (this.isEdit) {
       thuonghieu = {
-        ma_thuong_hieu: this.formGroup.get('ma_thuong_hieu')?.value,
+        ma_thuong_hieu: this.model.ma_thuong_hieu,
         ten_thuong_hieu: this.formGroup.get('ten_thuong_hieu')?.value,
       };
     } else {
       thuonghieu = {
-        ma_thuong_hieu: this.formGroup.get('ma_thuong_hieu')?.value,
+        ma_thuong_hieu: this.model.ma_thuong_hieu,
         ten_thuong_hieu: this.formGroup.get('ten_thuong_hieu')?.value,
       };
     }

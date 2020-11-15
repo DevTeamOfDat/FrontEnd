@@ -41,8 +41,8 @@ export class DanhsachnhacungcapComponent implements OnInit {
   fetchDanhsachnhacungcap(){
     this.isLoading =  true;
     this.nhacungcapService.getAll().subscribe(data => {
-      this.danhsachnhacungcap = data;
-      this.listFilterResult = data;
+      this.danhsachnhacungcap = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;

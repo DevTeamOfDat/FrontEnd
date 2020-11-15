@@ -29,10 +29,10 @@ const routes: Routes = [{
       path: 'hinhanhsanpham/danhsachhinhanhsanpham',
       component: DanhsachhinhanhsanphamComponent,
     },
-    {
-      path: 'nhanxet/danhsachnhanxet',
-      component: DanhsachnhanxetComponent,
-    },
+    // {
+    //   path: 'nhanxet/danhsachnhanxet',
+    //   component: DanhsachnhanxetComponent,
+    // },
     {
       path: 'loaisanpham/danhsachloaisanpham',
       component: DanhsachloaisanphamComponent,

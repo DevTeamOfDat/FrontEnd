@@ -64,10 +64,11 @@ export class CapnhathoadonComponent implements OnInit {
     this.isLoading =  true;
     const arrr=[];
     this.khachhangService.getAll().subscribe(data => {
-      this.danhsachtaikhoan = data;
+      this.danhsachtaikhoan = data.data;
       this.arrbyKH = this.danhsachtaikhoan.filter(function (khachhang) {
         return khachhang.loai_tai_khoan === "KH";
       });
+      console.log(this.arrbyKH);
     },   
     err => {
         this.isLoading = false;
@@ -78,10 +79,11 @@ export class CapnhathoadonComponent implements OnInit {
     this.isLoading =  true;
     const arrr=[];
     this.nhanvienService.getAll().subscribe(data => {
-      this.danhsachtaikhoan = data;
+      this.danhsachtaikhoan = data.data;
       this.arrbyNV = this.danhsachtaikhoan.filter(function (khachhang) {
         return khachhang.loai_tai_khoan === "NV";
       });
+      console.log(this.arrbyNV);
     },   
     err => {
         this.isLoading = false;
@@ -91,7 +93,7 @@ export class CapnhathoadonComponent implements OnInit {
   fetchDanhsachtrangthai(){
     this.isLoading =  true;
     this.trangthaiService.getAll().subscribe(data => {
-      this.danhsachtrangthai = data;
+      this.danhsachtrangthai = data.data;
     },
     err => {
         this.isLoading = false;
@@ -101,7 +103,7 @@ export class CapnhathoadonComponent implements OnInit {
   fetchDanhsachloaidon(){
     this.isLoading =  true;
     this.loaidonService.getAll().subscribe(data => {
-      this.danhsachloaidon = data;
+      this.danhsachloaidon = data.data;
     },
     err => {
         this.isLoading = false;
@@ -114,21 +116,21 @@ export class CapnhathoadonComponent implements OnInit {
         this.isInfo = false;
         this.isEdit = false;
         this.isAdd = true;
-        this.title = `Thêm mới thông tin trạng thái`;
+        this.title = `Thêm mới thông tin hóa đơn`;
         this.update_ma_hoa_don = this.arrCheck.length+1;
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
-        this.title = `Xem chi tiết thông tin trạng thái`;
+        this.title = `Xem chi tiết thông tin hóa đơn`;
         this.update_ma_hoa_don = this.model.ma_hoa_don;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
-        this.title = `Chỉnh sửa thông tin đặc trưng`;
+        this.title = `Chỉnh sửa thông tin hóa đơn`;
         this.update_ma_hoa_don = this.model.ma_hoa_don;
         break;
       default:

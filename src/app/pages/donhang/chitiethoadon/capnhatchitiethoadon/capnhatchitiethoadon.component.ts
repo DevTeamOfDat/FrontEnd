@@ -57,7 +57,7 @@ export class CapnhatchitiethoadonComponent implements OnInit {
   fetchDanhsachhoadon(){
     this.isLoading =  true;
     this.hoadonService.getAll().subscribe(data => {
-      this.danhsachhoadon = data;
+      this.danhsachhoadon = data.data;
     },
     err => {
         this.isLoading = false;
@@ -67,7 +67,7 @@ export class CapnhatchitiethoadonComponent implements OnInit {
   fetchDanhsachsanpham(){
     this.isLoading =  true;
     this.sanphamService.getAll().subscribe(data => {
-      this.danhsachsanpham = data;
+      this.danhsachsanpham = data.data;
     },
     err => {
         this.isLoading = false;

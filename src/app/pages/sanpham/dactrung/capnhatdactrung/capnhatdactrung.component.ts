@@ -49,21 +49,21 @@ export class CapnhatdactrungComponent implements OnInit {
         this.isEdit = false;
         this.isAdd = true;
         this.title = `Thêm mới thông tin đặc trưng`;
-        this.update_loai_dac_trung = this.arrCheck.length+1;
+        // this.update_loai_dac_trung = this.arrCheck.length+1;
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
         this.title = `Xem chi tiết thông tin đặc trưng`;
-        this.update_loai_dac_trung = this.model.loai_dac_trung;
+        // this.update_loai_dac_trung = this.model.loai_dac_trung;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
         this.title = `Chỉnh sửa thông tin đặc trưng`;
-        this.update_loai_dac_trung = this.model.loai_dac_trung;
+        // this.update_loai_dac_trung = this.model.loai_dac_trung;
         break;
       default:
         this.isInfo = false;
@@ -83,7 +83,6 @@ export class CapnhatdactrungComponent implements OnInit {
    
     if (model.loai_dac_trung === null || model.loai_dac_trung === undefined) {
       this.formGroup = this.fb.group({
-        loai_dac_trung: [ null, [Validators.required]],
         ten_dac_trung: [ null, [Validators.required]],
         mo_ta: [null,  [Validators.required]],
         
@@ -91,7 +90,6 @@ export class CapnhatdactrungComponent implements OnInit {
       console.log("1");
     } else {
       this.formGroup = this.fb.group({
-        loai_dac_trung:  [{value: this.model.loai_dac_trung, disabled: this.isInfo}, [Validators.required]],
         ten_dac_trung: [{value: this.model.ten_dac_trung, disabled: this.isInfo}, [Validators.required]],
         mo_ta: [{value: this.model.mo_ta, disabled: this.isInfo}, [Validators.required]],
 
@@ -138,13 +136,13 @@ export class CapnhatdactrungComponent implements OnInit {
     }
     if (this.isEdit) {
       dactrung = {
-        loai_dac_trung: this.formGroup.get('loai_dac_trung')?.value,
+        loai_dac_trung: this.model.loai_dac_trung,
         ten_dac_trung: this.formGroup.get('ten_dac_trung')?.value,
         mo_ta: this.formGroup.get('mo_ta').value,
       };
     } else {
       dactrung = {
-        loai_dac_trung: this.formGroup.get('loai_dac_trung')?.value,
+        loai_dac_trung: this.model.loai_dac_trung,
         ten_dac_trung: this.formGroup.get('ten_dac_trung')?.value,
         mo_ta: this.formGroup.get('mo_ta').value,
       };

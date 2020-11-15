@@ -50,7 +50,7 @@
       <div class="form-group">
         <label>Mã khách hàng</label>
         <select class="form-control" name="" formControlName="ma_khach_hang" id="">
-          <option *ngFor="let e of arrbyLoaitaikhoan" value="{{e.ma_tai_khoan}}">{{e.ten_dang_nhap}}</option>
+          <option *ngFor="let e of danhsachkhachhang" value="{{e.ma_tai_khoan}}">{{e.email}}</option>
         </select>
         <div *ngIf="submitted && formGroup.controls['ma_khach_hang'].errors?.required">
           <div

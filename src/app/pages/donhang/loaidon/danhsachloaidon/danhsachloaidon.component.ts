@@ -41,8 +41,8 @@ export class DanhsachloaidonComponent implements OnInit {
   fetchDanhSachloaidon(){
     this.isLoading =  true;
     this.loaidonService.getAll().subscribe(data => {
-      this.danhsachloaidon = data;
-      this.listFilterResult = data;
+      this.danhsachloaidon = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;

@@ -50,21 +50,21 @@ export class CapnhatnhacungcapComponent implements OnInit {
         this.isEdit = false;
         this.isAdd = true;
         this.title = `Thêm mới thông tin nhà cung cấp`;
-        this.update_ma_tai_khoan = this.arrCheck.length+1;
+        // this.update_ma_tai_khoan = this.arrCheck.length+1;
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
         this.title = `Xem chi tiết thông tin nhà cung cấp`;
-        this.update_ma_tai_khoan = this.model.ma_nha_cung_cap;
+        // this.update_ma_tai_khoan = this.model.ma_nha_cung_cap;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
         this.title = `Chỉnh sửa thông tin nhà cung cấp`;
-        this.update_ma_tai_khoan = this.model.ma_nha_cung_cap;
+        // this.update_ma_tai_khoan = this.model.ma_nha_cung_cap;
         break;
       default:
         this.isInfo = false;
@@ -84,7 +84,6 @@ export class CapnhatnhacungcapComponent implements OnInit {
    
     if (model.ma_nha_cung_cap === null || model.ma_nha_cung_cap === undefined) {
       this.formGroup = this.fb.group({
-        ma_nha_cung_cap: [ null, [Validators.required]],
         ten: [ null, [Validators.required]],
         dia_chi: [ null, [Validators.required]],
         hot_line : [ null, [Validators.required]],
@@ -95,7 +94,6 @@ export class CapnhatnhacungcapComponent implements OnInit {
       });
     } else {
       this.formGroup = this.fb.group({
-        ma_nha_cung_cap:  [{value: this.model.ma_nha_cung_cap, disabled: this.isInfo}, [Validators.required]],
         ten: [{value: this.model.ten, disabled: this.isInfo}, [Validators.required]],
         dia_chi: [{value: this.model.dia_chi, disabled: this.isInfo}, [Validators.required]],
         hot_line: [{value: this.model.hot_line, disabled: this.isInfo}, [Validators.required]],
@@ -144,7 +142,7 @@ export class CapnhatnhacungcapComponent implements OnInit {
     }
     if (this.isEdit) {
       nhacungcap = {
-        ma_nha_cung_cap: this.formGroup.get('ma_nha_cung_cap')?.value,
+        ma_nha_cung_cap: this.model.ma_nha_cung_cap,
         ten: this.formGroup.get('ten')?.value,
         dia_chi: this.formGroup.get('dia_chi')?.value,
         hot_line: this.formGroup.get('hot_line')?.value,
@@ -154,7 +152,7 @@ export class CapnhatnhacungcapComponent implements OnInit {
       };
     } else {
       nhacungcap = {
-        ma_nha_cung_cap: this.formGroup.get('ma_nha_cung_cap')?.value,
+        ma_nha_cung_cap: this.model.ma_nha_cung_cap,
         ten: this.formGroup.get('ten')?.value,
         dia_chi: this.formGroup.get('dia_chi')?.value,
         hot_line: this.formGroup.get('hot_line')?.value,

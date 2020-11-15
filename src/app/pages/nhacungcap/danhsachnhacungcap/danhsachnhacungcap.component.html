@@ -58,7 +58,6 @@
                            (change)="checkAllCheckBox($event)"
                            />
                         <th>STT</th>
-                        <th>Mã nhà cung cấp</th>
                         <th>Tên</th>
                         <th>Địa chỉ</th>
                         <th>Hotline</th>
@@ -83,7 +82,6 @@
                            value="{{ e.ma_nha_cung_cap }}"
                            />
                         <td>{{ i + 1 }}</td>
-                        <td [innerHTML]="e.ma_nha_cung_cap | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ten | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.dia_chi | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.hot_line | highlight : searchedKeyword"></td>

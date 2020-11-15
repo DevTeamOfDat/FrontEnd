@@ -50,7 +50,7 @@ export class CapnhattaikhoanComponent implements OnInit {
         this.isEdit = false;
         this.isAdd = true;
         this.title = `Thêm mới thông tin tài khoản`;
-        this.update_ma_tai_khoan= this.arrCheck.length+1;
+        // this.update_ma_tai_khoan= this.arrCheck.length+1;
         console.log(this.arrCheck);
         break;
       case 'show':
@@ -58,14 +58,14 @@ export class CapnhattaikhoanComponent implements OnInit {
         this.isEdit = false;
         this.isAdd = false;
         this.title = `Xem chi tiết thông tin tài khoản`;
-        this.update_ma_tai_khoan = this.model.ma_tai_khoan;
+        // this.update_ma_tai_khoan = this.model.ma_tai_khoan;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
         this.title = `Chỉnh sửa thông tin thương hiệu`;
-        this.update_ma_tai_khoan = this.model.ma_tai_khoan;
+        // this.update_ma_tai_khoan = this.model.ma_tai_khoan;
         break;
       default:
         this.isInfo = false;
@@ -85,8 +85,7 @@ export class CapnhattaikhoanComponent implements OnInit {
    
     if (model.ma_tai_khoan === null || model.ma_tai_khoan === undefined) {
       this.formGroup = this.fb.group({
-        ma_tai_khoan: [ null, [Validators.required]],
-        ten_dang_nhap: [ null, [Validators.required]],
+        email: [ null, [Validators.required]],
         mat_khau: [ null, [Validators.required]],
         ho_ten: [ null, [Validators.required]],
         dia_chi: [ null, [Validators.required]],
@@ -97,8 +96,7 @@ export class CapnhattaikhoanComponent implements OnInit {
       });
     } else {
       this.formGroup = this.fb.group({
-        ma_tai_khoan: [{value: this.model.ma_tai_khoan, disabled: this.isInfo}, [Validators.required]],
-        ten_dang_nhap:  [{value: this.model.ten_dang_nhap, disabled: this.isInfo}, [Validators.required]],
+        email:  [{value: this.model.email, disabled: this.isInfo}, [Validators.required]],
         mat_khau:  [{value: this.model.mat_khau, disabled: this.isInfo}, [Validators.required]],
         ho_ten:  [{value: this.model.ho_ten, disabled: this.isInfo}, [Validators.required]],
         dia_chi:  [{value: this.model.dia_chi, disabled: this.isInfo}, [Validators.required]],
@@ -148,8 +146,8 @@ export class CapnhattaikhoanComponent implements OnInit {
     }
     if (this.isEdit) {
       taikhoan = {
-        ma_tai_khoan: this.formGroup.get('ma_tai_khoan')?.value,
-        ten_dang_nhap: this.formGroup.get('ten_dang_nhap')?.value,
+        ma_tai_khoan: this.model.ma_tai_khoan,
+        email: this.formGroup.get('email')?.value,
         mat_khau: this.formGroup.get('mat_khau')?.value,
         ho_ten: this.formGroup.get('ho_ten')?.value,
         dia_chi: this.formGroup.get('dia_chi')?.value,
@@ -159,8 +157,8 @@ export class CapnhattaikhoanComponent implements OnInit {
       };
     } else {
       taikhoan = {
-        ma_tai_khoan: this.formGroup.get('ma_tai_khoan')?.value,
-        ten_dang_nhap: this.formGroup.get('ten_dang_nhap')?.value,
+        ma_tai_khoan: this.model.ma_tai_khoan,
+        email: this.formGroup.get('email')?.value,
         mat_khau: this.formGroup.get('mat_khau')?.value,
         ho_ten: this.formGroup.get('ho_ten')?.value,
         dia_chi: this.formGroup.get('dia_chi')?.value,

@@ -12,29 +12,6 @@
   </div>
   <div class="modal-body">
     <form [formGroup]="formGroup" (ngSubmit)="save()">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="id">id</label>
-            <input
-              type="text"
-              name=""
-              class="form-control"
-              formControlName="id"
-              id="id"
-            />
-            <div
-              *ngIf="submitted && formGroup.controls['id'].errors?.required"
-            >
-              <div
-                *ngIf="formGroup.controls['id'].errors?.required"
-                style="id: red"
-              >
-                * id không được để trống
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div class="col-md-6">
           <div class="form-group">
@@ -58,7 +35,6 @@
             </div>
           </div>
         </div>
-      </div>
 
      <div class="row">
         <div class="col-md-6">

@@ -27,7 +27,7 @@
                            <input type="text" [(ngModel)]="searchedKeyword" class="form-control" placeholder="Search&hellip;">
                         </div>
                      </div>
-                     <button (click)="initModal({},'add')" type="button" class="btn btn-primary" ><i class="fas fa-user-plus"></i>Thêm hình ảnh sản phẩm</button>
+                     <button (click)="initModal({},'add')" type="button" class="btn btn-primary" ><i class="fas fa-user-plus"></i>Thêm tin tức</button>
                      <button
                      type="button"
                      [hidden]="isDelete"
@@ -58,7 +58,6 @@
                            (change)="checkAllCheckBox($event)"
                            />
                         <th>STT</th>
-                        <th>id</th>
                         <th>Tiêu đề</th>
                         <th>Url</th>
                         <th>Trạng thái</th>
@@ -82,7 +81,6 @@
                            value="{{ e.id }}"
                            />
                         <td>{{ i + 1 }}</td>
-                        <td [innerHTML]="e.id | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.tieu_de | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.url | highlight : searchedKeyword"></td>
                         <td class="justify-content-center">

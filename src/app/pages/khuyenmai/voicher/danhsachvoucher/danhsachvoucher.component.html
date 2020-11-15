@@ -58,8 +58,8 @@
                            (change)="checkAllCheckBox($event)"
                            />
                         <th>STT</th>
-                        <th>Mã voucher</th>
-                        <th>Mục voucher</th>
+                        <th>Mức voucher</th>
+                        <th>Tên khách hàng</th>
                         <th>Trạng thái</th>
                         <th>Thao tác</th>
                      </tr>
@@ -81,8 +81,8 @@
                            value="{{ e.ma_voicher }}"
                            />
                         <td>{{ i + 1 }}</td>
-                        <td [innerHTML]="e.ma_voicher | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.muc_voicher| highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.muc_voucher| highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.ho_ten| highlight : searchedKeyword"></td>
                         <td class="justify-content-center">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"

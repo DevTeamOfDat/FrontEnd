@@ -12,25 +12,6 @@
   </div>
   <div class="modal-body">
     <form [formGroup]="formGroup" novalidate (ngSubmit)="save()">
-      <div class="form-group">
-        <label>ID</label>
-        <input
-          type="text"
-          name=""
-          class="form-control"
-          formControlName="id"
-          id="id"
-          [(ngModel)]="update_id"
-        />
-        <div *ngIf="submitted && formGroup.controls['id'].errors?.required">
-          <div
-            *ngIf="formGroup.controls['id'].errors?.required"
-            style="color: red"
-          >
-            * ID không được để trống
-          </div>
-        </div>
-      </div>
 
       <div class="form-group">
         <label>Giá trị</label>

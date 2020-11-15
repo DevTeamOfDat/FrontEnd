@@ -42,8 +42,8 @@ export class DanhsachdactrungsanphamComponent implements OnInit {
   fetchDanhsachloaisanpham(){
     this.isLoading =  true;
     this.dactrungsanphamService.getAll().subscribe(data => {
-      this.danhsachdactrungsanpham = data;
-      this.listFilterResult = data;
+      this.danhsachdactrungsanpham = data.data;
+      this.listFilterResult = data.data;
     },
     err => {
         this.isLoading = false;

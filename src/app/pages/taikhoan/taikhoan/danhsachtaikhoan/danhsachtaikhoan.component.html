@@ -57,9 +57,8 @@
                            [checked]="isAllCheckBoxChecked()"
                            (change)="checkAllCheckBox($event)"
                            />
-                        <th>STT</th>
-                        <th>Mã tài khoản</th>
-                        <th>Tên đăng nhập</th>
+                        <th>STT</th>                     
+                        <th>Email</th>
                         <th>Địa chỉ</th>
                         <th>Số điện thoại</th>
                         <th>Trạng thái</th>
@@ -83,8 +82,7 @@
                            value="{{ e.ma_tai_khoan }}"
                            />
                         <td>{{ i + 1 }}</td>
-                        <td [innerHTML]="e.ma_tai_khoan | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.ten_dang_nhap | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.email | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.dia_chi | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.so_dien_thoai | highlight : searchedKeyword"></td>
                         <td class="justify-content-center">

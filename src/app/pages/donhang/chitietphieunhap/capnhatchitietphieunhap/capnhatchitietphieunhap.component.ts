@@ -57,7 +57,7 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
   fetchDanhsachphieunhap(){
     this.isLoading =  true;
     this.phieunhapService.getAll().subscribe(data => {
-      this.danhsachphieunhap = data;
+      this.danhsachphieunhap = data.data;
     },
     err => {
         this.isLoading = false;
@@ -67,7 +67,7 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
   fetchDanhsachsanpham(){
     this.isLoading =  true;
     this.sanphamService.getAll().subscribe(data => {
-      this.danhsachsanpham = data;
+      this.danhsachsanpham = data.data;
     },
     err => {
         this.isLoading = false;

@@ -57,8 +57,8 @@
                            [checked]="isAllCheckBoxChecked()"
                            (change)="checkAllCheckBox($event)"
                            />
-                        <th>Mã nhân viên</th>
-                        <th>Mã khách hàng</th>
+                        <th>Tên nhân viên</th>
+                        <th>Tên khách hàng</th>
                         <th>ngày lập</th>
                         <th>Tổng tiền</th>
                         <th>Trạng thái</th>
@@ -81,8 +81,8 @@
                            (ngModelChange)="changeModel()"
                            value="{{ e.id }}"
                            />
-                        <td [innerHTML]="e.ma_nhan_vien | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.ma_khach_hang | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.ten_nhan_vien | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.ten_khach_hang | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ngay_lap| highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.tong_tien | highlight : searchedKeyword"></td>
                         <td class="justify-content-center">
