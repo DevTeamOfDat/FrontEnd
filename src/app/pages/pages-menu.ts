@@ -138,6 +138,30 @@ export const MENU_ITEMS: NbMenuItem[] = [
       
     ],
   },
+  {
+    title: 'Report',
+    icon: 'home-outline',
+    children: [
+      {
+        title: 'Báo cáo hàng tồn kho',
+        link: '/pages/report/baocaohangtonkho',
+      },
+      {
+        title: 'Báo cáo phiếu nhập',
+        link: '/pages/report/baocaophieunhap',
+      },
+      {
+        title: 'Báo cáo hóa dơn',
+        link: '/pages/report/baocaohoadon',
+      },
+      {
+        title: 'Báo cáo nhân viên',
+        link: '/pages/report/baocaonhanvien',
+      },
+      
+      
+    ],
+  },
   // {
   //   title: 'Auth',
   //   icon: 'lock-outline',

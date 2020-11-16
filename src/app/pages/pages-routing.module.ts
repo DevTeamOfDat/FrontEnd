@@ -60,6 +60,11 @@ const routes: Routes = [{
         .then(m => m.KhuyenMaiModule),
     },
     {
+      path: 'report',
+      loadChildren: () => import('./report/report.module')
+        .then(m => m.ReportModule),
+    },
+    {
       path: 'sanpham',
       loadChildren: () => import('./sanpham/sanpham.module')
         .then(m => m.SanPhamModule),
