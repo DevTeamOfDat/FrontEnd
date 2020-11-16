@@ -98,21 +98,21 @@ export class CapnhatphieunhapComponent implements OnInit {
         this.isInfo = false;
         this.isEdit = false;
         this.isAdd = true;
-        this.title = `Thêm mới thông tin trạng thái`;
+        this.title = `Thêm mới thông tin phiếu nhập`;
         // this.update_ma_phieu_nhap = this.arrCheck.length+1;
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
-        this.title = `Xem chi tiết thông tin trạng thái`;
+        this.title = `Xem chi tiết thông tin phiếu nhập`;
         // this.update_ma_phieu_nhap = this.model.ma_phieu_nhap;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
-        this.title = `Chỉnh sửa thông tin đặc trưng`;
+        this.title = `Chỉnh sửa thông tin phiếu nhập`;
         // this.update_ma_phieu_nhap = this.model.ma_phieu_nhap;
         break;
       default:

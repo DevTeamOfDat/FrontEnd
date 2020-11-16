@@ -9,6 +9,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ChitiethoadonService } from 'app/services/donhang/chitiethoadon/chitiethoadon.service';
 import { SanPhamService } from 'app/services/san-pham/san-pham/san-pham.service';
 import { HoadonService } from 'app/services/donhang/hoadon/hoadon.service';
+import { dactrungsanphamModel } from 'app/model/san-pham/dactrungsanpham/dactrungsanpham-model';
+import { DactrungsanphamService } from 'app/services/san-pham/dactrungsanpham/dactrungsanpham.service';
 
 @Component({
   selector: 'ngx-capnhatchitiethoadon',
@@ -22,6 +24,7 @@ export class CapnhatchitiethoadonComponent implements OnInit {
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
   danhsachhoadon: Array<hoadonModel> = [];
   danhsachsanpham: Array<sanphamModel> = [];
+  danhsachdactrungsanpham: Array<dactrungsanphamModel> = [];
 
   checkButton = false;
   closeResult: String;
@@ -34,14 +37,17 @@ export class CapnhatchitiethoadonComponent implements OnInit {
   isLoading=false;
   title = '';
   type: any;
+  ma_san_pham: any;
   model: chitiethoadonModel;
   arrCheck = [];
+  arrdactrung = [];
   update_id:any;
   constructor(
     private modalService: NgbModal,
     private toastr: ToastrService,
     private fb: FormBuilder,
     private chitiethoadonService: ChitiethoadonService,
+    private dactrungsanphamService: DactrungsanphamService,
     private sanphamService: SanPhamService,
     private hoadonService: HoadonService,) {
     }
@@ -74,6 +80,17 @@ export class CapnhatchitiethoadonComponent implements OnInit {
       })
   }
 
+  fetchDanhsachkdactrungsanpham(){
+    this.isLoading =  true;
+    this.dactrungsanphamService.detail(this.ma_san_pham).subscribe(data => {
+      this.danhsachdactrungsanpham = data.data;
+      console.log(this.danhsachdactrungsanpham);
+    },
+    err => {
+        this.isLoading = false;
+      })
+  }
+
   updateFormType(type: any) {
     switch (type) {
       case 'add':
@@ -82,6 +99,7 @@ export class CapnhatchitiethoadonComponent implements OnInit {
         this.isAdd = true;
         this.title = `Thêm mới thông tin chi tiết hóa đơn`;
         this.update_id = this.arrCheck.length+1;
+        this.ma_san_pham = this.model.ma_san_pham;
         break;
       case 'show':
         this.isInfo = true;
@@ -89,13 +107,15 @@ export class CapnhatchitiethoadonComponent implements OnInit {
         this.isAdd = false;
         this.title = `Xem chi tiết thông tin chi tiết hóa đơn`;
         this.update_id = this.model.ma_hoa_don;
+        this.ma_san_pham = this.model.ma_san_pham;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
-        this.title = `Chỉnh sửa thông tin đặc trưng`;
+        this.title = `Chỉnh sửa thông tin chi tiết hóa đơn`;
         this.update_id = this.model.ma_hoa_don;
+         this.ma_san_pham = this.model.ma_san_pham;
         break;
       default:
         this.isInfo = false;
@@ -110,24 +130,30 @@ export class CapnhatchitiethoadonComponent implements OnInit {
     this.open(this.childModal);
     this.type = type;
     this.model = model;
+    
+    this.ma_san_pham = this.model.ma_san_pham;
+    
     this.submitted = false;
     this.updateFormType(type);
    
     if (model.ma_hoa_don === null || model.ma_hoa_don === undefined) {
+      
       this.formGroup = this.fb.group({
-        id: [ null, [Validators.required]],
         ma_hoa_don:[ null, [Validators.required]],
+        danh_sach_loai_dac_trung: [ null, [Validators.required]],
         ma_san_pham: [ null, [Validators.required]],
-        gia_ban: [ null, [Validators.required]],
+        gia_ban: [ null],
         so_luong: [ null, [Validators.required]],
         
       });
     } else {
+      this.ma_san_pham = this.model.ma_san_pham;
+      this.fetchDanhsachkdactrungsanpham();
       this.formGroup = this.fb.group({
-        id: [{value: this.model.id, disabled: this.isInfo}, [Validators.required]],
         ma_hoa_don:[{value: this.model.ma_hoa_don, disabled: this.isInfo}, [Validators.required]],
+        danh_sach_loai_dac_trung:[{value: this.model.danh_sach_loai_dac_trung, disabled: this.isInfo}, [Validators.required]],
         ma_san_pham: [{value: this.model.ma_san_pham, disabled: this.isInfo}, [Validators.required]],
-        gia_ban: [{value: this.model.gia_ban, disabled: this.isInfo}, [Validators.required]],
+        gia_ban: [{value: this.model.gia_ban, disabled: this.isInfo}, ],
         so_luong: [{value: this.model.so_luong, disabled: this.isInfo}, [Validators.required]],
 
       });
@@ -172,17 +198,20 @@ export class CapnhatchitiethoadonComponent implements OnInit {
     }
     if (this.isEdit) {
       chitiethoadon = {
-        id: this.formGroup.get('id')?.value,
+        id: this.model.id,
         ma_hoa_don:this.formGroup.get('ma_hoa_don')?.value,
         ma_san_pham: this.formGroup.get('ma_san_pham')?.value,
+        danh_sach_loai_dac_trung: this.formGroup.get('danh_sach_loai_dac_trung')?.value,
         gia_ban: this.formGroup.get('gia_ban')?.value,
         so_luong: this.formGroup.get('so_luong')?.value,
+        
       };
     } else {
+      
       chitiethoadon = {
-        id: this.formGroup.get('id')?.value,
         ma_hoa_don:this.formGroup.get('ma_hoa_don')?.value,
         ma_san_pham: this.formGroup.get('ma_san_pham')?.value,
+        danh_sach_loai_dac_trung: this.formGroup.get('danh_sach_loai_dac_trung')?.value,
         gia_ban: this.formGroup.get('gia_ban')?.value,
         so_luong: this.formGroup.get('so_luong')?.value,
       };
@@ -198,18 +227,18 @@ export class CapnhatchitiethoadonComponent implements OnInit {
         this.toastr.error('id đã tồn tại');
         return;
       }
+      console.log(chitiethoadon);
       this.chitiethoadonService.create(chitiethoadon).subscribe(res => {
           this.closeModalReloadData();
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
     if (this.isEdit) {
-      this.chitiethoadonService.update(chitiethoadon.ma_hoa_don, chitiethoadon).subscribe(res => {
+      this.chitiethoadonService.update(chitiethoadon.id, chitiethoadon).subscribe(res => {
           this.closeModalReloadData();
           this.toastr.success('Sửa thành công');
           this.modalReference.dismiss();

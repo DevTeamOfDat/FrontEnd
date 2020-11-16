@@ -13,30 +13,7 @@
    <div class="modal-body">
       <form [formGroup]="formGroup" (ngSubmit)="save()">
       <div class="row">
-         <div class="col-md-6">
-            <div class="form-group">
-               <label for="id">id</label>
-               <input
-               type="text"
-               name=""
-               class="form-control"
-               formControlName="id"
-               id="id"
-               [(ngModel)]="update_id"
-               />
-               <div
-                  *ngIf="submitted && formGroup.controls['id'].errors?.required"
-                  >
-                  <div
-                     *ngIf="formGroup.controls['id'].errors?.required"
-                     style="id: red"
-                     >
-                     * ID không được để trống
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-6">
+        <div class="col-md-6">
             <div class="form-group">
                <label>Mã hóa đơn</label>
                <select class="form-control" name="" formControlName="ma_hoa_don" id="">
@@ -48,6 +25,22 @@
                      style="color: red"
                      >
                      * Mã hóa đơn không được để trống
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group">
+               <label>Danh sách loại đặc trưng</label>
+               <select class="form-control" name="" formControlName="danh_sach_loai_dac_trung" id="">
+                  <option *ngFor="let e of danhsachdactrungsanpham" value="{{e.danh_sach_loai_dac_trung}}">{{e.ten_dac_trung}}</option>
+               </select>
+               <div *ngIf="submitted && formGroup.controls['danh_sach_loai_dac_trung'].errors?.required">
+                  <div
+                     *ngIf="formGroup.controls['danh_sach_loai_dac_trung'].errors?.required"
+                     style="color: red"
+                     >
+                     * Danh sách loại đặc trưng không được để trống
                   </div>
                </div>
             </div>

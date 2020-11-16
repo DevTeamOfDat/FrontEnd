@@ -14,33 +14,12 @@
       <form [formGroup]="formGroup" (ngSubmit)="save()">
       <div class="row">
          <div class="col-md-6">
-            <div class="form-group">
-               <label for="id">id</label>
-               <input
-               type="text"
-               name=""
-               class="form-control"
-               formControlName="id"
-               id="id"
-               [(ngModel)]="update_id"
-               />
-               <div
-                  *ngIf="submitted && formGroup.controls['id'].errors?.required"
-                  >
-                  <div
-                     *ngIf="formGroup.controls['id'].errors?.required"
-                     style="id: red"
-                     >
-                     * ID không được để trống
-                  </div>
-               </div>
-            </div>
          </div>
          <div class="col-md-6">
             <div class="form-group">
                <label>Mã phiếu nhập</label>
                <select class="form-control" name="" formControlName="ma_phieu_nhap" id="">
-                  <option *ngFor="let e of danhsachhoadon" value="{{e.ma_phieu_nhap}}">{{e.ma_phieu_nhap}}</option>
+                  <option *ngFor="let e of danhsachphieunhap" value="{{e.ma_phieu_nhap}}">{{e.ma_phieu_nhap}}</option>
                </select>
                <div *ngIf="submitted && formGroup.controls['ma_phieu_nhap'].errors?.required">
                   <div
@@ -56,7 +35,7 @@
       <div class="row">
          <div class="col-md-6">
             <div class="form-group">
-               <label>Mã sản phẩm</label>
+               <label>Tên sản phẩm</label>
                <select class="form-control" name="" formControlName="ma_san_pham" id="">
                   <option *ngFor="let e of danhsachsanpham" value="{{e.ma_san_pham}}">{{e.ten_san_pham}}</option>
                </select>
@@ -88,6 +67,40 @@
                      style="color: red"
                      >
                      * Giá nhập không được để trống
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+       <div class="row">
+         <div class="col-md-6">
+            <div class="form-group">
+               <label>Size</label>
+               <select class="form-control" name="" formControlName="size" id="">
+                  <option *ngFor="let e of arrbysize" value="{{e.loai_dac_trung}}">{{e.mo_ta}}</option>
+               </select>
+               <div *ngIf="submitted && formGroup.controls['size'].errors?.required">
+                  <div
+                     *ngIf="formGroup.controls['size'].errors?.required"
+                     style="color: red"
+                     >
+                     * Size không được để trống
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group">
+               <label>Màu</label>
+               <select class="form-control" name="" formControlName="mau" id="">
+                  <option *ngFor="let e of arrbymau" value="{{e.loai_dac_trung}}">{{e.mo_ta}}</option>
+               </select>
+               <div *ngIf="submitted && formGroup.controls['mau'].errors?.required">
+                  <div
+                     *ngIf="formGroup.controls['mau'].errors?.required"
+                     style="color: red"
+                     >
+                     * Màu không được để trống
                   </div>
                </div>
             </div>

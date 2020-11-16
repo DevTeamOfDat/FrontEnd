@@ -57,9 +57,9 @@
                            [checked]="isAllCheckBoxChecked()"
                            (change)="checkAllCheckBox($event)"
                            />
-                        <th>Mã phiếu nhập</th>
-                        <th>Mã sản phẩm</th>
-                        <th>Giá nhập</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Danh sách loại đặc trưng</th>
+                        <th>Giá nhập</th> 
                         <th>Số lượng</th>
                         <th>Trạng thái</th>
                         <th>Thao tác</th>
@@ -81,8 +81,8 @@
                            (ngModelChange)="changeModel()"
                            value="{{ e.id }}"
                            />
-                        <td [innerHTML]="e.ma_phieu_nhap| highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.ma_san_pham | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.ten_san_pham | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.danh_sach_loai_dac_trung | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.gia_nhap | highlight : searchedKeyword"></td>
                          <td [innerHTML]="e.so_luong | highlight : searchedKeyword"></td>
                         <td class="justify-content-center">
@@ -132,7 +132,6 @@
                            </ng-template>
                            <div class="row justify-content-center">
                               <button (click)="initModal(e,'show')"  class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></button>
-                              <button (click)="initModal(e,'edit')"  class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
                               <button class="delete"  (click)="open(mymodal)" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
                            </div>
                         </td>

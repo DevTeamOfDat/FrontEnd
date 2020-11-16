@@ -19,7 +19,7 @@
             <div class="form-group">
                <label>Mã nhân viên</label>
                <select class="form-control" name="" formControlName="ma_nhan_vien" id="">
-                  <option *ngFor="let e of arrbyNV" value="{{e.ma_tai_khoan}}">{{e.ten_dang_nhap}}</option>
+                  <option *ngFor="let e of arrbyNV" value="{{e.ma_tai_khoan}}">{{e.email}}</option>
                </select>
                <div *ngIf="submitted && formGroup.controls['ma_nhan_vien'].errors?.required">
                   <div

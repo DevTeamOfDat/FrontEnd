@@ -9,6 +9,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ChitietphieunhapService } from 'app/services/donhang/chitietphieunhap/chitietphieunhap.service';
 import { SanPhamService } from 'app/services/san-pham/san-pham/san-pham.service';
 import { PhieunhapService } from 'app/services/donhang/phieunhap/phieunhap.service';
+import { dactrungModel } from 'app/model/san-pham/dac-trung/dactrung-model';
+import { DactrungService } from 'app/services/san-pham/dactrung/dactrung.service';
 
 @Component({
   selector: 'ngx-capnhatchitietphieunhap',
@@ -21,8 +23,10 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
   @Input() danhsachchitietphieunhap: Array<chitietphieunhapModel>;
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
   danhsachphieunhap: Array<phieunhapModel> = [];
+  danhsachdactrung: Array<dactrungModel> = [];
   danhsachsanpham: Array<sanphamModel> = [];
-
+  arrbysize: Array<dactrungModel> = [];
+  arrbymau: Array<dactrungModel> = [];
   checkButton = false;
   closeResult: String;
   modalReference!: any;
@@ -43,13 +47,16 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
     private fb: FormBuilder,
     private chitietphieunhapService: ChitietphieunhapService,
     private sanphamService: SanPhamService,
-    private phieunhapService: PhieunhapService,) {
+    private phieunhapService: PhieunhapService,
+    private dactrungService: DactrungService) {
     }
 
   ngOnInit(): void {
     this.submitted = false;
     this.fetchDanhsachphieunhap();
     this.fetchDanhsachsanpham();
+    this.fetchDanhSachMauDacTrung();
+    this.fetchDanhSachSizeDacTrung();
   }
 
 
@@ -58,6 +65,32 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
     this.isLoading =  true;
     this.phieunhapService.getAll().subscribe(data => {
       this.danhsachphieunhap = data.data;
+    },
+    err => {
+        this.isLoading = false;
+      })
+  }
+
+  fetchDanhSachSizeDacTrung(){
+    this.isLoading =  true;
+    this.dactrungService.getAll().subscribe(data => {
+      this.danhsachdactrung = data.data;
+      this.arrbysize = this.danhsachdactrung.filter(function (dactrung) {
+        return dactrung.ten_dac_trung === "size";
+      });
+    },
+    err => {
+        this.isLoading = false;
+      })
+  }
+
+  fetchDanhSachMauDacTrung(){
+    this.isLoading =  true;
+    this.dactrungService.getAll().subscribe(data => {
+      this.danhsachdactrung = data.data;
+      this.arrbymau = this.danhsachdactrung.filter(function (dactrung) {
+        return dactrung.ten_dac_trung === "màu";
+      });
     },
     err => {
         this.isLoading = false;
@@ -81,21 +114,21 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
         this.isEdit = false;
         this.isAdd = true;
         this.title = `Thêm mới thông tin chi tiết phiếu nhập`;
-        this.update_id = this.arrCheck.length+1;
+        // this.update_id = this.arrCheck.length+1;
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
         this.title = `Xem chi tiết thông tin chi tiết phiếu nhập`;
-        this.update_id = this.model.ma_phieu_nhap;
+        // this.update_id = this.model.ma_phieu_nhap;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
         this.title = `Chỉnh sửa thông tin phiếu nhập`;
-        this.update_id = this.model.ma_phieu_nhap;
+        // this.update_id = this.model.ma_phieu_nhap;
         break;
       default:
         this.isInfo = false;
@@ -115,18 +148,20 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
    
     if (model.ma_phieu_nhap === null || model.ma_phieu_nhap === undefined) {
       this.formGroup = this.fb.group({
-        id: [ null, [Validators.required]],
         ma_phieu_nhap:[ null, [Validators.required]],
         ma_san_pham: [ null, [Validators.required]],
+        size: [ null, [Validators.required]],
+        mau: [ null, [Validators.required]],
         gia_nhap: [ null, [Validators.required]],
         so_luong: [ null, [Validators.required]],
         
       });
     } else {
       this.formGroup = this.fb.group({
-        id: [{value: this.model.id, disabled: this.isInfo}, [Validators.required]],
         ma_phieu_nhap:[{value: this.model.ma_phieu_nhap, disabled: this.isInfo}, [Validators.required]],
         ma_san_pham: [{value: this.model.ma_san_pham, disabled: this.isInfo}, [Validators.required]],
+        // size: [ null, [{value: this.model.da, disabled: this.isInfo}, [Validators.required]],
+        // mau: [ null, [Validators.required]],
         gia_nhap: [{value: this.model.gia_nhap, disabled: this.isInfo}, [Validators.required]],
         so_luong: [{value: this.model.so_luong, disabled: this.isInfo}, [Validators.required]],
 
@@ -172,17 +207,19 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
     }
     if (this.isEdit) {
       chitietphieunhap = {
-        id: this.formGroup.get('id')?.value,
+        id: this.model.id,
         ma_phieu_nhap:this.formGroup.get('ma_phieu_nhap')?.value,
         ma_san_pham: this.formGroup.get('ma_san_pham')?.value,
+        danh_sach_loai_dac_trung: [this.formGroup.get('size')?.value,this.formGroup.get('mau')?.value],
         gia_nhap: this.formGroup.get('gia_nhap')?.value,
         so_luong: this.formGroup.get('so_luong')?.value,
       };
     } else {
       chitietphieunhap = {
-        id: this.formGroup.get('id')?.value,
+        id: this.model.id,
         ma_phieu_nhap:this.formGroup.get('ma_phieu_nhap')?.value,
         ma_san_pham: this.formGroup.get('ma_san_pham')?.value,
+        danh_sach_loai_dac_trung: [this.formGroup.get('size')?.value,this.formGroup.get('mau')?.value],
         gia_nhap: this.formGroup.get('gia_nhap')?.value,
         so_luong: this.formGroup.get('so_luong')?.value,
       };
@@ -198,6 +235,7 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
         this.toastr.error('id đã tồn tại');
         return;
       }
+      console.log(chitietphieunhap);
       this.chitietphieunhapService.create(chitietphieunhap).subscribe(res => {
           this.closeModalReloadData();
           this.toastr.success('Thêm mới thành công');

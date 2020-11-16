@@ -24,7 +24,7 @@ export class ChitiethoadonService {
   }
 
   detail(id: any): Observable<any>{
-    return this.httpClient.get(environment.BASE_API_URL + environment.BASE_API +'bill-details/'+id);
+    return this.httpClient.get(environment.BASE_API_URL + environment.BASE_API +'bill-details',id);
   }
 
   delete(modelDelete: any): Observable<any>{

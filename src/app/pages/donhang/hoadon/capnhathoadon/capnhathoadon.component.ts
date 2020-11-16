@@ -151,7 +151,6 @@ export class CapnhathoadonComponent implements OnInit {
    
     if (model.ma_hoa_don === null || model.ma_hoa_don === undefined) {
       this.formGroup = this.fb.group({
-        ma_hoa_don: [ null, [Validators.required]],
         ma_nhan_vien: [ null, [Validators.required]],
         ma_khach_hang: [ null, [Validators.required]],
         ngay_lap: [ null, [Validators.required]],
@@ -162,7 +161,6 @@ export class CapnhathoadonComponent implements OnInit {
       });
     } else {
       this.formGroup = this.fb.group({
-        ma_hoa_don: [{value: this.model.ma_hoa_don, disabled: this.isInfo}, [Validators.required]],
         ma_nhan_vien: [{value: this.model.ma_nhan_vien, disabled: this.isInfo}, [Validators.required]],
         ma_khach_hang: [{value: this.model.ma_khach_hang, disabled: this.isInfo}, [Validators.required]],
         ngay_lap: [{value: this.model.ngay_lap, disabled: this.isInfo}, [Validators.required]],
@@ -222,7 +220,6 @@ export class CapnhathoadonComponent implements OnInit {
       };
     } else {
       hoadon = {
-        ma_hoa_don: this.formGroup.get('ma_hoa_don')?.value,
         ma_nhan_vien: this.formGroup.get('ma_nhan_vien')?.value,
         ma_khach_hang: this.formGroup.get('ma_khach_hang')?.value,
         ngay_lap: this.formGroup.get('ngay_lap')?.value,

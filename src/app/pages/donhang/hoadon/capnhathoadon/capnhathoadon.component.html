@@ -14,10 +14,8 @@
       <form [formGroup]="formGroup" (ngSubmit)="save()">
       <div class="row">
          <div class="col-md-6">
-         </div>
-         <div class="col-md-6">
             <div class="form-group">
-               <label>Email nhân viên</label>
+               <label>Mã nhân viên</label>
                <select class="form-control" name="" formControlName="ma_nhan_vien" id="">
                   <option *ngFor="let e of arrbyNV" value="{{e.ma_tai_khoan}}">{{e.email}}</option>
                </select>
@@ -26,7 +24,7 @@
                      *ngIf="formGroup.controls['ma_nhan_vien'].errors?.required"
                      style="color: red"
                      >
-                     * Email nhân viên không được để trống
+                     * Mã nhân viên không được để trống
                   </div>
                </div>
             </div>
@@ -35,7 +33,7 @@
       <div class="row">
          <div class="col-md-6">
             <div class="form-group">
-               <label>Email khách hàng</label>
+               <label>Mã khách hàng</label>
                <select class="form-control" name="" formControlName="ma_khach_hang" id="">
                   <option *ngFor="let e of arrbyKH" value="{{e.ma_tai_khoan}}">{{e.email}}</option>
                </select>
@@ -44,7 +42,7 @@
                      *ngIf="formGroup.controls['ma_khach_hang'].errors?.required"
                      style="color: red"
                      >
-                     * Email khách hàng không được để trống
+                     * Mã khách hàng không được để trống
                   </div>
                </div>
             </div>

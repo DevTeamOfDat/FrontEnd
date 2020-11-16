@@ -152,7 +152,6 @@ export class CapnhatnhacungcapComponent implements OnInit {
       };
     } else {
       nhacungcap = {
-        ma_nha_cung_cap: this.model.ma_nha_cung_cap,
         ten: this.formGroup.get('ten')?.value,
         dia_chi: this.formGroup.get('dia_chi')?.value,
         hot_line: this.formGroup.get('hot_line')?.value,
@@ -164,7 +163,7 @@ export class CapnhatnhacungcapComponent implements OnInit {
     console.log(this.arrCheck.length);
     if (this.isAdd) {
       for (let i = 0; i < this.arrCheck.length; i++) {
-        if (this.arrCheck[i].ma_tai_khoan === nhacungcap.ma_nha_cung_cap) {
+        if (this.arrCheck[i].ma_nha_cung_cap === nhacungcap.ma_nha_cung_cap) {
           check = true;
           break;
         }
