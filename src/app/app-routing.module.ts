@@ -9,26 +9,22 @@ import {
   NbResetPasswordComponent,
 } from '@nebular/auth';
 import { SignInComponent } from './login/sign-in/sign-in.component';
-import { AuthGuard } from './guard/auth/auth.guard';
 import { SignUpComponent } from './login/sign-up/sign-up.component';
 
 export const routes: Routes = [
   {
     path: 'pages',
-    canActivate: [AuthGuard],
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
   },
   {
     path: 'user',
-    canActivate: [AuthGuard],
     loadChildren: () => import('./user/user.module')
       .then(m => m.UserModule),
   },
   {
     path: 'signin',
     component: SignInComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'signup',
