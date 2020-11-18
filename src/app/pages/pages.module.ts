@@ -26,12 +26,10 @@ import { CapnhattintucComponent } from './tintuc/capnhattintuc/capnhattintuc.com
     ECommerceModule,
     MiscellaneousModule,
     FormsModule,
-    ReactiveFormsModule,
     CommonModule,
     ReactiveFormsModule,
     NgbPaginationModule,
     Ng2SearchPipeModule,
-    PipesModule
   ],
   declarations: [
     PagesComponent,
