@@ -65,10 +65,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'home-outline',
     children: [
       {
-        title: 'Khuyến mãi sản phẩm',
-        link: '/pages/khuyenmai/khuyenmaisanpham/danhsachkhuyenmaisanpham',
-      },
-      {
         title: 'Ngày khuyến mãi',
         link: '/pages/khuyenmai/ngaykhuyenmai/danhsachngaykhuyenmai',
       },
@@ -106,10 +102,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Đặc trưng',
         link: '/pages/sanpham/dactrung/danhsachdactrung',
-      },
-      {
-        title: 'Đặc trưng sản phẩm',
-        link: '/pages/sanpham/dactrungsanpham/danhsachdactrungsanpham',
       },
       {
         title: 'Loại sản phẩm',
@@ -151,7 +143,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/report/baocaophieunhap',
       },
       {
-        title: 'Báo cáo hóa dơn',
+        title: 'Báo cáo hóa dơn và voucher',
         link: '/pages/report/baocaohoadon',
       },
       {

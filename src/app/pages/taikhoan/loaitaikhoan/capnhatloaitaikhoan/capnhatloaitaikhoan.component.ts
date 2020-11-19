@@ -84,14 +84,14 @@ export class CapnhatloaitaikhoanComponent implements OnInit {
     if (model.id === null || model.id === undefined) {
       this.formGroup = this.fb.group({
         gia_tri: [ null, [Validators.required]],
-        mo_ta: [null,  [Validators.required]],
+        mo_ta: [null],
         
       });
       console.log("1");
     } else {
       this.formGroup = this.fb.group({
         gia_tri: [{value: this.model.gia_tri, disabled: this.isInfo}, [Validators.required]],
-        mo_ta: [{value: this.model.mo_ta, disabled: this.isInfo}, [Validators.required]],
+        mo_ta: [{value: this.model.mo_ta, disabled: this.isInfo}],
 
       });
     }

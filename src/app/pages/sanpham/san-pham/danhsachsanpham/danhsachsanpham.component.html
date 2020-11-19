@@ -61,7 +61,6 @@
                         <th>Tên sản phẩm </th>
                         <th>Tên thương hiệu </th>
                         <th>Tên loại sản phẩm </th>
-                        <th>Số lượng </th>
                         <th>Trạng thái</th>
                         <th>Thao tác</th>
                      </tr>
@@ -86,7 +85,6 @@
                         <td [innerHTML]="e.ten_san_pham | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ten_thuong_hieu | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ten_loai_san_pham | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.so_luong | highlight : searchedKeyword"></td>
                         <td class="justify-content-center">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"

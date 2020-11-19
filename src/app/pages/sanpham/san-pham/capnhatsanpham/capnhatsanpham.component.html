@@ -29,7 +29,7 @@
       </div>
 
       <div class="form-group">
-        <label>Mã loại sản phẩm</label>
+        <label>Loại sản phẩm</label>
         <select class="form-control" name="" formControlName="ma_loai_san_pham" id="">
           <option *ngFor="let e of danhsachloaisanpham" value="{{e.ma_loai_san_pham}}">{{e.ten_loai_san_pham}}</option>
         </select>
@@ -38,7 +38,7 @@
             *ngIf="formGroup.controls['ma_loai_san_pham'].errors?.required"
             style="color: red"
           >
-            * Mã loại sản phẩm không được để trống
+            * Loại sản phẩm không được để trống
           </div>
         </div>
       </div>
@@ -71,15 +71,8 @@
           class="form-control"
           formControlName="gia_ban"
           id="gia_ban"
+          readonly
         />
-        <div *ngIf="submitted && formGroup.controls['gia_ban'].errors?.required">
-          <div
-            *ngIf="formGroup.controls['gia_ban'].errors?.required"
-            style="color: red"
-          >
-            * Giá bán không được để trống
-          </div>
-        </div>
       </div>
       
       <div class="form-group">
@@ -90,15 +83,8 @@
           class="form-control"
           formControlName="so_luong"
           id="so_luong"
+          readonly
         />
-        <div *ngIf="submitted && formGroup.controls['so_luong'].errors?.required">
-          <div
-            *ngIf="formGroup.controls['so_luong'].errors?.required"
-            style="color: red"
-          >
-            * Giá bán không được để trống
-          </div>
-        </div>
       </div>
 
       

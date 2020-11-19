@@ -50,8 +50,8 @@
          <div class="col-md-6">
             <div class="form-group">
                <label>Mã sản phẩm</label>
-               <select class="form-control" name="" formControlName="ma_san_pham" id="">
-                  <option *ngFor="let e of danhsachsanpham" value="{{e.ma_san_pham}}">{{e.ten_san_pham}}</option>
+               <select [(ngModel)]="check_ma_hoa_don" (change)="changeStatus($event)" class="form-control" name="" formControlName="ma_san_pham" id="">
+                  <option *ngFor="let e of danhsachsanpham" value="{{e.ma_san_pham}}" >{{e.ten_san_pham}}</option>
                </select>
                <div *ngIf="submitted && formGroup.controls['ma_san_pham'].errors?.required">
                   <div

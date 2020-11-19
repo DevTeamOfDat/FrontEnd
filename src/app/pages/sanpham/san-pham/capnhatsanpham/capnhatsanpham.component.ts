@@ -117,8 +117,8 @@ export class CapnhatsanphamComponent implements OnInit {
         ma_thuong_hieu: [ null, [Validators.required]],
         ma_loai_san_pham: [ null, [Validators.required]],
         ten_san_pham: [ null, [Validators.required]],
-        gia_ban: [ null, [Validators.required]],
-        so_luong: [ null, [Validators.required]],
+        gia_ban: [ null],
+        so_luong: [ null],
         
       });
     } else {
@@ -126,8 +126,8 @@ export class CapnhatsanphamComponent implements OnInit {
         ma_thuong_hieu: [{value: this.model.ma_thuong_hieu, disabled: this.isInfo}, [Validators.required]],
         ma_loai_san_pham: [{value: this.model.ma_loai_san_pham, disabled: this.isInfo}, [Validators.required]],
         ten_san_pham: [{value: this.model.ten_san_pham, disabled: this.isInfo}, [Validators.required]],
-        gia_ban: [{value: this.model.gia_ban, disabled: this.isInfo}, [Validators.required]],
-        so_luong: [{value: this.model.so_luong, disabled: this.isInfo}, [Validators.required]],
+        gia_ban: [{value: this.model.gia_ban, disabled: this.isInfo}],
+        so_luong: [{value: this.model.so_luong, disabled: this.isInfo}],
       });
 
 
@@ -178,6 +178,7 @@ export class CapnhatsanphamComponent implements OnInit {
         gia_ban: this.formGroup.get('gia_ban')?.value,
         so_luong: this.formGroup.get('so_luong')?.value,
       };
+      
     } else {
       sanpham = {
         ma_san_pham : this.model.ma_san_pham,
@@ -204,10 +205,13 @@ export class CapnhatsanphamComponent implements OnInit {
           this.closeModalReloadData();
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
+          if(res.error)
+          {
+            this.toastr.error(res.error);
+          }
         },
         err => {
-          this.toastr.error(err);
-          this.toastr.error('Có lỗi xảy ra!');
+          //this.toastr.error('Có lỗi xảy ra!');
         });
     }
     if (this.isEdit) {

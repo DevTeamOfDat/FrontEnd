@@ -84,14 +84,13 @@ export class CapnhatdactrungComponent implements OnInit {
     if (model.loai_dac_trung === null || model.loai_dac_trung === undefined) {
       this.formGroup = this.fb.group({
         ten_dac_trung: [ null, [Validators.required]],
-        mo_ta: [null,  [Validators.required]],
+        mo_ta: [null],
         
       });
-      console.log("1");
     } else {
       this.formGroup = this.fb.group({
         ten_dac_trung: [{value: this.model.ten_dac_trung, disabled: this.isInfo}, [Validators.required]],
-        mo_ta: [{value: this.model.mo_ta, disabled: this.isInfo}, [Validators.required]],
+        mo_ta: [{value: this.model.mo_ta, disabled: this.isInfo}],
 
       });
 
@@ -136,18 +135,16 @@ export class CapnhatdactrungComponent implements OnInit {
     }
     if (this.isEdit) {
       dactrung = {
-        loai_dac_trung: this.model.loai_dac_trung,
         ten_dac_trung: this.formGroup.get('ten_dac_trung')?.value,
         mo_ta: this.formGroup.get('mo_ta').value,
       };
     } else {
       dactrung = {
-        loai_dac_trung: this.model.loai_dac_trung,
         ten_dac_trung: this.formGroup.get('ten_dac_trung')?.value,
         mo_ta: this.formGroup.get('mo_ta').value,
       };
+      
     }
-    console.log(this.arrCheck.length);
     if (this.isAdd) {
       for (let i = 0; i < this.arrCheck.length; i++) {
         if (this.arrCheck[i].loai_dac_trung === dactrung.loai_dac_trung) {
@@ -162,7 +159,7 @@ export class CapnhatdactrungComponent implements OnInit {
       console.log(dactrung);
       this.dactrungService.create(dactrung).subscribe(res => {
           this.closeModalReloadData();
-          console.log("Thêm mới thành công");
+          console.log(dactrung);
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },

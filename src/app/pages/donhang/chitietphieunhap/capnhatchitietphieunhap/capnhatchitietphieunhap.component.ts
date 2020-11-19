@@ -76,7 +76,7 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
     this.dactrungService.getAll().subscribe(data => {
       this.danhsachdactrung = data.data;
       this.arrbysize = this.danhsachdactrung.filter(function (dactrung) {
-        return dactrung.ten_dac_trung === "size";
+        return dactrung.mo_ta === "size";
       });
     },
     err => {
@@ -89,7 +89,7 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
     this.dactrungService.getAll().subscribe(data => {
       this.danhsachdactrung = data.data;
       this.arrbymau = this.danhsachdactrung.filter(function (dactrung) {
-        return dactrung.ten_dac_trung === "màu";
+        return dactrung.mo_ta === "màu";
       });
     },
     err => {

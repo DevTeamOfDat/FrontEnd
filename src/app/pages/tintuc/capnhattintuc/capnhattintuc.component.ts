@@ -87,20 +87,20 @@ export class CapnhattintucComponent implements OnInit {
       this.formGroup = this.fb.group({
         tieu_de: [ null, [Validators.required]],
         noi_dung: [ null, [Validators.required]],
-        highlight: [ null, [Validators.required]],
-        thumbnail: [ null, [Validators.required]],
-        url : [ null, [Validators.required]],
-        ngay_dang: [ null, [Validators.required]],
+        highlight: [ null ],
+        thumbnail: [ null ],
+        url : [ null ],
+        ngay_dang: [ null],
         
       });
     } else {
       this.formGroup = this.fb.group({
         tieu_de: [{value: this.model.tieu_de, disabled: this.isInfo}, [Validators.required]],
         noi_dung: [{value: this.model.noi_dung, disabled: this.isInfo}, [Validators.required]],
-        highlight: [{value: this.model.highlight, disabled: this.isInfo}, [Validators.required]],
-        thumbnail: [{value: this.model.thumbnail, disabled: this.isInfo}, [Validators.required]],
-        url : [{value: this.model.url, disabled: this.isInfo}, [Validators.required]],
-        ngay_dang: [{value: this.model.ngay_dang, disabled: this.isInfo}, [Validators.required]],
+        highlight: [{value: this.model.highlight, disabled: this.isInfo}],
+        thumbnail: [{value: this.model.thumbnail, disabled: this.isInfo}],
+        url : [{value: this.model.url, disabled: this.isInfo}],
+        ngay_dang: [{value: this.model.ngay_dang, disabled: this.isInfo}],
       });
 
 
@@ -152,6 +152,7 @@ export class CapnhattintucComponent implements OnInit {
         url : this.formGroup.get('url')?.value,
         ngay_dang: this.formGroup.get('ngay_dang')?.value,
       };
+      
     } else {
       tintuc = {
         id: this.model.id,

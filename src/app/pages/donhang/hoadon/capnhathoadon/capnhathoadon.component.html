@@ -15,92 +15,69 @@
       <div class="row">
          <div class="col-md-6">
             <div class="form-group">
-               <label>Mã nhân viên</label>
-               <select class="form-control" name="" formControlName="ma_nhan_vien" id="">
-                  <option *ngFor="let e of arrbyNV" value="{{e.ma_tai_khoan}}">{{e.email}}</option>
-               </select>
-               <div *ngIf="submitted && formGroup.controls['ma_nhan_vien'].errors?.required">
-                  <div
-                     *ngIf="formGroup.controls['ma_nhan_vien'].errors?.required"
-                     style="color: red"
-                     >
-                     * Mã nhân viên không được để trống
-                  </div>
-               </div>
+               <label for="id">Mã hóa đơn</label>
+               <input
+               type="text"
+               name=""
+               class="form-control"
+               formControlName="ma_hoa_don"
+               id="ma_hoa_don"
+               [(ngModel)]="update_ma_hoa_don"
+               readonly
+               />
             </div>
+         </div>
+         <div class="col-md-6">
          </div>
       </div>
       <div class="row">
          <div class="col-md-6">
             <div class="form-group">
-               <label>Mã khách hàng</label>
+               <label>Email khách hàng</label>
                <select class="form-control" name="" formControlName="ma_khach_hang" id="">
                   <option *ngFor="let e of arrbyKH" value="{{e.ma_tai_khoan}}">{{e.email}}</option>
                </select>
-               <div *ngIf="submitted && formGroup.controls['ma_khach_hang'].errors?.required">
-                  <div
-                     *ngIf="formGroup.controls['ma_khach_hang'].errors?.required"
-                     style="color: red"
-                     >
-                     * Mã khách hàng không được để trống
-                  </div>
-               </div>
             </div>
          </div>
          <div class="col-md-6">
             <div class="form-group">
                <label>Ngày lập</label>
                <input
-                  type="date"
+                  type="text"
                   name=""
                   class="form-control"
                   formControlName="ngay_lap"
                   id="ngay_lap"
+                  readonly
                   />
-               <div
-                  *ngIf="submitted && formGroup.controls['ngay_lap'].errors?.required"
-                  >
-                  <div
-                     *ngIf="formGroup.controls['ngay_lap'].errors?.required"
-                     style="color: red"
-                     >
-                     * Ngày lập không được để trống
-                  </div>
-               </div>
             </div>
          </div>
       </div>
       <div class="row">
          <div class="col-md-6">
             <div class="form-group">
-               <label>Loại đơn</label>
-               <select class="form-control" name="" formControlName="loai_don" id="">
-                  <option *ngFor="let e of danhsachloaidon" value="{{e.id}}">{{e.mo_ta}}</option>
-               </select>
-               <div *ngIf="submitted && formGroup.controls['loai_don'].errors?.required">
-                  <div
-                     *ngIf="formGroup.controls['loai_don'].errors?.required"
-                     style="color: red"
-                     >
-                     * Loại đơn không được để trống
-                  </div>
-               </div>
+               <label for="loai_don">Loại đơn</label>
+               <input
+                  type="text"
+                  name=""
+                  class="form-control"
+                  formControlName="loai_don"
+                  id="loai_don"
+                  readonly
+                  />
             </div>
          </div>
          <div class="col-md-6">
             <div class="form-group">
-               <label>Trạng thái</label>
-               <select class="form-control" name="" formControlName="trang_thai" id="">
-                  <option *ngFor="let e of danhsachtrangthai" value="{{e.id}}">{{e.mo_ta}}</option>
-               </select>
-               <div *ngIf="submitted && formGroup.controls['trang_thai'].errors?.required">
-                  <div
-                     *ngIf="formGroup.controls['trang_thai'].errors?.required"
-                     style="color: red"
-                     >
-                     * Trạng thái không được để trống
-                  </div>
-               </div>
+               <label for="trang_thai">Trạng thái</label>
+               <input
+                  type="text"
+                  name=""
+                  class="form-control"
+                  formControlName="trang_thai"
+                  id="trang_thai"
+                  readonly
+                  />
             </div>
          </div>
       </div>
@@ -114,17 +91,21 @@
                   class="form-control"
                   formControlName="tong_tien"
                   id="tong_tien"
+                  readonly
                   />
-               <div
-                  *ngIf="submitted && formGroup.controls['tong_tien'].errors?.required"
-                  >
-                  <div
-                     *ngIf="formGroup.controls['tong_tien'].errors?.required"
-                     style="id: red"
-                     >
-                     * Tổng tiền không được để trống
-                  </div>
-               </div>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group">
+               <label for="thanh_tien">Thành tiền</label>
+               <input
+                  type="text"
+                  name=""
+                  class="form-control"
+                  formControlName="thanh_tien"
+                  id="thanh_tien"
+                  readonly
+                  />
             </div>
          </div>
       </div>

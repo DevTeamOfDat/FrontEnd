@@ -37,7 +37,8 @@ export class CapnhatchitiethoadonComponent implements OnInit {
   isLoading=false;
   title = '';
   type: any;
-  ma_san_pham: any;
+  check_ma_hoa_don: any;
+  ma_san_pham : any;
   model: chitiethoadonModel;
   arrCheck = [];
   arrdactrung = [];
@@ -59,7 +60,9 @@ export class CapnhatchitiethoadonComponent implements OnInit {
   }
 
 
-
+  changeStatus(event: any){
+    this.fetchDanhsachkdactrungsanpham(event.target.value);
+  }
   fetchDanhsachhoadon(){
     this.isLoading =  true;
     this.hoadonService.getAll().subscribe(data => {
@@ -80,11 +83,11 @@ export class CapnhatchitiethoadonComponent implements OnInit {
       })
   }
 
-  fetchDanhsachkdactrungsanpham(){
+  fetchDanhsachkdactrungsanpham(check_ma_hoa_don: any){
     this.isLoading =  true;
-    this.dactrungsanphamService.detail(this.ma_san_pham).subscribe(data => {
+    this.dactrungsanphamService.detail(check_ma_hoa_don).subscribe(data => {
       this.danhsachdactrungsanpham = data.data;
-      console.log(this.danhsachdactrungsanpham);
+      console.log(this.check_ma_hoa_don);
     },
     err => {
         this.isLoading = false;
@@ -148,7 +151,7 @@ export class CapnhatchitiethoadonComponent implements OnInit {
       });
     } else {
       this.ma_san_pham = this.model.ma_san_pham;
-      this.fetchDanhsachkdactrungsanpham();
+      // this.fetchDanhsachkdactrungsanpham();
       this.formGroup = this.fb.group({
         ma_hoa_don:[{value: this.model.ma_hoa_don, disabled: this.isInfo}, [Validators.required]],
         danh_sach_loai_dac_trung:[{value: this.model.danh_sach_loai_dac_trung, disabled: this.isInfo}, [Validators.required]],
@@ -244,7 +247,6 @@ export class CapnhatchitiethoadonComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

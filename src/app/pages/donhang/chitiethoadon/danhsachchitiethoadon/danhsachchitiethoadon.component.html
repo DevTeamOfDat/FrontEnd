@@ -57,6 +57,7 @@
                            [checked]="isAllCheckBoxChecked()"
                            (change)="checkAllCheckBox($event)"
                            />
+                        <th>STT</th>
                         <th>Tên sản phẩm</th>
                         <th>Danh sách loại đặc trưng</th>
                         <th>Giá bán</th>
@@ -81,6 +82,7 @@
                            (ngModelChange)="changeModel()"
                            value="{{ e.id }}"
                            />
+                        <th>{{i+1}}</th>
                         <td [innerHTML]="e.ten_san_pham | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.danh_sach_loai_dac_trung | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.gia_ban | highlight : searchedKeyword"></td>
@@ -131,8 +133,7 @@
                               </div>
                            </ng-template>
                            <div class="row justify-content-center">
-                              <button (click)="initModal(e,'show')"  class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></button>
-                              <button (click)="initModal(e,'edit')"  class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
+                              <button (click)="initModal(e,'show')"  class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></button>                             
                               <button class="delete"  (click)="open(mymodal)" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
                            </div>
                         </td>

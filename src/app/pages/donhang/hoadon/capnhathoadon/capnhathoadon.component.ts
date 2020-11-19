@@ -151,22 +151,26 @@ export class CapnhathoadonComponent implements OnInit {
    
     if (model.ma_hoa_don === null || model.ma_hoa_don === undefined) {
       this.formGroup = this.fb.group({
-        ma_nhan_vien: [ null, [Validators.required]],
-        ma_khach_hang: [ null, [Validators.required]],
-        ngay_lap: [ null, [Validators.required]],
-        loai_don: [ null, [Validators.required]],
-        trang_thai: [ null, [Validators.required]],
-        tong_tien: [null,  [Validators.required]],
+        ma_hoa_don: [ null],
+        ma_nhan_vien: [ null],
+        ma_khach_hang: [ null],
+        ngay_lap: [ null],
+        loai_don: [ null],
+        trang_thai: [ null],
+        tong_tien: [null],
+        thanh_tien: [null],
         
       });
     } else {
       this.formGroup = this.fb.group({
-        ma_nhan_vien: [{value: this.model.ma_nhan_vien, disabled: this.isInfo}, [Validators.required]],
-        ma_khach_hang: [{value: this.model.ma_khach_hang, disabled: this.isInfo}, [Validators.required]],
-        ngay_lap: [{value: this.model.ngay_lap, disabled: this.isInfo}, [Validators.required]],
-        loai_don: [{value: this.model.loai_don, disabled: this.isInfo}, [Validators.required]],
-        trang_thai: [{value: this.model.trang_thai, disabled: this.isInfo}, [Validators.required]],
-        tong_tien: [{value: this.model.tong_tien, disabled: this.isInfo}, [Validators.required]],
+        ma_hoa_don: [{value: this.model.ma_hoa_don, disabled: this.isInfo}],
+        ma_nhan_vien: [{value: this.model.ma_nhan_vien, disabled: this.isInfo}],
+        ma_khach_hang: [{value: this.model.ma_khach_hang, disabled: this.isInfo}],
+        ngay_lap: [{value: this.model.ngay_lap, disabled: this.isInfo}],
+        loai_don: [{value: this.model.loai_don, disabled: this.isInfo}],
+        trang_thai: [{value: this.model.trang_thai, disabled: this.isInfo}],
+        tong_tien: [{value: this.model.tong_tien, disabled: this.isInfo}],
+        thanh_tien: [{value: this.model.thanh_tien, disabled: this.isInfo}],
 
       });
 
@@ -211,21 +215,12 @@ export class CapnhathoadonComponent implements OnInit {
     if (this.isEdit) {
       hoadon = {
         ma_hoa_don: this.formGroup.get('ma_hoa_don')?.value,
-        ma_nhan_vien: this.formGroup.get('ma_nhan_vien')?.value,
         ma_khach_hang: this.formGroup.get('ma_khach_hang')?.value,
-        ngay_lap: this.formGroup.get('ngay_lap')?.value,
-        loai_don: this.formGroup.get('loai_don')?.value,
-        trang_thai: this.formGroup.get('trang_thai')?.value,
-        tong_tien: this.formGroup.get('tong_tien')?.value,
       };
     } else {
       hoadon = {
         ma_nhan_vien: this.formGroup.get('ma_nhan_vien')?.value,
         ma_khach_hang: this.formGroup.get('ma_khach_hang')?.value,
-        ngay_lap: this.formGroup.get('ngay_lap')?.value,
-        loai_don: this.formGroup.get('loai_don')?.value,
-        trang_thai: this.formGroup.get('trang_thai')?.value,
-        tong_tien: this.formGroup.get('tong_tien')?.value,
       };
     }
     if (this.isAdd) {

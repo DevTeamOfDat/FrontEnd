@@ -61,14 +61,6 @@
           formControlName="hot_line"
           id="hot_line"
         />
-        <div *ngIf="submitted && formGroup.controls['hot_line'].errors?.required">
-          <div
-            *ngIf="formGroup.controls['hot_line'].errors?.required"
-            style="color: red"
-          >
-            * hotline không được để trống
-          </div>
-        </div>
       </div>
       
       <div class="form-group">
@@ -80,14 +72,6 @@
           formControlName="email"
           id="email"
         />
-        <div *ngIf="submitted && formGroup.controls['email'].errors?.required">
-          <div
-            *ngIf="formGroup.controls['email'].errors?.required"
-            style="color: red"
-          >
-            * email không được để trống
-          </div>
-        </div>
       </div>
       
       <div class="form-group">
@@ -118,14 +102,6 @@
           formControlName="hinh_anh"
           id="hinh_anh"
         />
-        <div *ngIf="submitted && formGroup.controls['hinh_anh'].errors?.required">
-          <div
-            *ngIf="formGroup.controls['hinh_anh'].errors?.required"
-            style="color: red"
-          >
-            * hình ảnh không được để trống
-          </div>
-        </div>
       </div>
       <div class="form-group" align="center">
         <button

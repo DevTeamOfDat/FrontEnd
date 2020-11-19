@@ -99,21 +99,21 @@ export class CapnhatphieunhapComponent implements OnInit {
         this.isEdit = false;
         this.isAdd = true;
         this.title = `Thêm mới thông tin phiếu nhập`;
-        // this.update_ma_phieu_nhap = this.arrCheck.length+1;
+         this.update_ma_phieu_nhap = this.arrCheck.length+1;
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
         this.title = `Xem chi tiết thông tin phiếu nhập`;
-        // this.update_ma_phieu_nhap = this.model.ma_phieu_nhap;
+         this.update_ma_phieu_nhap = this.model.ma_phieu_nhap;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
         this.title = `Chỉnh sửa thông tin phiếu nhập`;
-        // this.update_ma_phieu_nhap = this.model.ma_phieu_nhap;
+         this.update_ma_phieu_nhap = this.model.ma_phieu_nhap;
         break;
       default:
         this.isInfo = false;
@@ -133,20 +133,18 @@ export class CapnhatphieunhapComponent implements OnInit {
    
     if (model.ma_phieu_nhap === null || model.ma_phieu_nhap === undefined) {
       this.formGroup = this.fb.group({
-        ma_nhan_vien: [ null, [Validators.required]],
+        ma_phieu_nhap: [ null],
         ma_nha_cung_cap: [ null, [Validators.required]],
-        ngay_nhap: [ null, [Validators.required]],
-        trang_thai: [ null, [Validators.required]],
-        tong_tien: [null,  [Validators.required]],
+        ngay_nhap: [ null],
+        tong_tien: [null],
         
       });
     } else {
       this.formGroup = this.fb.group({
-        ma_nhan_vien: [{value: this.model.ma_nhan_vien, disabled: this.isInfo}, [Validators.required]],
+        ma_phieu_nhap: [{value: this.model.ma_phieu_nhap, disabled: this.isInfo}],
         ma_nha_cung_cap: [{value: this.model.ma_nha_cung_cap, disabled: this.isInfo}, [Validators.required]],
-        ngay_nhap: [{value: this.model.ngay_nhap, disabled: this.isInfo}, [Validators.required]],
-        trang_thai: [{value: this.model.trang_thai, disabled: this.isInfo}, [Validators.required]],
-        tong_tien: [{value: this.model.tong_tien, disabled: this.isInfo}, [Validators.required]],
+        ngay_nhap: [{value: this.model.ngay_nhap, disabled: this.isInfo}],
+        tong_tien: [{value: this.model.tong_tien, disabled: this.isInfo}],
 
       });
 
@@ -191,19 +189,12 @@ export class CapnhatphieunhapComponent implements OnInit {
     if (this.isEdit) {
       phieunhap = {
         ma_phieu_nhap: this.model.ma_phieu_nhap,
-        ma_nhan_vien: this.formGroup.get('ma_nhan_vien')?.value,
         ma_nha_cung_cap: this.formGroup.get('ma_nha_cung_cap')?.value,
-        ngay_nhap: this.formGroup.get('ngay_nhap')?.value,
-        trang_thai: this.formGroup.get('trang_thai')?.value,
-        tong_tien: this.formGroup.get('tong_tien')?.value,
       };
     } else {
       phieunhap = {
-        ma_nhan_vien: this.formGroup.get('ma_nhan_vien')?.value,
+        ma_phieu_nhap: this.model.ma_phieu_nhap,
         ma_nha_cung_cap: this.formGroup.get('ma_nha_cung_cap')?.value,
-        ngay_nhap: this.formGroup.get('ngay_nhap')?.value,
-        trang_thai: this.formGroup.get('trang_thai')?.value,
-        tong_tien: this.formGroup.get('tong_tien')?.value,
       };
     }
     if (this.isAdd) {

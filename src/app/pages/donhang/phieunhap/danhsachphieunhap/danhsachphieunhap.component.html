@@ -58,6 +58,8 @@
                            [checked]="isAllCheckBoxChecked()"
                            (change)="checkAllCheckBox($event)"
                            />
+                        <th>STT</th>
+                        <th>Mã phiếu nhập</th>
                         <th>Tên nhân viên</th>
                         <th>Nhà cung cấp</th>
                         <th>Ngày nhập</th>
@@ -82,6 +84,8 @@
                            (ngModelChange)="changeModel()"
                            value="{{ e.ma_phieu_nhap }}"
                            />
+                        <td>{{ i + 1 }}</td>
+                        <td [innerHTML]="e.ma_phieu_nhap | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ten_nhan_vien | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ten_nha_cung_cap | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ngay_nhap| highlight : searchedKeyword"></td>
@@ -133,7 +137,6 @@
                            </ng-template>
                            <div class="row justify-content-center">
                               <button (click)="initModal(e,'show')"  class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></button>
-                              <button (click)="initModal(e,'edit')"  class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
                               <button class="delete"  (click)="open(mymodal)" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
                            </div>
                         </td>

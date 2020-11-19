@@ -77,7 +77,7 @@
             <div class="form-group">
                <label>Size</label>
                <select class="form-control" name="" formControlName="size" id="">
-                  <option *ngFor="let e of arrbysize" value="{{e.loai_dac_trung}}">{{e.mo_ta}}</option>
+                  <option *ngFor="let e of arrbysize" value="{{e.loai_dac_trung}}">{{e.ten_dac_trung}}</option>
                </select>
                <div *ngIf="submitted && formGroup.controls['size'].errors?.required">
                   <div
@@ -93,7 +93,7 @@
             <div class="form-group">
                <label>Màu</label>
                <select class="form-control" name="" formControlName="mau" id="">
-                  <option *ngFor="let e of arrbymau" value="{{e.loai_dac_trung}}">{{e.mo_ta}}</option>
+                  <option *ngFor="let e of arrbymau" value="{{e.loai_dac_trung}}">{{e.ten_dac_trung}}</option>
                </select>
                <div *ngIf="submitted && formGroup.controls['mau'].errors?.required">
                   <div

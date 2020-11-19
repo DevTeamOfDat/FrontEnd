@@ -86,20 +86,20 @@ export class CapnhatnhacungcapComponent implements OnInit {
       this.formGroup = this.fb.group({
         ten: [ null, [Validators.required]],
         dia_chi: [ null, [Validators.required]],
-        hot_line : [ null, [Validators.required]],
-        email: [ null, [Validators.required]],
+        hot_line : [ null],
+        email: [ null],
         so_dien_thoai: [ null, [Validators.required]],
-        hinh_anh: [ null, [Validators.required]],
+        hinh_anh: [ null],
         
       });
     } else {
       this.formGroup = this.fb.group({
         ten: [{value: this.model.ten, disabled: this.isInfo}, [Validators.required]],
         dia_chi: [{value: this.model.dia_chi, disabled: this.isInfo}, [Validators.required]],
-        hot_line: [{value: this.model.hot_line, disabled: this.isInfo}, [Validators.required]],
-        email: [{value: this.model.email, disabled: this.isInfo}, [Validators.required]],
+        hot_line: [{value: this.model.hot_line, disabled: this.isInfo}],
+        email: [{value: this.model.email, disabled: this.isInfo}],
         so_dien_thoai: [{value: this.model.so_dien_thoai, disabled: this.isInfo}, [Validators.required]],
-        hinh_anh: [{value: this.model.hinh_anh, disabled: this.isInfo}, [Validators.required]],
+        hinh_anh: [{value: this.model.hinh_anh, disabled: this.isInfo}],
       });
 
     }
@@ -150,8 +150,10 @@ export class CapnhatnhacungcapComponent implements OnInit {
         so_dien_thoai: this.formGroup.get('so_dien_thoai')?.value,
         hinh_anh : this.formGroup.get('hinh_anh')?.value,
       };
+     
     } else {
       nhacungcap = {
+        ma_nha_cung_cap: this.model.ma_nha_cung_cap,
         ten: this.formGroup.get('ten')?.value,
         dia_chi: this.formGroup.get('dia_chi')?.value,
         hot_line: this.formGroup.get('hot_line')?.value,

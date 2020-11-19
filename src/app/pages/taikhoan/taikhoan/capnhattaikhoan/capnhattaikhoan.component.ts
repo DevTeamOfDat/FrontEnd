@@ -88,9 +88,9 @@ export class CapnhattaikhoanComponent implements OnInit {
         email: [ null, [Validators.required]],
         mat_khau: [ null, [Validators.required]],
         ho_ten: [ null, [Validators.required]],
-        dia_chi: [ null, [Validators.required]],
+        dia_chi: [ null],
         so_dien_thoai: [ null, [Validators.required]],
-        hinh_anh : [ null, [Validators.required]],
+        hinh_anh : [ null],
         loai_tai_khoan: [ null, [Validators.required]],
         
       });
@@ -99,9 +99,9 @@ export class CapnhattaikhoanComponent implements OnInit {
         email:  [{value: this.model.email, disabled: this.isInfo}, [Validators.required]],
         mat_khau:  [{value: this.model.mat_khau, disabled: this.isInfo}, [Validators.required]],
         ho_ten:  [{value: this.model.ho_ten, disabled: this.isInfo}, [Validators.required]],
-        dia_chi:  [{value: this.model.dia_chi, disabled: this.isInfo}, [Validators.required]],
+        dia_chi:  [{value: this.model.dia_chi, disabled: this.isInfo}],
         so_dien_thoai:  [{value: this.model.so_dien_thoai, disabled: this.isInfo}, [Validators.required]],
-        hinh_anh : [{value: this.model.hinh_anh, disabled: this.isInfo}, [Validators.required]],
+        hinh_anh : [{value: this.model.hinh_anh, disabled: this.isInfo}],
         loai_tai_khoan:  [{value: this.model.loai_tai_khoan, disabled: this.isInfo}, [Validators.required]],
       });
 
@@ -155,6 +155,7 @@ export class CapnhattaikhoanComponent implements OnInit {
         hinh_anh : this.formGroup.get('hinh_anh')?.value,
         loai_tai_khoan: this.formGroup.get('loai_tai_khoan')?.value,
       };
+      
     } else {
       taikhoan = {
         ma_tai_khoan: this.model.ma_tai_khoan,
