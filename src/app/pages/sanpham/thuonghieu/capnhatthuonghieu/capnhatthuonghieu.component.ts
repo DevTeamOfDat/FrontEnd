@@ -5,7 +5,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ThuongHieuService } from 'app/services/san-pham/thuong-hieu/thuong-hieu.service';
-
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { avatarDefault } from 'environments/environment';
+import { AngularFireStorage } from '@angular/fire/storage';
 @Component({
   selector: 'ngx-capnhatthuonghieu',
   templateUrl: './capnhatthuonghieu.component.html',
@@ -16,6 +19,9 @@ export class CapnhatthuonghieuComponent implements OnInit {
   @ViewChild('content') public childModal!: ModalDirective;
   @Input() danhsachthuonghieu: Array<thuonghieuModel>;
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
+  urlPictureDefault = avatarDefault;
   checkButton = false;
   closeResult: String;
   modalReference!: any;
@@ -34,7 +40,8 @@ export class CapnhatthuonghieuComponent implements OnInit {
     private modalService: NgbModal,
     private toastr: ToastrService,
     private fb: FormBuilder,
-    private thuonghieuService: ThuongHieuService,) {
+    private thuonghieuService: ThuongHieuService,
+    private store: AngularFireStorage) {
     }
 
   ngOnInit(): void {
@@ -85,12 +92,13 @@ export class CapnhatthuonghieuComponent implements OnInit {
     if (model.ma_thuong_hieu === null || model.ma_thuong_hieu === undefined) {
       this.formGroup = this.fb.group({
         ten_thuong_hieu: [ null, [Validators.required]],
+        hinh_anh: [ null],
         
       });
     } else {
       this.formGroup = this.fb.group({
         ten_thuong_hieu: [{value: this.model.ten_thuong_hieu, disabled: this.isInfo}, [Validators.required]],
-
+        hinh_anh: [{value: this.model.hinh_anh, disabled: this.isInfo}],
       });
 
 
@@ -136,11 +144,13 @@ export class CapnhatthuonghieuComponent implements OnInit {
       thuonghieu = {
         ma_thuong_hieu: this.model.ma_thuong_hieu,
         ten_thuong_hieu: this.formGroup.get('ten_thuong_hieu')?.value,
+        hinh_anh: this.urlPictureDefault,
       };
     } else {
       thuonghieu = {
         ma_thuong_hieu: this.model.ma_thuong_hieu,
         ten_thuong_hieu: this.formGroup.get('ten_thuong_hieu')?.value,
+        hinh_anh: this.urlPictureDefault,
       };
     }
     if (this.isAdd) {
@@ -181,6 +191,32 @@ export class CapnhatthuonghieuComponent implements OnInit {
   public closeModalReloadData(): void {
     this.submitted = false;
     this.eventEmit.emit('success');
+  }
+
+  uploadImage(event) {
+    // tslint:disable-next-line:prefer-const
+    let file = event.target.files[0];
+    // tslint:disable-next-line:prefer-const
+    let path = `thuonghieu/${file.name}`;
+    if (file.type.split('/')[0] !== 'image') {
+      return alert('Erreur, ce fichier n\'est pas une image');
+    } else {
+      // tslint:disable-next-line:prefer-const
+      let ref = this.store.ref(path);
+      // tslint:disable-next-line:prefer-const
+      let task = this.store.upload(path, file);
+      this.uploadPercent = task.percentageChanges();
+      console.log('Image chargée avec succès');
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          this.downloadURL = ref.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+          this.urlPictureDefault=url;
+          });
+        }
+        )
+      ).subscribe();
+    }
   }
 
 

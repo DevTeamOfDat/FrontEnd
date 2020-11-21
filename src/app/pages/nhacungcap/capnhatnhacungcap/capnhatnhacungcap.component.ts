@@ -1,11 +1,16 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import firebase from 'firebase';
 import { nhacungcapModel } from 'app/model/nhacungcap/nhacungcap-model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { NhaCungCapService } from 'app/services/nha-cung-cap/nha-cung-cap.service';
-
+import { avatarDefault } from 'environments/environment';
+import { Subscription } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'ngx-capnhatnhacungcap',
   templateUrl: './capnhatnhacungcap.component.html',
@@ -18,10 +23,16 @@ export class CapnhatnhacungcapComponent implements OnInit {
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
   checkButton = false;
   closeResult: String;
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
   modalReference!: any;
   formGroup: FormGroup;
+  subscription: Subscription;
   isAdd = false;
+  image: string = null;
   isEdit = false;
+  avatarUrl;
+  isEditimage=false;
   isInfo = false;
   submitted = false;
   isLoading=false;
@@ -30,18 +41,30 @@ export class CapnhatnhacungcapComponent implements OnInit {
   arrCheck = [];
   update_ma_tai_khoan:any;
   model: nhacungcapModel;
+  urlPictureDefault = avatarDefault;
  
   constructor(
     private modalService: NgbModal,
     private toastr: ToastrService,
     private fb: FormBuilder,
-    private nhacungcapService: NhaCungCapService,) {
+    private nhacungcapService: NhaCungCapService,
+    private store: AngularFireStorage) {
     }
 
   ngOnInit(): void {
     this.submitted = false;
+    this.fetchDanhsachnhacungcap();
     
-    
+  }
+
+  fetchDanhsachnhacungcap(){
+    this.subscription=this.nhacungcapService.getAll().subscribe(data => {
+      this.danhsachnhacungcap = data.data;
+      this.avatarUrl = data.data.hinh_anh;
+    },
+    err => {
+        this.isLoading = false;
+      })
   }
   updateFormType(type: any) {
     switch (type) {
@@ -148,7 +171,7 @@ export class CapnhatnhacungcapComponent implements OnInit {
         hot_line: this.formGroup.get('hot_line')?.value,
         email: this.formGroup.get('email')?.value,
         so_dien_thoai: this.formGroup.get('so_dien_thoai')?.value,
-        hinh_anh : this.formGroup.get('hinh_anh')?.value,
+        hinh_anh : this.urlPictureDefault,
       };
      
     } else {
@@ -159,7 +182,7 @@ export class CapnhatnhacungcapComponent implements OnInit {
         hot_line: this.formGroup.get('hot_line')?.value,
         email: this.formGroup.get('email')?.value,
         so_dien_thoai: this.formGroup.get('so_dien_thoai')?.value,
-        hinh_anh : this.formGroup.get('hinh_anh')?.value,
+        hinh_anh : this.urlPictureDefault,
       };
     }
     console.log(this.arrCheck.length);
@@ -203,4 +226,29 @@ export class CapnhatnhacungcapComponent implements OnInit {
     this.eventEmit.emit('success');
   }
 
+  uploadImage(event) {
+    // tslint:disable-next-line:prefer-const
+    let file = event.target.files[0];
+    // tslint:disable-next-line:prefer-const
+    let path = `${file.name}`;
+    if (file.type.split('/')[0] !== 'image') {
+      return alert('Erreur, ce fichier n\'est pas une image');
+    } else {
+      // tslint:disable-next-line:prefer-const
+      let ref = this.store.ref(path);
+      // tslint:disable-next-line:prefer-const
+      let task = this.store.upload(path, file);
+      this.uploadPercent = task.percentageChanges();
+      console.log('Image chargée avec succès');
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          this.downloadURL = ref.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+          this.urlPictureDefault=url;
+          });
+        }
+        )
+      ).subscribe();
+    }
+  }
 }

@@ -13,7 +13,7 @@
   <div class="modal-body">
     <form [formGroup]="formGroup" (ngSubmit)="save()">
 
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <label>Tiêu đề</label>
             <input
@@ -37,7 +37,7 @@
         </div>
 
      <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <label for="noi_dung">Nội dung</label>
             <input
@@ -60,7 +60,7 @@
           </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <label>Highlight</label>
             <input
@@ -75,20 +75,8 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>highlight</label>
-            <input
-              type="text"
-              name=""
-              class="form-control"
-              formControlName="highlight"
-              id="highlight"
-            />
-          </div>
-        </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <label for="url">URL</label>
             <input
@@ -103,7 +91,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <label for="ngay_dang">Ngày đăng</label>
             <input
@@ -115,8 +103,17 @@
             />
           </div>
         </div>
-
        
+      </div>
+      <div class="form-group">
+        <label>Thumnail</label>
+          <div class="profile-img">
+            <img [src]="urlPictureDefault"  alt="Ảnh đại diện"/>
+          </div>
+          <div [hidden]="" id="profile-input" class="file btn btn-lg btn-primary">
+                  Change Photo
+                  <input type="file" (change)="uploadImage($event)" name="file"/>
+          </div>
       </div>
       <div class="form-group" align="center">
         <button

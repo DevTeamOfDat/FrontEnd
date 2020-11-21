@@ -5,6 +5,11 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { taikhoanModel } from 'app/model/taikhoan/taikhoan-model';
 import { TaikhoanService } from 'app/services/taikhoan/taikhoan.service';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { avatarDefault } from 'environments/environment';
+import { AngularFireStorage } from '@angular/fire/storage';
+
 
 @Component({
   selector: 'ngx-capnhattaikhoan',
@@ -16,6 +21,9 @@ export class CapnhattaikhoanComponent implements OnInit {
   @ViewChild('content') public childModal!: ModalDirective;
   @Input() danhsachtaikhoan: Array<taikhoanModel>;
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
+  urlPictureDefault = avatarDefault;
   checkButton = false;
   closeResult: String;
   modalReference!: any;
@@ -34,7 +42,8 @@ export class CapnhattaikhoanComponent implements OnInit {
     private modalService: NgbModal,
     private toastr: ToastrService,
     private fb: FormBuilder,
-    private taikhoanService: TaikhoanService,) {
+    private taikhoanService: TaikhoanService,
+    private store: AngularFireStorage) {
     }
 
   ngOnInit(): void {
@@ -152,7 +161,7 @@ export class CapnhattaikhoanComponent implements OnInit {
         ho_ten: this.formGroup.get('ho_ten')?.value,
         dia_chi: this.formGroup.get('dia_chi')?.value,
         so_dien_thoai: this.formGroup.get('so_dien_thoai')?.value,
-        hinh_anh : this.formGroup.get('hinh_anh')?.value,
+        hinh_anh : this.urlPictureDefault,
         loai_tai_khoan: this.formGroup.get('loai_tai_khoan')?.value,
       };
       
@@ -164,7 +173,7 @@ export class CapnhattaikhoanComponent implements OnInit {
         ho_ten: this.formGroup.get('ho_ten')?.value,
         dia_chi: this.formGroup.get('dia_chi')?.value,
         so_dien_thoai: this.formGroup.get('so_dien_thoai')?.value,
-        hinh_anh : this.formGroup.get('hinh_anh')?.value,
+        hinh_anh : this.urlPictureDefault,
         loai_tai_khoan: this.formGroup.get('loai_tai_khoan')?.value,
       };
     }
@@ -207,6 +216,30 @@ export class CapnhattaikhoanComponent implements OnInit {
     this.submitted = false;
     this.eventEmit.emit('success');
   }
-
+  uploadImage(event) {
+    // tslint:disable-next-line:prefer-const
+    let file = event.target.files[0];
+    // tslint:disable-next-line:prefer-const
+    let path = `thuonghieu/${file.name}`;
+    if (file.type.split('/')[0] !== 'image') {
+      return alert('Erreur, ce fichier n\'est pas une image');
+    } else {
+      // tslint:disable-next-line:prefer-const
+      let ref = this.store.ref(path);
+      // tslint:disable-next-line:prefer-const
+      let task = this.store.upload(path, file);
+      this.uploadPercent = task.percentageChanges();
+      console.log('Image chargée avec succès');
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          this.downloadURL = ref.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+          this.urlPictureDefault=url;
+          });
+        }
+        )
+      ).subscribe();
+    }
+  }
 
 }

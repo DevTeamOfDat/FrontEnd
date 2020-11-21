@@ -7,7 +7,10 @@ import { ToastrService } from 'ngx-toastr';
 import { HinhanhsanphamService } from 'app/services/san-pham/hinhanhsanpham/hinhanhsanpham.service';
 import { SanPhamService } from 'app/services/san-pham/san-pham/san-pham.service';
 import { sanphamModel } from 'app/model/san-pham/sanpham/sanpham-model';
-
+import { AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { avatarDefault } from 'environments/environment';
 @Component({
   selector: 'ngx-capnhathinhanhsanpham',
   templateUrl: './capnhathinhanhsanpham.component.html',
@@ -19,10 +22,13 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
   @Input() danhsachhinhanhsanpham: Array<hinhanhsanphamModel>;
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
   danhsachsanpham: Array<sanphamModel> = [];
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
   checkButton = false;
   closeResult: String;
   modalReference!: any;
   formGroup: FormGroup;
+  urlPictureDefault = avatarDefault;
   isAdd = false;
   isEdit = false;
   isInfo = false;
@@ -38,7 +44,8 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
     private toastr: ToastrService,
     private fb: FormBuilder,
     private hinhanhsanphamService: HinhanhsanphamService,
-    private sanphamService: SanPhamService) {
+    private sanphamService: SanPhamService,
+    private store: AngularFireStorage) {
     }
 
   ngOnInit(): void {
@@ -101,14 +108,14 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
       this.formGroup = this.fb.group({
         id: [ null, [Validators.required]],
         ma_san_pham: [ null, [Validators.required]],
-        hinh_anh: [ null, [Validators.required]],
+        hinh_anh: [ null],
         
       });
     } else {
       this.formGroup = this.fb.group({
         id: [{value: this.model.id, disabled: this.isInfo}, [Validators.required]],
         ma_san_pham: [{value: this.model.ma_san_pham, disabled: this.isInfo}, [Validators.required]],
-        hinh_anh: [{value: this.model.hinh_anh, disabled: this.isInfo}, [Validators.required]],
+        hinh_anh: [{value: this.model.hinh_anh, disabled: this.isInfo}],
 
       });
 
@@ -155,13 +162,13 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
       hinhanhsanpham = {
         id: this.formGroup.get('id')?.value,
         ma_san_pham: this.formGroup.get('ma_san_pham')?.value,
-        hinh_anh: this.formGroup.get('hinh_anh')?.value,
+        hinh_anh: this.urlPictureDefault,
       };
     } else {
       hinhanhsanpham = {
         id: this.formGroup.get('id')?.value,
         ma_san_pham: this.formGroup.get('ma_san_pham')?.value,
-        hinh_anh: this.formGroup.get('hinh_anh')?.value,
+        hinh_anh: this.urlPictureDefault,
       };
     }
     if (this.isAdd) {
@@ -204,5 +211,30 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
     this.eventEmit.emit('success');
   }
 
+  uploadImage(event) {
+    // tslint:disable-next-line:prefer-const
+    let file = event.target.files[0];
+    // tslint:disable-next-line:prefer-const
+    let path = `${file.name}`;
+    if (file.type.split('/')[0] !== 'image') {
+      return alert('Erreur, ce fichier n\'est pas une image');
+    } else {
+      // tslint:disable-next-line:prefer-const
+      let ref = this.store.ref(path);
+      // tslint:disable-next-line:prefer-const
+      let task = this.store.upload(path, file);
+      this.uploadPercent = task.percentageChanges();
+      console.log('Image chargée avec succès');
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          this.downloadURL = ref.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+          this.urlPictureDefault=url;
+          });
+        }
+        )
+      ).subscribe();
+    }
+  }
 
 }

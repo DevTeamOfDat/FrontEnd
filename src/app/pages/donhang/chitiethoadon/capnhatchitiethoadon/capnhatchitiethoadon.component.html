@@ -13,7 +13,7 @@
    <div class="modal-body">
       <form [formGroup]="formGroup" (ngSubmit)="save()">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group">
                <label>Mã hóa đơn</label>
                <select class="form-control" name="" formControlName="ma_hoa_don" id="">
@@ -29,7 +29,7 @@
                </div>
             </div>
          </div>
-         <div class="col-md-6">
+         <div class="col-md-12">
             <div class="form-group">
                <label>Danh sách loại đặc trưng</label>
                <select class="form-control" name="" formControlName="danh_sach_loai_dac_trung" id="">
@@ -47,7 +47,7 @@
          </div>
       </div>
       <div class="row">
-         <div class="col-md-6">
+         <div class="col-md-12">
             <div class="form-group">
                <label>Mã sản phẩm</label>
                <select [(ngModel)]="check_ma_hoa_don" (change)="changeStatus($event)" class="form-control" name="" formControlName="ma_san_pham" id="">
@@ -63,7 +63,7 @@
                </div>
             </div>
          </div>
-         <div class="col-md-6">
+         <div class="col-md-12">
             <div class="form-group">
                <label>Giá bán</label>
                <input
@@ -87,7 +87,7 @@
          </div>
       </div>
       <div class="row">
-         <div class="col-md-6">
+         <div class="col-md-12">
             <div class="form-group">
                <label>Số lượng</label>
                <input

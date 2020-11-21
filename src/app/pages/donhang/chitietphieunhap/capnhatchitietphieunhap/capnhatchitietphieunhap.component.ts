@@ -160,13 +160,14 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
       this.formGroup = this.fb.group({
         ma_phieu_nhap:[{value: this.model.ma_phieu_nhap, disabled: this.isInfo}, [Validators.required]],
         ma_san_pham: [{value: this.model.ma_san_pham, disabled: this.isInfo}, [Validators.required]],
-        // size: [ null, [{value: this.model.da, disabled: this.isInfo}, [Validators.required]],
-        // mau: [ null, [Validators.required]],
+        size: [{value: this.model.size, disabled: this.isInfo}, [Validators.required]],
+        mau: [{value: this.model.mau, disabled: this.isInfo}, [Validators.required]],
         gia_nhap: [{value: this.model.gia_nhap, disabled: this.isInfo}, [Validators.required]],
         so_luong: [{value: this.model.so_luong, disabled: this.isInfo}, [Validators.required]],
 
       });
 
+      console.log(this.model.size);
     }
   }
 

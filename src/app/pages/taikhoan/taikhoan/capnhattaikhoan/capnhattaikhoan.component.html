@@ -13,10 +13,10 @@
   <div class="modal-body">
     <form [formGroup]="formGroup" (ngSubmit)="save()">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <label>Email</label>
             <input
@@ -41,8 +41,8 @@
       </div>
 
      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
+        <div class="col-md-12">
+          <div class="form-group" [hidden]="isInfo">
             <label for="mat_khau">Mật khẩu</label>
             <input
               type="password"
@@ -64,7 +64,7 @@
           </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <label>Họ tên</label>
             <input
@@ -89,7 +89,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <label>Địa chỉ</label>
             <input
@@ -112,7 +112,7 @@
           </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <label for="so_dien_thoai">Số điện thoại</label>
             <input
@@ -137,30 +137,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="hinh_anh">Hình ảnh</label>
-            <input
-              type="text"
-              name=""
-              class="form-control"
-              formControlName="hinh_anh"
-              id="hinh_anh"
-            />
-            <div
-              *ngIf="submitted && formGroup.controls['hinh_anh'].errors?.required"
-            >
-              <div
-                *ngIf="formGroup.controls['hinh_anh'].errors?.required"
-                style="id: red"
-              >
-                * Hình ảnh không được để trống
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <label for="loai_tai_khoan">Loại tài khoản</label>
             <input
@@ -183,6 +160,16 @@
           </div>
         </div>
        
+      </div>
+      <div class="form-group">
+        <label>Hình ảnh</label>
+          <div class="profile-img">
+            <img [src]="urlPictureDefault"  alt="Ảnh đại diện"/>
+          </div>
+          <div [hidden]="" id="profile-input" class="file btn btn-lg btn-primary">
+                  Change Photo
+                  <input type="file" (change)="uploadImage($event)" name="file"/>
+          </div>
       </div>
       <div class="form-group" align="center">
         <button

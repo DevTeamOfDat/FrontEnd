@@ -7,5 +7,6 @@ export interface nhacungcapModel{
     so_dien_thoai? :string,
     hinh_anh?: string,
     isActive? : boolean,
-    checked?:  boolean
+    checked?:  boolean,
+    [key: string]: any;
  }

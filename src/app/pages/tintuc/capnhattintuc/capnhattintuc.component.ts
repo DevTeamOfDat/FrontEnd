@@ -5,6 +5,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { TintucService } from 'app/services/tintuc/tintuc.service';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { avatarDefault } from 'environments/environment';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'ngx-capnhattintuc',
@@ -16,6 +20,9 @@ export class CapnhattintucComponent implements OnInit {
   @ViewChild('content') public childModal!: ModalDirective;
   @Input() danhsachtintuc: Array<tintucModel>;
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
+  urlPictureDefault = avatarDefault;
   checkButton = false;
   closeResult: String;
   modalReference!: any;
@@ -34,7 +41,8 @@ export class CapnhattintucComponent implements OnInit {
     private modalService: NgbModal,
     private toastr: ToastrService,
     private fb: FormBuilder,
-    private tintucService: TintucService,) {
+    private tintucService: TintucService,
+    private store: AngularFireStorage) {
     }
 
   ngOnInit(): void {
@@ -148,7 +156,7 @@ export class CapnhattintucComponent implements OnInit {
         tieu_de: this.formGroup.get('tieu_de')?.value,
         noi_dung: this.formGroup.get('noi_dung')?.value,
         highlight:this.formGroup.get('highlight')?.value,
-        thumbnail:this.formGroup.get('thumbnail')?.value,
+        thumbnail: this.urlPictureDefault,
         url : this.formGroup.get('url')?.value,
         ngay_dang: this.formGroup.get('ngay_dang')?.value,
       };
@@ -159,7 +167,7 @@ export class CapnhattintucComponent implements OnInit {
         tieu_de: this.formGroup.get('tieu_de')?.value,
         noi_dung: this.formGroup.get('noi_dung')?.value,
         highlight:this.formGroup.get('highlight')?.value,
-        thumbnail:this.formGroup.get('thumbnail')?.value,
+        thumbnail: this.urlPictureDefault,
         url : this.formGroup.get('url')?.value,
         ngay_dang: this.formGroup.get('ngay_dang')?.value,
       };
@@ -202,6 +210,32 @@ export class CapnhattintucComponent implements OnInit {
   public closeModalReloadData(): void {
     this.submitted = false;
     this.eventEmit.emit('success');
+  }
+
+  uploadImage(event) {
+    // tslint:disable-next-line:prefer-const
+    let file = event.target.files[0];
+    // tslint:disable-next-line:prefer-const
+    let path = `thuonghieu/${file.name}`;
+    if (file.type.split('/')[0] !== 'image') {
+      return alert('Erreur, ce fichier n\'est pas une image');
+    } else {
+      // tslint:disable-next-line:prefer-const
+      let ref = this.store.ref(path);
+      // tslint:disable-next-line:prefer-const
+      let task = this.store.upload(path, file);
+      this.uploadPercent = task.percentageChanges();
+      console.log('Image chargée avec succès');
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          this.downloadURL = ref.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+          this.urlPictureDefault=url;
+          });
+        }
+        )
+      ).subscribe();
+    }
   }
 
 

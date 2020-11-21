@@ -43,6 +43,7 @@ export class DanhsachhinhanhsanphamComponent implements OnInit {
     this.hinhanhsanphamService.getAll().subscribe(data => {
       this.danhsachhinhanhsanpham = data.data;
       this.listFilterResult = data.data;
+      console.log(this.danhsachhinhanhsanpham);
     },
     err => {
         this.isLoading = false;

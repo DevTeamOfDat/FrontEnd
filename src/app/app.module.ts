@@ -17,7 +17,10 @@ import { ToastrModule } from 'ngx-toastr';
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {environment} from '../environments/environment';
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -63,6 +66,9 @@ import { JwtInterceptor } from './net/jwt.interceptor';
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule
   ],
   providers: [
     {

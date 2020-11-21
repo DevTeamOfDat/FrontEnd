@@ -59,8 +59,7 @@
                            />
                         <th>STT</th>
                         <th>id</th>
-                        <th>Mã sản phẩm </th>
-                        <th>Hình ảnh</th>
+                        <th>Mã sản phẩm</th>
                         <th>Trạng thái</th>
                         <th>Thao tác</th>
                      </tr>
@@ -84,7 +83,6 @@
                         <td>{{ i + 1 }}</td>
                         <td [innerHTML]="e.id | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ma_san_pham | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.hinh_anh | highlight : searchedKeyword"></td>
                         <td class="justify-content-center">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
