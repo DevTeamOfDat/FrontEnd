@@ -153,7 +153,6 @@ export class BaocaophieunhapComponent implements OnInit {
           key: "bct",
           param:"13"
         };
-        console.log(thamso);
         this.fetchDanhSachphieunhap(thamso);
         break;
       case 1:
@@ -319,7 +318,6 @@ export class BaocaophieunhapComponent implements OnInit {
           param: "11/"+this.label2
         };
         this.isyear=false;
-        console.log(thamso);
         this.fetchDanhSachphieunhap(thamso);
         break;
       case 12:

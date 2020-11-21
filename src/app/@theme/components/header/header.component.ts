@@ -5,6 +5,8 @@ import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
+import { TaikhoanService } from 'app/services/taikhoan/taikhoan.service';
 
 @Component({
   selector: 'ngx-header',
@@ -16,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
+  picture :any;
 
   themes = [
     {
@@ -45,15 +48,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private themeService: NbThemeService,
               private userService: UserData,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private router: Router,
+              private taikhoanService:TaikhoanService) {
   }
 
   ngOnInit() {
+    this.menuService.onItemClick().subscribe(( event ) => {
+      this.onItemSelection(event.item.title);
+    })
     this.currentTheme = this.themeService.currentTheme;
 
-    this.userService.getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
@@ -69,6 +74,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+    this.fetchgetInfo();
+  }
+
+  fetchgetInfo(){
+    this.taikhoanService.getInfo().subscribe(data => {
+      this.user = data.data.ho_ten;
+      this.picture = data.data.hinh_anh;
+    },)
+  }
+
+  onItemSelection( title ) {
+    if ( title === 'Log out' ) {
+      localStorage.clear();
+      this.router.navigate(['/signin']);
+      // Do something on Log out
+      console.log('Log out Clicked ')
+    } else if ( title === 'Profile' ) {
+      // Do something on Profile
+      this.router.navigate(['admin/profile']);
+    }
   }
 
   ngOnDestroy() {

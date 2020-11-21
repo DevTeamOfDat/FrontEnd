@@ -87,7 +87,6 @@ export class DanhsachchitiethoadonComponent implements OnInit {
     const selectedHometowns = this.listFilterResult
       .filter((chitiethoadon) => chitiethoadon.checked)
       .map((p) => p.id);
-      console.log(selectedHometowns);
     if (selectedHometowns.length > 0) {
       this.isDelete = false;
 
@@ -146,7 +145,6 @@ export class DanhsachchitiethoadonComponent implements OnInit {
       listId: listid
     };
 
-    console.log(modelDelete);
     this.chitiethoadonService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200

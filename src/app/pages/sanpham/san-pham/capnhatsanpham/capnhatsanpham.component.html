@@ -15,7 +15,7 @@
 
       <div class="form-group">
         <label>Thương hiệu</label>
-        <select class="form-control" name="" formControlName="ma_thuong_hieu" id="">
+        <select class="form-control" name="" formControlName="ma_thuong_hieu" id="" placeholder="Hãy chọn thương hiệu">
           <option *ngFor="let e of danhsachthuonghieu" value="{{e.ma_thuong_hieu}}">{{e.ten_thuong_hieu}}</option>
         </select>
         <div *ngIf="submitted && formGroup.controls['ma_thuong_hieu'].errors?.required">
@@ -30,7 +30,7 @@
 
       <div class="form-group">
         <label>Loại sản phẩm</label>
-        <select class="form-control" name="" formControlName="ma_loai_san_pham" id="">
+        <select class="form-control" name="" formControlName="ma_loai_san_pham" id="" placeholder="Hãy chọn loại sản phẩm">
           <option *ngFor="let e of danhsachloaisanpham" value="{{e.ma_loai_san_pham}}">{{e.ten_loai_san_pham}}</option>
         </select>
         <div *ngIf="submitted && formGroup.controls['ma_loai_san_pham'].errors?.required">
@@ -63,8 +63,8 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Giá bán</label>
+      <div class="form-group" [hidden]="isAdd">
+        <label>Giá bán(VNĐ)</label>
         <input
           type="text"
           name=""
@@ -75,8 +75,8 @@
         />
       </div>
       
-      <div class="form-group">
-        <label>Số lượng</label>
+      <div class="form-group" [hidden]="isAdd">
+        <label>Số lượng(Đôi)</label>
         <input
           type="text"
           name=""

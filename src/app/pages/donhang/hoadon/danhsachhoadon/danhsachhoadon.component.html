@@ -62,7 +62,7 @@
                         <th>Tên nhân viên</th>
                         <th>Tên khách hàng</th>
                         <th>ngày lập</th>
-                        <th>Tổng tiền</th>
+                        <th>Thành tiền(VNĐ)</th>
                         <th>Trạng thái</th>
                         <th>Thao tác</th>
                      </tr>
@@ -88,7 +88,7 @@
                         <td [innerHTML]="e.ten_nhan_vien | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ten_khach_hang | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ngay_lap| highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.tong_tien | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.thanh_tien | highlight : searchedKeyword"></td>
                         <td class="justify-content-center">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"

@@ -1,0 +1,93 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
+		    <div class="card">
+		        <div class="card-body">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <h4>Your Profile</h4>
+		                    <hr>
+		                </div>
+		            </div>
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <form [formGroup]="formGroup" (ngSubmit)="save()">
+                             <div class="form-group">
+                                <label>Hình ảnh</label>
+                                <div class="profile-img">
+                                    <img [src]="urlPictureDefault"  alt="Ảnh đại diện"/>
+                                </div>
+                                <div [hidden]="" id="profile-input" class="file btn btn-lg btn-primary">
+                                        Change Photo
+                                        <input type="file" (change)="uploadImage($event)" name="file"/>
+                                </div>
+                            </div>
+                                <div class="form-group row">
+                                    <label for="lastname" class="col-4 col-form-label">Email</label> 
+                                    <div class="col-8">
+                                        <input id="email" name="email" placeholder="Last Name" [(ngModel)]="email" formControlName="email" class="form-control here" type="text" readonly>
+                                    </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="username" class="col-4 col-form-label">Họ tên</label> 
+                                <div class="col-8">
+                                  <input id="ho_ten" name="ho_ten" placeholder="ho_ten" [(ngModel)]="ho_ten" formControlName="ho_ten" class="form-control here"  type="text">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="name" class="col-4 col-form-label">Địa chỉ</label> 
+                                <div class="col-8">
+                                  <input id="dia_chi" name="dia_chi" placeholder="First Name" [(ngModel)]="dia_chi" formControlName="dia_chi" class="form-control here" type="text">
+                                </div>
+                              </div>
+                              
+                              <div class="form-group row">
+                                <label for="text" class="col-4 col-form-label">Số điện thoại</label> 
+                                <div class="col-8">
+                                  <input id="so_dien_thoai" name="text" placeholder="Nick Name" [(ngModel)]="so_dien_thoai" formControlName="so_dien_thoai" class="form-control here"  type="text">
+                                </div>
+                              </div>
+        
+                              <div class="form-group row">
+                                <label for="email" class="col-4 col-form-label">Loại tài khoản</label> 
+                                <div class="col-8">
+                                  <input id="loai_tai_khoan" name="loai_tai_khoan" placeholder="Loại tài khoản" [(ngModel)]="loai_tai_khoan" formControlName="loai_tai_khoan" class="form-control here" readonly type="text">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="newpass" class="col-4 col-form-label">mật khẩu cũ</label> 
+                                <div class="col-8">
+                                  <input id="mat_khau_cu" name="mat_khau_cu"  [(ngModel)]="mat_khau_cu" formControlName="mat_khau_cu" placeholder="mật khẩu cũ" class="form-control here" type="password">
+                                </div>
+                              </div> 
+                              <div class="form-group row">
+                                <label for="newpass" class="col-4 col-form-label">mật khẩu mới</label> 
+                                <div class="col-8">
+                                  <input id="mat_khau_moi" name="mat_khau_moi"  [(ngModel)]="mat_khau_moi" formControlName="mat_khau_moi" placeholder="Confirm mật khẩu" class="form-control here" type="password">
+                                </div>
+                              </div> 
+                              <div class="form-group row">
+                                <label for="newpass" class="col-4 col-form-label">Confirm mật khẩu</label> 
+                                <div class="col-8">
+                                  <input id="confirm_mat_khau" name="confirm_mat_khau"  [(ngModel)]="confirm_mat_khau" formControlName="confirm_mat_khau" placeholder="Confirm mật khẩu" class="form-control here" type="password">
+                                </div>
+                              </div> 
+                              <div class="form-group row">
+                                <div class="offset-4 col-8">
+                                  <button name="submit" type="submit" class="btn btn-primary">Update My Profile</button>
+                                </div>
+                              </div>
+                            </form>
+		                </div>
+		            </div>
+		            
+		        </div>
+		    </div>
+		</div>
+	</div>
+</div>

@@ -87,7 +87,6 @@ export class DanhsachloaidonComponent implements OnInit {
     const selectedHometowns = this.listFilterResult
       .filter((loaidon) => loaidon.checked)
       .map((p) => p.id);
-      console.log(selectedHometowns);
     if (selectedHometowns.length > 0) {
       this.isDelete = false;
 
@@ -146,7 +145,6 @@ export class DanhsachloaidonComponent implements OnInit {
       listId: listid
     };
 
-    console.log(modelDelete);
     this.loaidonService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200

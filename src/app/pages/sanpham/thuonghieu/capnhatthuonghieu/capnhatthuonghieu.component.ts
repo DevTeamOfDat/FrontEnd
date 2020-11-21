@@ -57,7 +57,6 @@ export class CapnhatthuonghieuComponent implements OnInit {
         this.isAdd = true;
         this.title = `Thêm mới thông tin thương hiệu`;
         // this.update_ma_thuong_hieu = this.arrCheck.length+1;
-        console.log(this.arrCheck);
         break;
       case 'show':
         this.isInfo = true;
@@ -92,13 +91,13 @@ export class CapnhatthuonghieuComponent implements OnInit {
     if (model.ma_thuong_hieu === null || model.ma_thuong_hieu === undefined) {
       this.formGroup = this.fb.group({
         ten_thuong_hieu: [ null, [Validators.required]],
-        hinh_anh: [ null],
+        hinh_anh: [ null,[Validators.required]],
         
       });
     } else {
       this.formGroup = this.fb.group({
         ten_thuong_hieu: [{value: this.model.ten_thuong_hieu, disabled: this.isInfo}, [Validators.required]],
-        hinh_anh: [{value: this.model.hinh_anh, disabled: this.isInfo}],
+        hinh_anh: [{value: this.model.hinh_anh, disabled: this.isInfo},[Validators.required]],
       });
 
 
@@ -164,14 +163,12 @@ export class CapnhatthuonghieuComponent implements OnInit {
         this.toastr.error('Mã thương hiệu đã tồn tại');
         return;
       }
-      console.log(thuonghieu);
       this.thuonghieuService.create(thuonghieu).subscribe(res => {
           this.closeModalReloadData();
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -182,7 +179,6 @@ export class CapnhatthuonghieuComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -206,7 +202,6 @@ export class CapnhatthuonghieuComponent implements OnInit {
       // tslint:disable-next-line:prefer-const
       let task = this.store.upload(path, file);
       this.uploadPercent = task.percentageChanges();
-      console.log('Image chargée avec succès');
       task.snapshotChanges().pipe(
         finalize(() => {
           this.downloadURL = ref.getDownloadURL();

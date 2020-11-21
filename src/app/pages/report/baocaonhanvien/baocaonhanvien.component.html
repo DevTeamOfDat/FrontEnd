@@ -22,7 +22,7 @@
                         <h2 style="font-size:30px;">Báo cáo nhân viên</h2>
                      </div>
                      <button type="button" [appExport]="listFilterResult" fileName="Nhanvien" class="btn btn-success">
-                Export Excel
+                 Xuất báo cáo
               </button>
                 <select [(ngModel)]="label" (change)="changeStatus($event.target.value)" class="custom-select col-md-3 col-lg-4 col-sm-12">
                     <option  [selected]="isSelected" disabled>--</option>
@@ -51,13 +51,13 @@
                   <thead>
                      <tr> 
                         <th>STT</th>
-                        <th>email </th>
+                        <th>Email </th>
                         <th>Họ tên</th>
                         <th>Địa chỉ</th>
                         <th>Số điện thoại</th>
                         <th>Loại tài khoản</th>
-                        <th>Tổng tiền</th>
-                        <th>Trạng thái</th>
+                        <th>Tổng tiền(VNĐ)</th>
+                        <th>Ngày lập</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -77,16 +77,7 @@
                         <td [innerHTML]="e.so_dien_thoai "></td>
                         <td [innerHTML]="e.loai_tai_khoan "></td>
                         <td [innerHTML]="e.tong_tien "></td>
-                        <td class="justify-content-center">
-                           <div class="status"
-                              style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
-                              *ngIf="e.isActive===1">Chưa xóa
-                           </div>
-                           <div class="status"
-                              style="background-color: red;height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
-                              *ngIf="e.isActive===0">Đã xóa
-                           </div>
-                        </td>
+                        <td [innerHTML]="e.ngay_lap "></td>
                      </tr>
                   </tbody>
                </table>

@@ -185,7 +185,6 @@ export class CapnhatnhacungcapComponent implements OnInit {
         hinh_anh : this.urlPictureDefault,
       };
     }
-    console.log(this.arrCheck.length);
     if (this.isAdd) {
       for (let i = 0; i < this.arrCheck.length; i++) {
         if (this.arrCheck[i].ma_nha_cung_cap === nhacungcap.ma_nha_cung_cap) {
@@ -199,12 +198,10 @@ export class CapnhatnhacungcapComponent implements OnInit {
       }
       this.nhacungcapService.create(nhacungcap).subscribe(res => {
           this.closeModalReloadData();
-          console.log("Thêm mới thành công");
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -215,7 +212,6 @@ export class CapnhatnhacungcapComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -239,7 +235,6 @@ export class CapnhatnhacungcapComponent implements OnInit {
       // tslint:disable-next-line:prefer-const
       let task = this.store.upload(path, file);
       this.uploadPercent = task.percentageChanges();
-      console.log('Image chargée avec succès');
       task.snapshotChanges().pipe(
         finalize(() => {
           this.downloadURL = ref.getDownloadURL();

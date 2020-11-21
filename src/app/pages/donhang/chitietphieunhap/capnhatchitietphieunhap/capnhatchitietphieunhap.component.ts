@@ -166,8 +166,6 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
         so_luong: [{value: this.model.so_luong, disabled: this.isInfo}, [Validators.required]],
 
       });
-
-      console.log(this.model.size);
     }
   }
 
@@ -236,14 +234,12 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
         this.toastr.error('id đã tồn tại');
         return;
       }
-      console.log(chitietphieunhap);
       this.chitietphieunhapService.create(chitietphieunhap).subscribe(res => {
           this.closeModalReloadData();
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -254,7 +250,6 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

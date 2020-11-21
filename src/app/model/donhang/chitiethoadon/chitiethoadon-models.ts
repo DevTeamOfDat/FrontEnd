@@ -6,6 +6,7 @@ export interface chitiethoadonModel{
     gia_ban?: number,
     so_luong?: number,
     ten_san_pham?: string,
+    ten_dac_trunng ?: string,
     isActive? : boolean,
     checked?:  boolean
  }

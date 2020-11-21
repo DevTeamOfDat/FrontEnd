@@ -84,14 +84,13 @@ export class CapnhatloaitaikhoanComponent implements OnInit {
     if (model.id === null || model.id === undefined) {
       this.formGroup = this.fb.group({
         gia_tri: [ null, [Validators.required]],
-        mo_ta: [null],
+        mo_ta: [null,[Validators.required]],
         
       });
-      console.log("1");
     } else {
       this.formGroup = this.fb.group({
         gia_tri: [{value: this.model.gia_tri, disabled: this.isInfo}, [Validators.required]],
-        mo_ta: [{value: this.model.mo_ta, disabled: this.isInfo}],
+        mo_ta: [{value: this.model.mo_ta, disabled: this.isInfo},[Validators.required]],
 
       });
     }
@@ -145,7 +144,6 @@ export class CapnhatloaitaikhoanComponent implements OnInit {
         mo_ta: this.formGroup.get('mo_ta').value,
       };
     }
-    console.log(this.arrCheck.length);
     if (this.isAdd) {
       for (let i = 0; i < this.arrCheck.length; i++) {
         if (this.arrCheck[i].id === loaitaikhoan.id) {
@@ -157,15 +155,12 @@ export class CapnhatloaitaikhoanComponent implements OnInit {
         this.toastr.error('ID đã tồn tại');
         return;
       }
-      console.log(loaitaikhoan);
       this.loaitaikhoanService.create(loaitaikhoan).subscribe(res => {
           this.closeModalReloadData();
-          console.log("Thêm mới thành công");
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -176,7 +171,6 @@ export class CapnhatloaitaikhoanComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

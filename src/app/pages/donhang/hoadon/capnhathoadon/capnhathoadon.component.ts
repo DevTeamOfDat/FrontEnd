@@ -11,6 +11,7 @@ import { TrangthaiService } from 'app/services/donhang/trangthai/trangthai.servi
 import { LoaidonService } from 'app/services/donhang/loaidon/loaidon.service';
 import { loaidonModel } from 'app/model/donhang/loaidon/loaidon-model';
 import { trangthaiModel } from 'app/model/donhang/trangthai/trangthai-model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'ngx-capnhathoadon',
@@ -49,7 +50,8 @@ export class CapnhathoadonComponent implements OnInit {
     private khachhangService: TaikhoanService,
     private nhanvienService: TaikhoanService,
     private trangthaiService: TrangthaiService,
-    private loaidonService: LoaidonService) {
+    private loaidonService: LoaidonService,
+    private datePipe: DatePipe) {
     }
 
   ngOnInit(): void {
@@ -68,7 +70,6 @@ export class CapnhathoadonComponent implements OnInit {
       this.arrbyKH = this.danhsachtaikhoan.filter(function (khachhang) {
         return khachhang.loai_tai_khoan === "KH";
       });
-      console.log(this.arrbyKH);
     },   
     err => {
         this.isLoading = false;
@@ -83,7 +84,6 @@ export class CapnhathoadonComponent implements OnInit {
       this.arrbyNV = this.danhsachtaikhoan.filter(function (khachhang) {
         return khachhang.loai_tai_khoan === "NV";
       });
-      console.log(this.arrbyNV);
     },   
     err => {
         this.isLoading = false;
@@ -153,10 +153,10 @@ export class CapnhathoadonComponent implements OnInit {
       this.formGroup = this.fb.group({
         ma_hoa_don: [ null],
         ma_nhan_vien: [ null],
-        ma_khach_hang: [ null],
-        ngay_lap: [ null],
-        loai_don: [ null],
-        trang_thai: [ null],
+        ma_khach_hang: [ null,[Validators.required]],
+        ngay_lap: [this.datePipe.transform(Date.now(),"yyyy/MM/dd")],
+        loai_don: ["Lập tại cửa hàng"],
+        trang_thai: ["Hoàn Thành"],
         tong_tien: [null],
         thanh_tien: [null],
         
@@ -165,10 +165,10 @@ export class CapnhathoadonComponent implements OnInit {
       this.formGroup = this.fb.group({
         ma_hoa_don: [{value: this.model.ma_hoa_don, disabled: this.isInfo}],
         ma_nhan_vien: [{value: this.model.ma_nhan_vien, disabled: this.isInfo}],
-        ma_khach_hang: [{value: this.model.ma_khach_hang, disabled: this.isInfo}],
+        ma_khach_hang: [{value: this.model.ma_khach_hang, disabled: this.isInfo},[Validators.required]],
         ngay_lap: [{value: this.model.ngay_lap, disabled: this.isInfo}],
-        loai_don: [{value: this.model.loai_don, disabled: this.isInfo}],
-        trang_thai: [{value: this.model.trang_thai, disabled: this.isInfo}],
+        loai_don: [{value: this.model.gia_tri_loai_don, disabled: this.isInfo}],
+        trang_thai: [{value: this.model.gia_tri_trang_thai, disabled: this.isInfo}],
         tong_tien: [{value: this.model.tong_tien, disabled: this.isInfo}],
         thanh_tien: [{value: this.model.thanh_tien, disabled: this.isInfo}],
 
@@ -240,7 +240,6 @@ export class CapnhathoadonComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -251,7 +250,6 @@ export class CapnhathoadonComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

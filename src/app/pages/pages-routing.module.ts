@@ -7,18 +7,19 @@ import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { DanhsachnhacungcapComponent } from './nhacungcap/danhsachnhacungcap/danhsachnhacungcap.component';
 import { DanhsachtintucComponent } from './tintuc/danhsachtintuc/danhsachtintuc.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
     {
-      path: 'dashboard',
-      component: ECommerceComponent,
-    },
-    {
       path: 'iot-dashboard',
       component: DashboardComponent,
+    },
+    {
+      path: 'profile',
+      component: ProfileComponent,
     },
     {
       path: 'tintuc/danhsachtintuc',

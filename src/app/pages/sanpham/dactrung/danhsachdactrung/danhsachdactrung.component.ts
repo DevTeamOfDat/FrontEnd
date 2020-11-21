@@ -89,7 +89,6 @@ export class DanhsachdactrungComponent implements OnInit {
     const selectedHometowns = this.listFilterResult
       .filter((dactrung) => dactrung.checked)
       .map((p) => p.loai_dac_trung);
-      console.log(selectedHometowns);
     if (selectedHometowns.length > 0) {
       this.isDelete = false;
 
@@ -148,7 +147,6 @@ export class DanhsachdactrungComponent implements OnInit {
       listId: listid
     };
 
-    console.log(modelDelete);
     this.dactrungService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200

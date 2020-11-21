@@ -175,8 +175,6 @@ export class CapnhatsanphamComponent implements OnInit {
         ma_thuong_hieu: this.formGroup.get('ma_thuong_hieu')?.value,
         ma_loai_san_pham: this.formGroup.get('ma_loai_san_pham')?.value,
         ten_san_pham: this.formGroup.get('ten_san_pham')?.value,
-        gia_ban: this.formGroup.get('gia_ban')?.value,
-        so_luong: this.formGroup.get('so_luong')?.value,
       };
       
     } else {
@@ -185,8 +183,6 @@ export class CapnhatsanphamComponent implements OnInit {
         ma_thuong_hieu: this.formGroup.get('ma_thuong_hieu')?.value,
         ma_loai_san_pham: this.formGroup.get('ma_loai_san_pham')?.value,
         ten_san_pham: this.formGroup.get('ten_san_pham')?.value,
-        gia_ban: this.formGroup.get('gia_ban')?.value,
-        so_luong: this.formGroup.get('so_luong')?.value,
       };
     }
     if (this.isAdd) {
@@ -200,7 +196,6 @@ export class CapnhatsanphamComponent implements OnInit {
         this.toastr.error('Mã sản phẩm đã tồn tại');
         return;
       }
-      console.log(sanpham);
       this.sanphamService.create(sanpham).subscribe(res => {
           this.closeModalReloadData();
           this.toastr.success('Thêm mới thành công');
@@ -221,7 +216,6 @@ export class CapnhatsanphamComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

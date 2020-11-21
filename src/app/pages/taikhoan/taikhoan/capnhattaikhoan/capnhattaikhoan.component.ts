@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { avatarDefault } from 'environments/environment';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { LoaitaikhoanService } from 'app/services/taikhoan/loaitaikhoan/loaitaikhoan.service';
+import { loaitaikhoanModel } from 'app/model/taikhoan/loaitaikhoan/loaitaikhoan-model';
 
 
 @Component({
@@ -21,6 +23,7 @@ export class CapnhattaikhoanComponent implements OnInit {
   @ViewChild('content') public childModal!: ModalDirective;
   @Input() danhsachtaikhoan: Array<taikhoanModel>;
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
+  danhsachloaitaikhoan: Array<loaitaikhoanModel> = [];
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   urlPictureDefault = avatarDefault;
@@ -43,13 +46,24 @@ export class CapnhattaikhoanComponent implements OnInit {
     private toastr: ToastrService,
     private fb: FormBuilder,
     private taikhoanService: TaikhoanService,
-    private store: AngularFireStorage) {
+    private store: AngularFireStorage,
+    private loaitaikhoanService: LoaitaikhoanService) {
     }
 
   ngOnInit(): void {
     this.submitted = false;
-
+    this.fetchDanhsachloaitaikhoan();
     
+  }
+
+  fetchDanhsachloaitaikhoan(){
+    this.isLoading =  true;
+    this.loaitaikhoanService.getAll().subscribe(data => {
+      this.danhsachloaitaikhoan = data.data;
+    },
+    err => {
+        this.isLoading = false;
+      })
   }
 
   updateFormType(type: any) {
@@ -60,7 +74,6 @@ export class CapnhattaikhoanComponent implements OnInit {
         this.isAdd = true;
         this.title = `Thêm mới thông tin tài khoản`;
         // this.update_ma_tai_khoan= this.arrCheck.length+1;
-        console.log(this.arrCheck);
         break;
       case 'show':
         this.isInfo = true;
@@ -188,25 +201,22 @@ export class CapnhattaikhoanComponent implements OnInit {
         this.toastr.error('Mã tài khoản đã tồn tại');
         return;
       }
-      console.log(taikhoan);
       this.taikhoanService.create(taikhoan).subscribe(res => {
           this.closeModalReloadData();
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
     if (this.isEdit) {
-      this.taikhoanService.update(taikhoan.ma_tai_khoan, taikhoan).subscribe(res => {
+      this.taikhoanService.update(taikhoan).subscribe(res => {
           this.closeModalReloadData();
           this.toastr.success('Sửa thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -229,7 +239,6 @@ export class CapnhattaikhoanComponent implements OnInit {
       // tslint:disable-next-line:prefer-const
       let task = this.store.upload(path, file);
       this.uploadPercent = task.percentageChanges();
-      console.log('Image chargée avec succès');
       task.snapshotChanges().pipe(
         finalize(() => {
           this.downloadURL = ref.getDownloadURL();

@@ -11,11 +11,13 @@ import { PhieunhapService } from 'app/services/donhang/phieunhap/phieunhap.servi
 import { TaikhoanService } from 'app/services/taikhoan/taikhoan.service';
 import { TrangthaiService } from 'app/services/donhang/trangthai/trangthai.service';
 import { NhaCungCapService } from 'app/services/nha-cung-cap/nha-cung-cap.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'ngx-capnhatphieunhap',
   templateUrl: './capnhatphieunhap.component.html',
-  styleUrls: ['./capnhatphieunhap.component.scss']
+  styleUrls: ['./capnhatphieunhap.component.scss'],
+  providers: [DatePipe]
 })
 export class CapnhatphieunhapComponent implements OnInit {
 
@@ -34,9 +36,11 @@ export class CapnhatphieunhapComponent implements OnInit {
   isAdd = false;
   isEdit = false;
   isInfo = false;
+  isCheck = false;
   submitted = false;
   isLoading=false;
   title = '';
+  myDate = new Date();
   type: any;
   model: phieunhapModel;
   arrCheck = [];
@@ -48,7 +52,8 @@ export class CapnhatphieunhapComponent implements OnInit {
     private phieunhapService: PhieunhapService,
     private nhanvienService: TaikhoanService,
     private trangthaiService: TrangthaiService,
-    private nhacungcapService: NhaCungCapService) {
+    private nhacungcapService: NhaCungCapService,
+    private datePipe: DatePipe) {
     }
 
   ngOnInit(): void {
@@ -130,21 +135,33 @@ export class CapnhatphieunhapComponent implements OnInit {
     this.model = model;
     this.submitted = false;
     this.updateFormType(type);
-   
+    if(this.model.ghi_chu === null){
+      this.isCheck = true;
+    }
+    else{
+      this.isCheck = false;
+    }
     if (model.ma_phieu_nhap === null || model.ma_phieu_nhap === undefined) {
       this.formGroup = this.fb.group({
         ma_phieu_nhap: [ null],
         ma_nha_cung_cap: [ null, [Validators.required]],
-        ngay_nhap: [ null],
+        ngay_nhap: [this.datePipe.transform(Date.now(),"yyyy/MM/dd")],
+        ma_nhan_vien: [ null],
+        ten_nhan_vien:[ null],
         tong_tien: [null],
+        ghi_chu: [null],
         
       });
     } else {
+      
       this.formGroup = this.fb.group({
         ma_phieu_nhap: [{value: this.model.ma_phieu_nhap, disabled: this.isInfo}],
         ma_nha_cung_cap: [{value: this.model.ma_nha_cung_cap, disabled: this.isInfo}, [Validators.required]],
         ngay_nhap: [{value: this.model.ngay_nhap, disabled: this.isInfo}],
         tong_tien: [{value: this.model.tong_tien, disabled: this.isInfo}],
+        ma_nhan_vien: [{value: this.model.ma_nhan_vien, disabled: this.isInfo}],
+        ten_nhan_vien:[{value: this.model.ten_nhan_vien, disabled: this.isInfo}],
+        ghi_chu: [{value: this.model.ghi_chu, disabled: this.isInfo}],
 
       });
 
@@ -188,13 +205,15 @@ export class CapnhatphieunhapComponent implements OnInit {
     }
     if (this.isEdit) {
       phieunhap = {
-        ma_phieu_nhap: this.model.ma_phieu_nhap,
+        ma_phieu_nhap: this.model.ma_phieu_nhap, 
         ma_nha_cung_cap: this.formGroup.get('ma_nha_cung_cap')?.value,
+        ghi_chu:this.formGroup.get('ghi_chu')?.value,
       };
     } else {
       phieunhap = {
         ma_phieu_nhap: this.model.ma_phieu_nhap,
         ma_nha_cung_cap: this.formGroup.get('ma_nha_cung_cap')?.value,
+        ghi_chu:this.formGroup.get('ghi_chu')?.value,
       };
     }
     if (this.isAdd) {
@@ -214,7 +233,6 @@ export class CapnhatphieunhapComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -225,7 +243,6 @@ export class CapnhatphieunhapComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

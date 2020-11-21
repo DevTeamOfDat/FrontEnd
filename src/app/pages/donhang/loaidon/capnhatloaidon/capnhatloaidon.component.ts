@@ -88,7 +88,6 @@ export class CapnhatloaidonComponent implements OnInit {
         mo_ta: [null,  [Validators.required]],
         
       });
-      console.log("1");
     } else {
       this.formGroup = this.fb.group({
         id:  [{value: this.model.id, disabled: this.isInfo}, [Validators.required]],
@@ -97,7 +96,6 @@ export class CapnhatloaidonComponent implements OnInit {
 
       });
 
-      console.log(this.formGroup);
     }
   }
 
@@ -149,7 +147,6 @@ export class CapnhatloaidonComponent implements OnInit {
         mo_ta: this.formGroup.get('mo_ta').value,
       };
     }
-    console.log(this.arrCheck.length);
     if (this.isAdd) {
       for (let i = 0; i < this.arrCheck.length; i++) {
         if (this.arrCheck[i].id === loaidon.id) {
@@ -161,15 +158,12 @@ export class CapnhatloaidonComponent implements OnInit {
         this.toastr.error('id đã tồn tại');
         return;
       }
-      console.log(loaidon);
       this.loaidonService.create(loaidon).subscribe(res => {
           this.closeModalReloadData();
-          console.log("Thêm mới thành công");
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -180,7 +174,6 @@ export class CapnhatloaidonComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

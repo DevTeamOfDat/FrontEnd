@@ -15,6 +15,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { DanhsachtintucComponent } from './tintuc/danhsachtintuc/danhsachtintuc.component';
 import { CapnhattintucComponent } from './tintuc/capnhattintuc/capnhattintuc.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { CapnhattintucComponent } from './tintuc/capnhattintuc/capnhattintuc.com
     CapnhatnhacungcapComponent,
     DanhsachtintucComponent,
     CapnhattintucComponent,
+    ProfileComponent,
     
   ],
 })

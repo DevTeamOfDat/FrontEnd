@@ -106,7 +106,6 @@ export class CapnhatdactrungsanphamComponent implements OnInit {
 
   view(model: dactrungsanphamModel, type = null): void {
     this.arrCheck = this.danhsachdactrungsanpham;
-    console.log(this.arrCheck);
     this.open(this.childModal);
     this.type = type;
     this.model = model;
@@ -191,12 +190,10 @@ export class CapnhatdactrungsanphamComponent implements OnInit {
       }
       this.dactrungsanphamService.create(dactrungsanpham).subscribe(res => {
           this.closeModalReloadData();
-          console.log("Thêm mới thành công");
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -207,7 +204,6 @@ export class CapnhatdactrungsanphamComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

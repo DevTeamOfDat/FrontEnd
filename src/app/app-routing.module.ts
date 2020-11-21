@@ -13,7 +13,7 @@ import { SignUpComponent } from './login/sign-up/sign-up.component';
 
 export const routes: Routes = [
   {
-    path: 'pages',
+    path: 'admin',
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
   },

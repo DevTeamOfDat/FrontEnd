@@ -36,12 +36,20 @@
       <div class="form-group">
         <label>Hình ảnh</label>
           <div class="profile-img">
-            <img [src]="urlPictureDefault"  alt="Ảnh đại diện"/>
+            <img [src]="urlPictureDefault"  alt="Ảnh đại diện" />
           </div>
           <div [hidden]="" id="profile-input" class="file btn btn-lg btn-primary">
                   Change Photo
                   <input type="file" (change)="uploadImage($event)" name="file"/>
           </div>
+          <div *ngIf="submitted && formGroup.controls['ten_thuong_hieu'].errors?.required">
+          <div
+            *ngIf="formGroup.controls['ten_thuong_hieu'].errors?.required"
+            style="color: red"
+          >
+            * Tên thương hiệu không được để trống
+          </div>
+        </div>
       </div>
 
 

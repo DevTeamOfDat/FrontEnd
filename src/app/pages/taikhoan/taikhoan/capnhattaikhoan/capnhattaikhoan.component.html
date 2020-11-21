@@ -139,28 +139,21 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <label for="loai_tai_khoan">Loại tài khoản</label>
-            <input
-              type="text"
-              name=""
-              class="form-control"
-              formControlName="loai_tai_khoan"
-              id="loai_tai_khoan"
-            />
-            <div
-              *ngIf="submitted && formGroup.controls['loai_tai_khoan'].errors?.required"
-            >
-              <div
-                *ngIf="formGroup.controls['loai_tai_khoan'].errors?.required"
-                style="id: red"
-              >
-                * Loại tài khoản không được để trống
-              </div>
+               <label>Loại tài khoản</label>
+               <select class="form-control" name="" formControlName="loai_tai_khoan" id="">
+                  <option *ngFor="let e of danhsachnhacungcap" value="{{e.id}}">{{e.gia_tri}}</option>
+               </select>
+               <div *ngIf="submitted && formGroup.controls['loai_tai_khoan'].errors?.required">
+                  <div
+                     *ngIf="formGroup.controls['loai_tai_khoan'].errors?.required"
+                     style="color: red"
+                     >
+                     * Loại tài khoản không được để trống
+                  </div>
+               </div>
             </div>
           </div>
         </div>
-       
-      </div>
       <div class="form-group">
         <label>Hình ảnh</label>
           <div class="profile-img">

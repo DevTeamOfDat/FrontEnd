@@ -22,14 +22,9 @@
                         <h2 style="font-size:30px;">Báo cáo hàng tồn kho</h2>
                      </div>
                      <button type="button" [appExport]="listFilterResult" fileName="HangTonKho" class="btn btn-success">
-                Export Excel
+                Xuất báo cáo
               </button>
-              <select (change)="changeStatus($event.target.value)" class="custom-select col-md-4 col-lg-4 col-sm-12">
-                        <option [selected]="isSelected" disabled>--Chọn trạng thái--</option>
-                        <option value="-1">Tất cả</option>
-                        <option value="1">Chưa xóa</option>
-                        <option value="0">Đã xóa</option>
-                     </select>
+              
                   </div>
                </div>
                <div class="row">
@@ -41,9 +36,8 @@
                         <th>Tên sản phẩm </th>
                         <th>Tên thương hiệu</th>
                         <th>Tên loại sản phẩm</th>
-                        <th>Số lượng</th>
-                        <th>Giá bán</th>
-                        <th>Trạng thái</th>
+                        <th>Số lượng tồn(Đôi)</th>
+                        <th>Giá bán(VNĐ)</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -62,16 +56,6 @@
                         <td [innerHTML]="e.ten_loai_san_pham "></td>
                         <td [innerHTML]="e.so_luong "></td>
                         <td [innerHTML]="e.gia_ban "></td>
-                        <td class="justify-content-center">
-                           <div class="status"
-                              style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
-                              *ngIf="e.isActive===1">Chưa xóa
-                           </div>
-                           <div class="status"
-                              style="background-color: red;height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
-                              *ngIf="e.isActive===0">Đã xóa
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>

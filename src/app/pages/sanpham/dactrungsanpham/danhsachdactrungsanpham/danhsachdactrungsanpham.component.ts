@@ -106,7 +106,6 @@ export class DanhsachdactrungsanphamComponent implements OnInit {
     selecteddactrungsanpham = this.listFilterResult
       .filter((dactungsanpham) => dactungsanpham.checked)
       .map((p) => p.id);
-      console.log(selecteddactrungsanpham);
     if (selecteddactrungsanpham.length === 0) {
       this.toastr.error('Chọn ít nhất một bản ghi để xóa.');
       return;

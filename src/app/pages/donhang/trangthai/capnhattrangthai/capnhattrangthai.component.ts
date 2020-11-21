@@ -88,7 +88,6 @@ export class CapnhattrangthaiComponent implements OnInit {
         mo_ta: [null,  [Validators.required]],
         
       });
-      console.log("1");
     } else {
       this.formGroup = this.fb.group({
         id:  [{value: this.model.id, disabled: this.isInfo}, [Validators.required]],
@@ -96,8 +95,6 @@ export class CapnhattrangthaiComponent implements OnInit {
         mo_ta: [{value: this.model.mo_ta, disabled: this.isInfo}, [Validators.required]],
 
       });
-
-      console.log(this.formGroup);
     }
   }
 
@@ -149,7 +146,6 @@ export class CapnhattrangthaiComponent implements OnInit {
         mo_ta: this.formGroup.get('mo_ta').value,
       };
     }
-    console.log(this.arrCheck.length);
     if (this.isAdd) {
       for (let i = 0; i < this.arrCheck.length; i++) {
         if (this.arrCheck[i].id === trangthai.id) {
@@ -161,15 +157,12 @@ export class CapnhattrangthaiComponent implements OnInit {
         this.toastr.error('id đã tồn tại');
         return;
       }
-      console.log(trangthai);
       this.trangthaiService.create(trangthai).subscribe(res => {
           this.closeModalReloadData();
-          console.log("Thêm mới thành công");
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -180,7 +173,6 @@ export class CapnhattrangthaiComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

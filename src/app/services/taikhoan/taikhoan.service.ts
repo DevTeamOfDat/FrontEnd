@@ -22,6 +22,10 @@ export class TaikhoanService {
     return this.httpClient.post(environment.BASE_API_URL + environment.BASE_API + "register", userModel);
   }
 
+  getInfo(): Observable<any>{
+    return this.httpClient.get(environment.BASE_API_URL+ environment.BASE_API+'info');
+  }
+
   getAll(): Observable<any>{
     return this.httpClient.get(environment.BASE_API_URL+ environment.BASE_API+'accounts');
   }
@@ -30,8 +34,8 @@ export class TaikhoanService {
     return this.httpClient.get(environment.BASE_API_URL+ environment.BASE_API+'accounts',loaitaikhoan);
   }
 
-  update(id: any, model: taikhoanModel): Observable<any>{
-    return this.httpClient.put(environment.BASE_API_URL + environment.BASE_API +'accounts/' + id, model);
+  update(model: taikhoanModel): Observable<any>{
+    return this.httpClient.put(environment.BASE_API_URL + environment.BASE_API +'accounts', model);
   }
 
   detail(id: any): Observable<any>{

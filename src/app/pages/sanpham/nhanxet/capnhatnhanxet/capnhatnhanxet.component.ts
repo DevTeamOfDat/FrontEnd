@@ -134,7 +134,6 @@ export class CapnhatnhanxetComponent implements OnInit {
         binh_luan: [{value: this.model.binh_luan, disabled: this.isInfo}, [Validators.required]],
       });
 
-      console.log(this.formGroup);
     }
   }
 
@@ -188,7 +187,6 @@ export class CapnhatnhanxetComponent implements OnInit {
         binh_luan: this.formGroup.get('binh_luan')?.value,
       };
     }
-    console.log(this.arrCheck.length);
     if (this.isAdd) {
       for (let i = 0; i < this.arrCheck.length; i++) {
         if (this.arrCheck[i].ma_nhan_xet === nhanxet.ma_nhan_xet) {
@@ -202,12 +200,10 @@ export class CapnhatnhanxetComponent implements OnInit {
       }
       this.nhanxetService.create(nhanxet).subscribe(res => {
           this.closeModalReloadData();
-          console.log("Thêm mới thành công");
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -218,7 +214,6 @@ export class CapnhatnhanxetComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

@@ -3,7 +3,7 @@
     <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
-    <a class="logo" href="#" (click)="navigateHome()"><span>admin</span></a>
+    <img src="https://yeuchaybo.com/wp-content/uploads/2014/09/adidas-logo.jpg" style="width: 60px; height:60px"alt="">
   </div>
 
 </div>
@@ -19,8 +19,8 @@
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
       <nb-user [nbContextMenu]="userMenu"
                [onlyPicture]="userPictureOnly"
-               [name]="user?.name"
-               [picture]="user?.picture">
+               [name]="user"
+               [picture]="picture">
       </nb-user>
     </nb-action>
   </nb-actions>

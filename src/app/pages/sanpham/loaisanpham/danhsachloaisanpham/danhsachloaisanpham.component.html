@@ -59,6 +59,7 @@
                            />
                         <th>STT</th>
                         <th>Tên loại sản phẩm </th>
+                        <th>Mô tả </th>
                         <th>Trạng thái</th>
                         <th>Thao tác</th>
                      </tr>
@@ -81,6 +82,7 @@
                            />
                         <td>{{ i + 1 }}</td>
                         <td [innerHTML]="e.ten_loai_san_pham | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.mo_ta | highlight : searchedKeyword"></td>
                         <td class="justify-content-center">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
@@ -126,9 +128,7 @@
                                  </button>
                               </div>
                            </ng-template>
-                           <div class="row justify-content-center">
-                              <button (click)="initModal(e,'show')"  class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></button>
-                              <button (click)="initModal(e,'edit')"  class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
+                           <div class="row justify-content-center">                               
                               <button class="delete"  (click)="open(mymodal)" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
                            </div>
                         </td>

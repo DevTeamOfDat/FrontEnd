@@ -84,18 +84,16 @@ export class CapnhatngaykhuyenmaiComponent implements OnInit {
    
     if (model.ma_ngay_khuyen_mai === null || model.ma_ngay_khuyen_mai === undefined) {
       this.formGroup = this.fb.group({
-        ma_ngay_khuyen_mai: [ null, [Validators.required]],
         ngay_gio: [ null, [Validators.required]],
+        muc_khuyen_mai:[ null, [Validators.required]],
         
       });
     } else {
       this.formGroup = this.fb.group({
-        ma_ngay_khuyen_mai:  [{value: this.model.ma_ngay_khuyen_mai, disabled: this.isInfo}, [Validators.required]],
         ngay_gio: [{value: this.datePipe.transform(this.model.ngay_gio,"yyyy/mm/dd"), disabled: this.isInfo}, [Validators.required]],
-
+        muc_khuyen_mai: [{value: this.model.muc_khuyen_mai, disabled: this.isInfo}, [Validators.required]],
       });
 
-      console.log(this.formGroup);
     }
   }
 
@@ -136,16 +134,17 @@ export class CapnhatngaykhuyenmaiComponent implements OnInit {
     }
     if (this.isEdit) {
       ngaykhuyenmai = {
-        ma_ngay_khuyen_mai: this.formGroup.get('ma_ngay_khuyen_mai')?.value,
+        ma_ngay_khuyen_mai: this.model.ma_ngay_khuyen_mai,
         ngay_gio: this.formGroup.get('ngay_gio')?.value,
+        muc_khuyen_mai: this.formGroup.get('muc_khuyen_mai')?.value,
       };
     } else {
       ngaykhuyenmai = {
-        ma_ngay_khuyen_mai: this.formGroup.get('ma_ngay_khuyen_mai')?.value,
+        ma_ngay_khuyen_mai: this.model.ma_ngay_khuyen_mai,
         ngay_gio: this.formGroup.get('ngay_gio')?.value,
+        muc_khuyen_mai: this.formGroup.get('muc_khuyen_mai')?.value,
       };
     }
-    console.log(this.arrCheck.length);
     if (this.isAdd) {
       for (let i = 0; i < this.arrCheck.length; i++) {
         if (this.arrCheck[i].ma_ngay_khuyen_mai === ngaykhuyenmai.ma_ngay_khuyen_mai) {
@@ -159,12 +158,10 @@ export class CapnhatngaykhuyenmaiComponent implements OnInit {
       }
       this.ngaykhuyenmaiService.create(ngaykhuyenmai).subscribe(res => {
           this.closeModalReloadData();
-          console.log("Thêm mới thành công");
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -175,7 +172,6 @@ export class CapnhatngaykhuyenmaiComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

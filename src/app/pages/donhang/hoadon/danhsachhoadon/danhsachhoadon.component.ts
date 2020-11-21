@@ -87,7 +87,6 @@ export class DanhsachhoadonComponent implements OnInit {
     const selectedHometowns = this.listFilterResult
       .filter((hoadon) => hoadon.checked)
       .map((p) => p.ma_hoa_don);
-      console.log(selectedHometowns);
     if (selectedHometowns.length > 0) {
       this.isDelete = false;
 
@@ -146,7 +145,6 @@ export class DanhsachhoadonComponent implements OnInit {
       listId: listid
     };
 
-    console.log(modelDelete);
     this.hoadonService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200

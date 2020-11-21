@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { avatarDefault } from 'environments/environment';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'ngx-capnhattintuc',
@@ -42,7 +43,8 @@ export class CapnhattintucComponent implements OnInit {
     private toastr: ToastrService,
     private fb: FormBuilder,
     private tintucService: TintucService,
-    private store: AngularFireStorage) {
+    private store: AngularFireStorage,
+    private datePipe : DatePipe) {
     }
 
   ngOnInit(): void {
@@ -59,7 +61,6 @@ export class CapnhattintucComponent implements OnInit {
         this.isAdd = true;
         this.title = `Thêm mới thông tin tin tức`;
         // this.update_id= this.arrCheck.length+1;
-        console.log(this.arrCheck);
         break;
       case 'show':
         this.isInfo = true;
@@ -98,7 +99,7 @@ export class CapnhattintucComponent implements OnInit {
         highlight: [ null ],
         thumbnail: [ null ],
         url : [ null ],
-        ngay_dang: [ null],
+        ngay_dang: [ this.datePipe.transform(Date.now(),"yyyy/MM/dd")],
         
       });
     } else {
@@ -183,14 +184,12 @@ export class CapnhattintucComponent implements OnInit {
         this.toastr.error('id đã tồn tại');
         return;
       }
-      console.log(tintuc);
       this.tintucService.create(tintuc).subscribe(res => {
           this.closeModalReloadData();
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -201,7 +200,6 @@ export class CapnhattintucComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -225,7 +223,6 @@ export class CapnhattintucComponent implements OnInit {
       // tslint:disable-next-line:prefer-const
       let task = this.store.upload(path, file);
       this.uploadPercent = task.percentageChanges();
-      console.log('Image chargée avec succès');
       task.snapshotChanges().pipe(
         finalize(() => {
           this.downloadURL = ref.getDownloadURL();

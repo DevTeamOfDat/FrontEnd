@@ -22,7 +22,7 @@
                         <h2 style="font-size:30px;">Báo cáo phiếu nhập</h2>
                      </div>
                      <button type="button" [appExport]="listFilterResult" fileName="phieuNhap" class="btn btn-success">
-                Export Excel
+                Xuất báo cáo
               </button>
                 <select [(ngModel)]="label" (change)="changeStatus($event.target.value)" class="custom-select col-md-3 col-lg-4 col-sm-12">
                     <option  [selected]="isSelected" disabled>--</option>
@@ -54,9 +54,9 @@
                         <th>Mã phiếu nhập </th>
                         <th>Tên nhân viên</th>
                         <th>Tên nhà cung cấp</th>
-                        <th>Tổng tiền</th>
+                        <th>Tổng tiền(VNĐ</th>
+                        <th>Ngày nhập</th>
                         <th>Ghi chú</th>
-                        <th>Trạng thái</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -74,17 +74,8 @@
                         <td [innerHTML]="e.ten_nhan_vien"></td>
                         <td [innerHTML]="e.ten_nha_cung_cap "></td>
                         <td [innerHTML]="e.tong_tien "></td>
+                        <td [innerHTML]="e.ngay_nhap "></td>
                         <td [innerHTML]="e.ghi_chu "></td>
-                        <td class="justify-content-center">
-                           <div class="status"
-                              style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
-                              *ngIf="e.isActive===1">Chưa xóa
-                           </div>
-                           <div class="status"
-                              style="background-color: red;height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
-                              *ngIf="e.isActive===0">Đã xóa
-                           </div>
-                        </td>
                      </tr>
                   </tbody>
                </table>

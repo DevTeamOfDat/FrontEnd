@@ -6,6 +6,7 @@ export interface phieunhapModel{
     trang_thai?: boolean,
     tong_tien?: number,
     ten_nhan_vien?: string,
+    ghi_chu?:string,
     ten_nha_cung_cap?: string,
     isActive? : boolean,
     checked?:  boolean

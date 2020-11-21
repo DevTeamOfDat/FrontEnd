@@ -87,7 +87,6 @@ export class CapnhatchitiethoadonComponent implements OnInit {
     this.isLoading =  true;
     this.dactrungsanphamService.detail(check_ma_hoa_don).subscribe(data => {
       this.danhsachdactrungsanpham = data.data;
-      console.log(this.check_ma_hoa_don);
     },
     err => {
         this.isLoading = false;
@@ -230,7 +229,6 @@ export class CapnhatchitiethoadonComponent implements OnInit {
         this.toastr.error('id đã tồn tại');
         return;
       }
-      console.log(chitiethoadon);
       this.chitiethoadonService.create(chitiethoadon).subscribe(res => {
           this.closeModalReloadData();
           this.toastr.success('Thêm mới thành công');

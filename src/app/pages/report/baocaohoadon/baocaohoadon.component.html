@@ -22,7 +22,7 @@
                         <h2 style="font-size:30px;">Báo cáo hóa đơn</h2>
                      </div>
                      <button type="button" [appExport]="listFilterResult" fileName="Hoadon" class="btn btn-success">
-                Export Excel
+                 Xuất báo cáo
               </button>
                 <select [(ngModel)]="label" (change)="changeStatus($event.target.value)" class="custom-select col-md-3 col-lg-4 col-sm-12">
                     <option  [selected]="isSelected" disabled>--</option>
@@ -54,7 +54,7 @@
                         <th>Mã hóa đơn </th>
                         <th>Giá trị loại đơn</th>
                         <th>Giá trị trạng thái</th>
-                        <th>Thành tiền</th>
+                        <th>Thành tiền(VNĐ)</th>
                         <th>Ngày lập</th>
                         <th>Trạng thái</th>
                      </tr>
@@ -78,11 +78,11 @@
                         <td class="justify-content-center">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
-                              *ngIf="e.isActive===1">Chưa xóa
+                              *ngIf="e.trang_thai==='Hoàn thành'">Hoàn thành
                            </div>
                            <div class="status"
                               style="background-color: red;height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
-                              *ngIf="e.isActive===0">Đã xóa
+                              *ngIf="e.trang_thai==='Đang giao hàng'">Đang giao hàng
                            </div>
                         </td>
                      </tr>

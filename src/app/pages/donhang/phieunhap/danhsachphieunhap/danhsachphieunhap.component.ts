@@ -87,7 +87,6 @@ export class DanhsachphieunhapComponent implements OnInit {
     const selectedHometowns = this.listFilterResult
       .filter((phieunhap) => phieunhap.checked)
       .map((p) => p.ma_phieu_nhap);
-      console.log(selectedHometowns);
     if (selectedHometowns.length > 0) {
       this.isDelete = false;
 
@@ -146,7 +145,6 @@ export class DanhsachphieunhapComponent implements OnInit {
       listId: listid
     };
 
-    console.log(modelDelete);
     this.phieunhapService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200

@@ -127,8 +127,6 @@ export class CapnhatkhuyenmaisanphamComponent implements OnInit {
         muc_khuyen_mai: [{value: this.model.muc_khuyen_mai, disabled: this.isInfo}, [Validators.required]],
 
       });
-
-      console.log(this.formGroup);
     }
   }
 
@@ -182,7 +180,6 @@ export class CapnhatkhuyenmaisanphamComponent implements OnInit {
         muc_khuyen_mai: this.formGroup.get('muc_khuyen_mai')?.value,
       };
     }
-    console.log(this.arrCheck.length);
     if (this.isAdd) {
       for (let i = 0; i < this.arrCheck.length; i++) {
         if (this.arrCheck[i].id === khuyenmaisanpham.id) {
@@ -196,12 +193,10 @@ export class CapnhatkhuyenmaisanphamComponent implements OnInit {
       }
       this.khuyenmaisanphamService.create(khuyenmaisanpham).subscribe(res => {
           this.closeModalReloadData();
-          console.log("Thêm mới thành công");
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -212,7 +207,6 @@ export class CapnhatkhuyenmaisanphamComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

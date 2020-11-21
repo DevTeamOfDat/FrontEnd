@@ -61,7 +61,6 @@ export class SignUpComponent implements OnInit {
           this.toastr.success('Thêm mới thành công');
       },
       err => {
-        this.toastr.error(err);
         this.toastr.error('Có lỗi xảy ra!');
       });
   }

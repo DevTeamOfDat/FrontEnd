@@ -70,22 +70,21 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
         this.isInfo = false;
         this.isEdit = false;
         this.isAdd = true;
-        this.title = `Thêm mới thông tin thương hiệu`;
+        this.title = `Thêm mới thông tin hình ảnh sản phẩm`;
         this.update_id= this.arrCheck.length+1;
-        console.log(this.arrCheck);
         break;
       case 'show':
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
-        this.title = `Xem chi tiết thông tin thương hiệu`;
+        this.title = `Xem chi tiết thông tin hình ảnh sản phẩm`;
         this.update_id = this.model.id;
         break;
       case 'edit':
         this.isInfo = false;
         this.isEdit = true;
         this.isAdd = false;
-        this.title = `Chỉnh sửa thông tin thương hiệu`;
+        this.title = `Chỉnh sửa thông tin hình ảnh sản phẩm`;
         this.update_id = this.model.id;
         break;
       default:
@@ -182,14 +181,12 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
         this.toastr.error('Mã hình ảnh đã tồn tại');
         return;
       }
-      console.log(hinhanhsanpham);
       this.hinhanhsanphamService.create(hinhanhsanpham).subscribe(res => {
           this.closeModalReloadData();
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -200,7 +197,6 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -224,7 +220,6 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
       // tslint:disable-next-line:prefer-const
       let task = this.store.upload(path, file);
       this.uploadPercent = task.percentageChanges();
-      console.log('Image chargée avec succès');
       task.snapshotChanges().pipe(
         finalize(() => {
           this.downloadURL = ref.getDownloadURL();

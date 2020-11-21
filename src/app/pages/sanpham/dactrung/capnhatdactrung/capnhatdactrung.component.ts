@@ -94,7 +94,6 @@ export class CapnhatdactrungComponent implements OnInit {
 
       });
 
-      console.log(this.formGroup);
     }
   }
 
@@ -135,6 +134,7 @@ export class CapnhatdactrungComponent implements OnInit {
     }
     if (this.isEdit) {
       dactrung = {
+        loai_dac_trung: this.model.loai_dac_trung,
         ten_dac_trung: this.formGroup.get('ten_dac_trung')?.value,
         mo_ta: this.formGroup.get('mo_ta').value,
       };
@@ -156,15 +156,12 @@ export class CapnhatdactrungComponent implements OnInit {
         this.toastr.error('Loại đặc trưng đã tồn tại');
         return;
       }
-      console.log(dactrung);
       this.dactrungService.create(dactrung).subscribe(res => {
           this.closeModalReloadData();
-          console.log(dactrung);
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -175,7 +172,6 @@ export class CapnhatdactrungComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

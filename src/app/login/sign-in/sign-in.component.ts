@@ -42,7 +42,7 @@ export class SignInComponent implements OnInit {
       if (res.token) {
         localStorage.setItem('Token', res.token);
         this.toaster.success('Đăng nhập thành công');
-        this.router.navigate(['/pages']);
+        this.router.navigate(['/admin']);
       }
       if(res.error) {
         this.toaster.error("Sai mật khẩu, vui lòng nhập lại");

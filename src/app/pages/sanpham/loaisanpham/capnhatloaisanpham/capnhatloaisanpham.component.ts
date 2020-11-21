@@ -84,16 +84,14 @@ export class CapnhatloaisanphamComponent implements OnInit {
     if (model.ma_loai_san_pham === null || model.ma_loai_san_pham === undefined) {
       this.formGroup = this.fb.group({
         ten_loai_san_pham: [ null, [Validators.required]],
-        mo_ta : [ null, [Validators.required]],
+        mo_ta : [ null],
         
       });
     } else {
       this.formGroup = this.fb.group({
         ten_loai_san_pham: [{value: this.model.ten_loai_san_pham, disabled: this.isInfo}, [Validators.required]],
-        mo_ta : [{value: this.model.mo_ta, disabled: this.isInfo}, [Validators.required]],
+        mo_ta : [{value: this.model.mo_ta, disabled: this.isInfo}],
       });
-
-      console.log(this.formGroup);
     }
   }
 
@@ -144,7 +142,6 @@ export class CapnhatloaisanphamComponent implements OnInit {
         mo_ta : this.formGroup.get('mo_ta')?.value,
       };
     }
-    console.log(this.arrCheck.length);
     if (this.isAdd) {
       for (let i = 0; i < this.arrCheck.length; i++) {
         if (this.arrCheck[i].ma_loai_san_pham === loaisanpham.ma_loai_san_pham) {
@@ -158,12 +155,10 @@ export class CapnhatloaisanphamComponent implements OnInit {
       }
       this.loaisanphamService.create(loaisanpham).subscribe(res => {
           this.closeModalReloadData();
-          console.log("Thêm mới thành công");
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -174,7 +169,6 @@ export class CapnhatloaisanphamComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

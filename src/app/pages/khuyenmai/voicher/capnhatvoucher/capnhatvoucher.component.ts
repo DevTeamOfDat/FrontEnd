@@ -56,7 +56,6 @@ export class CapnhatvoucherComponent implements OnInit {
       this.arrbyKH = this.danhsachtaikhoan.filter(function (khachhang) {
         return khachhang.loai_tai_khoan === "KH";
       });
-      console.log(this.arrbyKH);
     },   
     err => {
         this.isLoading = false;
@@ -111,8 +110,6 @@ export class CapnhatvoucherComponent implements OnInit {
         ma_voucher: [{value: this.model.ma_voucher, disabled: this.isInfo}, [Validators.required]],
         ma_khach_hang: [{value: this.model.ma_khach_hang, disabled: this.isInfo}, [Validators.required]],
       });
-
-      console.log(this.formGroup);
     }
   }
 
@@ -164,7 +161,6 @@ export class CapnhatvoucherComponent implements OnInit {
         ma_khach_hang: this.model.ma_khach_hang,
       };
     }
-    console.log(this.arrCheck.length);
     if (this.isAdd) {
       for (let i = 0; i < this.arrCheck.length; i++) {
         if (this.arrCheck[i].ma_voucher === voicher.ma_voucher) {
@@ -178,12 +174,10 @@ export class CapnhatvoucherComponent implements OnInit {
       }
       this.voucherService.create(voicher).subscribe(res => {
           this.closeModalReloadData();
-          console.log("Thêm mới thành công");
           this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }
@@ -194,7 +188,6 @@ export class CapnhatvoucherComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error(err);
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

@@ -2,48 +2,57 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'E-commerce',
-    icon: 'shopping-cart-outline',
-    link: '/pages/dashboard',
-    home: true,
-  },
-  {
     title: 'Trang chủ',
     icon: 'home-outline',
-    link: '/pages/iot-dashboard',
+    link: '/admin/iot-dashboard',
+    home: true
   },
   {
     title: 'Tính năng',
     group: true,
   },
   {
-    title: 'Đơn hàng',
-    icon: 'layout-outline',
+    title: 'Nhà cung cấp',
+    icon: 'keypad-outline',
+    link: '/admin/nhacungcap/danhsachnhacungcap',
+  },
+  {
+    title: 'Sản phẩm',
+    icon: 'browser-outline',
     children: [
-      // {
-      //   title: 'Loại đơn',
-      //   link: '/pages/donhang/loaidon/danhsachloaidon',
-      // },
       {
-        title: 'Phiếu nhập',
-        link: '/pages/donhang/phieunhap/danhsachphieunhap',
+        title: 'Danh sách sản phẩm',
+        link: '/admin/sanpham/san-pham/danhsachsanpham',
       },
       {
-        title: 'Chi tiết phiếu nhập',
-        link: '/pages/donhang/chitietphieunhap/danhsachchitietphieunhap',
+        title: 'Đặc trưng',
+        link: '/admin/sanpham/dactrung/danhsachdactrung',
       },
       {
-        title: 'Hóa Đơn',
-        link: '/pages/donhang/hoadon/danhsachhoadon',
+        title: 'Loại sản phẩm',
+        link: '/admin/sanpham/loaisanpham/danhsachloaisanpham',
       },
       {
-        title: 'Chi tiết hóa Đơn',
-        link: '/pages/donhang/chitiethoadon/danhsachchitiethoadon',
+        title: 'Hình ảnh sản phẩm',
+        link: '/admin/sanpham/hinhanhsanpham/danhsachhinhanhsanpham',
       },
       // {
-      //   title: 'Trạng thái',
-      //   link: '/pages/donhang/trangthai/danhsachtrangthai',
+      //   title: 'Nhận xét',
+      //   link: '/admin/sanpham/nhanxet/danhsachnhanxet',
       // },
+      // {
+      //   title: 'Nhập hàng',
+      //   link: '/admin/modal-overlays/popover',
+      // },
+      // {
+      //   title: 'Chuyển hàng',
+      //   link: '/admin/modal-overlays/toastr',
+      // },
+      {
+        title: 'Thương hiệu',
+        link: '/admin/sanpham/thuonghieu/danhsachthuonghieu',
+      },
+      
     ],
   },
   {
@@ -52,103 +61,87 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Danh sách tài khoản',
-        link: '/pages/taikhoan/taikhoan/danhsachtaikhoan',
+        link: '/admin/taikhoan/taikhoan/danhsachtaikhoan',
       },
       {
         title: 'Loại tài khoản',
-        link: '/pages/taikhoan/loaitaikhoan/danhsachloaitaikhoan',
+        link: '/admin/taikhoan/loaitaikhoan/danhsachloaitaikhoan',
       },
     ],
   },
+  {
+    title: 'Đơn hàng',
+    icon: 'layout-outline',
+    children: [
+      // {
+      //   title: 'Loại đơn',
+      //   link: '/admin/donhang/loaidon/danhsachloaidon',
+      // },
+      {
+        title: 'Phiếu nhập',
+        link: '/admin/donhang/phieunhap/danhsachphieunhap',
+      },
+      {
+        title: 'Chi tiết phiếu nhập',
+        link: '/admin/donhang/chitietphieunhap/danhsachchitietphieunhap',
+      },
+      {
+        title: 'Hóa Đơn',
+        link: '/admin/donhang/hoadon/danhsachhoadon',
+      },
+      {
+        title: 'Chi tiết hóa Đơn',
+        link: '/admin/donhang/chitiethoadon/danhsachchitiethoadon',
+      },
+      // {
+      //   title: 'Trạng thái',
+      //   link: '/admin/donhang/trangthai/danhsachtrangthai',
+      // },
+    ],
+  },
+  
   {
     title: 'Khuyến mãi',
     icon: 'home-outline',
     children: [
       {
         title: 'Ngày khuyến mãi',
-        link: '/pages/khuyenmai/ngaykhuyenmai/danhsachngaykhuyenmai',
+        link: '/admin/khuyenmai/ngaykhuyenmai/danhsachngaykhuyenmai',
       },
       {
-        title: 'Voicher',
-        link: '/pages/khuyenmai/voicher/danhsachvoucher',
+        title: 'Voucher',
+        link: '/admin/khuyenmai/voicher/danhsachvoucher',
       },
       
       
     ],
   },
-  {
-    title: 'Nhân viên',
-    icon: 'keypad-outline',
-    link: '/pages/ui-features',
-  },
-  {
-    title: 'Nhà cung cấp',
-    icon: 'keypad-outline',
-    link: '/pages/nhacungcap/danhsachnhacungcap',
-  },
+  
   {
     title: 'Tin tức',
     icon: 'keypad-outline',
-    link: '/pages/tintuc/danhsachtintuc',
+    link: '/admin/tintuc/danhsachtintuc',
   },
+  
   {
-    title: 'Sản phẩm',
-    icon: 'browser-outline',
-    children: [
-      {
-        title: 'Danh sách sản phẩm',
-        link: '/pages/sanpham/san-pham/danhsachsanpham',
-      },
-      {
-        title: 'Đặc trưng',
-        link: '/pages/sanpham/dactrung/danhsachdactrung',
-      },
-      {
-        title: 'Loại sản phẩm',
-        link: '/pages/sanpham/loaisanpham/danhsachloaisanpham',
-      },
-      {
-        title: 'Hình ảnh sản phẩm',
-        link: '/pages/sanpham/hinhanhsanpham/danhsachhinhanhsanpham',
-      },
-      // {
-      //   title: 'Nhận xét',
-      //   link: '/pages/sanpham/nhanxet/danhsachnhanxet',
-      // },
-      // {
-      //   title: 'Nhập hàng',
-      //   link: '/pages/modal-overlays/popover',
-      // },
-      // {
-      //   title: 'Chuyển hàng',
-      //   link: '/pages/modal-overlays/toastr',
-      // },
-      {
-        title: 'Thương hiệu',
-        link: '/pages/sanpham/thuonghieu/danhsachthuonghieu',
-      },
-      
-    ],
-  },
-  {
-    title: 'Report',
+    title: 'Báo cáo',
     icon: 'home-outline',
     children: [
       {
         title: 'Báo cáo hàng tồn kho',
-        link: '/pages/report/baocaohangtonkho',
+        link: '/admin/report/baocaohangtonkho',
       },
       {
         title: 'Báo cáo phiếu nhập',
-        link: '/pages/report/baocaophieunhap',
+        link: '/admin/report/baocaophieunhap',
       },
       {
-        title: 'Báo cáo hóa dơn và voucher',
-        link: '/pages/report/baocaohoadon',
+        title: 'Báo cáo hóa đơn và voucher',
+        link: '/admin/report/baocaohoadon',
       },
       {
         title: 'Báo cáo nhân viên',
-        link: '/pages/report/baocaonhanvien',
+        link: '/admin/report/baocaonhanvien',
       },
       
       
