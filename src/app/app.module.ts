@@ -31,9 +31,11 @@ import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { JwtInterceptor } from './net/jwt.interceptor';
 
 
+
 @NgModule({
   declarations: [AppComponent,SignInComponent,
-    SignUpComponent,],
+    SignUpComponent,
+ ],
   imports: [
     RouterModule,
     FormsModule,

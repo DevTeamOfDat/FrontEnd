@@ -11,5 +11,8 @@ export class MainMenuAreaComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  topFunction() {
+    document.body.scrollTop = document.documentElement.scrollHeight;
+    document.documentElement.scrollTop = document.documentElement.scrollHeight;
+  }
 }

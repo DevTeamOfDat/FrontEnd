@@ -1,0 +1,181 @@
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+#content .product-view {
+    margin-bottom: 35px;
+}
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+#content .product-view .content-product-left {
+    padding-right: 0;
+}
+#content .product-view .content-product-left .pd-content-box {
+    position: relative;
+}
+.pd-content-box .image-single-box {
+    position: relative;
+}
+#content .product-view .content-product-left .large-image {
+    border-color: initial;
+}
+#content .product-view .content-product-left .large-image {
+    border: 0;
+    padding: 0;
+}
+.product-view .content-product-left .large-image {
+    cursor: pointer;
+    display: block;
+    padding: 1px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #eee;
+}
+img {
+    max-width: 100%;
+}
+.pd-content-box .image-single-box #image_360 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    visibility: hidden;
+}
+.viewer {
+    position: relative;
+    margin: 20px 0;
+}
+.loader {
+    background-image: initial;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.three-bounce {
+    text-align: center;
+    font-size: 26px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.three-bounce div {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    background-color: #fff;
+    -webkit-animation: bouncedelay 1.4s infinite ease-in-out both;
+    animation: bouncedelay 1.4s infinite ease-in-out both;
+}
+.btnDiv.navDiv {
+    text-align: left;
+}
+.btnDiv.navDiv button {
+    position: absolute;
+    top: auto;
+}
+.btnDiv button.leftNav {
+    background-image: url(https://drake.vn/catalog/view/theme/batosa/images/arrowleft.png);
+    background-color: initial;
+}
+.btnDiv.navDiv button.rightNav {
+    right: 0;
+}
+#dummy {
+    display: none;
+}
+.video-360 {
+    display: block;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 10px;
+}
+.video-360 > div {
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 15px;
+}
+a, a:visited, a:active, a:link, a:focus {
+    text-decoration-color: initial;
+    outline-color: initial;
+}
+a {
+    color: rgb(244, 48, 48);
+}
+a, a:visited, a:active, a:link, a:focus {
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+}
+.video-360 > div {
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 15px;
+}
+a, a:visited, a:active, a:link, a:focus {
+    text-decoration-color: initial;
+    outline-color: initial;
+}
+a, a:visited, a:active, a:link, a:focus {
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+}
+.video-box a {
+    border: 1px solid #f8c052;
+    color: #f8c052;
+    text-align: center;
+    font-size: 30px;
+    display: inline-block;
+    line-height: 35px;
+    padding: 2px 10px;
+    border-radius: 4px;
+    -webkit-transition: ease all .4s;
+    -o-transition: ease all .4s;
+    transition: ease all .4s;
+    position: relative;
+    min-width: 122px;
+}
+#content .product-view .content-product-left #thumb-slider {
+    margin-top: 15px;
+}
+.product-view .content-product-left.class-honizol .full_slider, .product-view .content-product-left.class-honizol .not_full_slider {
+    padding: 0 30px;
+}
+.product-view .content-product-left .full_slider, .product-view .content-product-left .not_full_slider {
+    margin-top: 10px;
+}
+.owl2-carousel.owl2-loaded {
+    display: block;
+}
+.owl2-carousel .owl2-stage-outer {
+    position: relative;
+    overflow: hidden;
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    transform: translate3d(0px, 0px, 0px);
+    -moz-transform: translate3d(0px, 0px, 0px);
+}
+.owl2-carousel .owl2-item {
+    position: relative;
+    min-height: 1px;
+    float: left;
+    -webkit-backface-visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.owl2-carousel .owl2-item {
+    -webkit-tap-highlight-color: transparent;
+}
+.price .price-new, .price span.price {
+    color: rgb(239, 87, 52);
+    font-size: 24px;
+}

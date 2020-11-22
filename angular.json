@@ -54,7 +54,7 @@
               "./src/assets/js/main.js",
               "./src/assets/js/jquery.easing.1.3.min.js",
               "./src/assets/js/jquery.sticky.js",
-              
+              "./src/assets/js/1.js",
               "node_modules/pace-js/pace.min.js",
               "node_modules/tinymce/tinymce.min.js",
               "node_modules/tinymce/themes/modern/theme.min.js",

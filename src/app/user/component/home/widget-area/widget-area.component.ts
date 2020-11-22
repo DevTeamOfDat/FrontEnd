@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { tintucModel } from 'app/model/tintuc/tintuc-model';
+import { TintucService } from 'app/services/tintuc/tintuc.service';
 
 @Component({
   selector: 'ngx-widget-area',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetAreaComponent implements OnInit {
 
-  constructor() { }
+  danhsachtintuc: Array<tintucModel> = [];
+  constructor(
+    
+    private tintucService: TintucService) { }
 
   ngOnInit(): void {
+    this.fetchDanhsachsanpham();
+  }
+  
+
+  fetchDanhsachsanpham(){
+    
+    this.tintucService.getAll().subscribe(data => {
+      this.danhsachtintuc = data.data;
+      console.log(this.danhsachtintuc)
+    })
   }
 
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { sanphamModel } from 'app/model/san-pham/sanpham/sanpham-model';
+import { SanPhamService } from 'app/services/san-pham/san-pham/san-pham.service';
 
 @Component({
   selector: 'ngx-latest-products',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LatestProductsComponent implements OnInit {
 
-  constructor() { }
+  danhsachsanpham: Array<sanphamModel> = [];
+  constructor(
+    
+    private sanphamService: SanPhamService) { }
 
   ngOnInit(): void {
+    this.fetchDanhsachsanpham();
+  }
+  
+
+  fetchDanhsachsanpham(){
+    
+    this.sanphamService.getAll().subscribe(data => {
+      this.danhsachsanpham = data.data;
+      console.log(this.danhsachsanpham)
+    })
   }
 
 }
