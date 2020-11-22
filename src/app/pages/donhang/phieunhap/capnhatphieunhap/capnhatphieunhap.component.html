@@ -96,12 +96,13 @@
       <div class="row">
          <div class="col-md-12">
            <div class="form-group" [hidden]="isAdd">
-               <label for="tong_tien">Tổng tiền</label>
+               <label for="tong_tien">Tổng tiền(VNĐ)</label>
                <input
                   type="text"
                   name=""
                   class="form-control"
-                  formControlName="tong_tien"
+                  [value]="formGroup.get('tong_tien').value | currency:'VND'"
+                  formControlName="{{ tong_tien | currency:'VND'}}"
                   id="tong_tien"
                   readonly
                   />

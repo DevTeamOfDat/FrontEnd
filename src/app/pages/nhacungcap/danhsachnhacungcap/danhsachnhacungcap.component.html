@@ -38,8 +38,7 @@
                      </button>
                      &nbsp;
                      &nbsp;
-                     <select (change)="changeStatus($event.target.value)" class="custom-select col-md-4 col-lg-4 col-sm-12">
-                        <option [selected]="isSelected" disabled>--Chọn trạng thái--</option>
+                     <select (change)="changeStatus($event.target.value)" class="custom-select col-md-4 col-lg-4 col-sm-12">                        
                         <option value="-1">Tất cả</option>
                         <option value="1">Chưa xóa</option>
                         <option value="0">Đã xóa</option>
@@ -111,7 +110,7 @@
                                  </button>
                               </div>
                               <div class="modal-body">
-                                 Bạn có chắc chắn muốn xóa thông tin của {{ e.ten }} ?
+                                 Bạn có chắc chắn muốn xóa thông tin nhà cung cấp {{ e.ten }} ?
                               </div>
                               <div class="modal-footer">
                                  <button

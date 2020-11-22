@@ -39,7 +39,6 @@
                      &nbsp;
                      &nbsp;
                      <select (change)="changeStatus($event.target.value)" class="custom-select col-md-4 col-lg-4 col-sm-12">
-                        <option [selected]="isSelected" disabled>--Chọn trạng thái--</option>
                         <option value="-1">Tất cả</option>
                         <option value="1">Chưa xóa</option>
                         <option value="0">Đã xóa</option>
@@ -58,7 +57,6 @@
                            (change)="checkAllCheckBox($event)"
                            />
                         <th>STT</th>
-                        <th>Mã ngày khuyến mãi</th>
                         <th>Ngày giờ</th>
                         <th>Trạng thái</th>
                         <th>Thao tác</th>
@@ -81,7 +79,6 @@
                            value="{{ e.ma_ngay_khuyen_mai }}"
                            />
                         <td>{{ i + 1 }}</td>
-                        <td [innerHTML]="e.ma_ngay_khuyen_mai | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ngay_gio| highlight : searchedKeyword"></td>
                         <td class="justify-content-center">
                            <div class="status"
@@ -128,9 +125,7 @@
                                  </button>
                               </div>
                            </ng-template>
-                           <div class="row justify-content-center">
-                              <button (click)="initModal(e,'show')"  class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></button>
-                              <button (click)="initModal(e,'edit')"  class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
+                           <div class="row justify-content-center">                  
                               <button class="delete"  (click)="open(mymodal)" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
                            </div>
                         </td>

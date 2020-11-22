@@ -164,23 +164,25 @@ export class CapnhatthuonghieuComponent implements OnInit {
         return;
       }
       this.thuonghieuService.create(thuonghieu).subscribe(res => {
-          this.closeModalReloadData();
-          this.toastr.success('Thêm mới thành công');
-          this.modalReference.dismiss();
-        },
-        err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+        this.closeModalReloadData();
+        this.toastr.success(res.success);
+        this.modalReference.dismiss();
+      },
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
     }
     if (this.isEdit) {
       this.thuonghieuService.update(thuonghieu.ma_thuong_hieu, thuonghieu).subscribe(res => {
-          this.closeModalReloadData();
-          this.toastr.success('Sửa thành công');
-          this.modalReference.dismiss();
-        },
-        err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+        this.closeModalReloadData();
+        this.toastr.success(res.success);
+        this.modalReference.dismiss();
+      },
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
     }
   }
 

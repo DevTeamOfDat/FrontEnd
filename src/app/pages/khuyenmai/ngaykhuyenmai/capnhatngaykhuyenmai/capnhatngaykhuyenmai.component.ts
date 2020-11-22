@@ -157,23 +157,25 @@ export class CapnhatngaykhuyenmaiComponent implements OnInit {
         return;
       }
       this.ngaykhuyenmaiService.create(ngaykhuyenmai).subscribe(res => {
-          this.closeModalReloadData();
-          this.toastr.success('Thêm mới thành công');
-          this.modalReference.dismiss();
-        },
-        err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+        this.closeModalReloadData();
+        this.toastr.success(res.success);
+        this.modalReference.dismiss();
+      },
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
     }
     if (this.isEdit) {
       this.ngaykhuyenmaiService.update(ngaykhuyenmai.ma_ngay_khuyen_mai, ngaykhuyenmai).subscribe(res => {
-          this.closeModalReloadData();
-          this.toastr.success('Sửa thành công');
-          this.modalReference.dismiss();
-        },
-        err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+        this.closeModalReloadData();
+        this.toastr.success(res.success);
+        this.modalReference.dismiss();
+      },
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
     }
   }
 

@@ -197,27 +197,25 @@ export class CapnhatsanphamComponent implements OnInit {
         return;
       }
       this.sanphamService.create(sanpham).subscribe(res => {
-          this.closeModalReloadData();
-          this.toastr.success('Thêm mới thành công');
-          this.modalReference.dismiss();
-          if(res.error)
-          {
-            this.toastr.error(res.error);
-          }
-        },
-        err => {
-          //this.toastr.error('Có lỗi xảy ra!');
-        });
+        this.closeModalReloadData();
+        this.toastr.success(res.success);
+        this.modalReference.dismiss();
+      },
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
     }
     if (this.isEdit) {
       this.sanphamService.update(sanpham.ma_san_pham, sanpham).subscribe(res => {
-          this.closeModalReloadData();
-          this.toastr.success('Sửa thành công');
-          this.modalReference.dismiss();
-        },
-        err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+        this.closeModalReloadData();
+        this.toastr.success(res.success);
+        this.modalReference.dismiss();
+      },
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
     }
   }
 

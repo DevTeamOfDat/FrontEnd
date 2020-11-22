@@ -37,8 +37,10 @@ export class CapnhatchitiethoadonComponent implements OnInit {
   isLoading=false;
   title = '';
   type: any;
+  isSelected=true;
   check_ma_hoa_don: any;
   ma_san_pham : any;
+  gia_ban :any;
   model: chitiethoadonModel;
   arrCheck = [];
   arrdactrung = [];
@@ -62,7 +64,12 @@ export class CapnhatchitiethoadonComponent implements OnInit {
 
   changeStatus(event: any){
     this.fetchDanhsachkdactrungsanpham(event.target.value);
+    this.sanphamService.detail(event.target.value).subscribe(data => {
+      this.gia_ban = data.data.gia_ban;
+      console.log(this.gia_ban);
+    },)
   }
+
   fetchDanhsachhoadon(){
     this.isLoading =  true;
     this.hoadonService.getAll().subscribe(data => {
@@ -144,7 +151,7 @@ export class CapnhatchitiethoadonComponent implements OnInit {
         ma_hoa_don:[ null, [Validators.required]],
         danh_sach_loai_dac_trung: [ null, [Validators.required]],
         ma_san_pham: [ null, [Validators.required]],
-        gia_ban: [ null],
+        gia_ban: [],
         so_luong: [ null, [Validators.required]],
         
       });
@@ -230,13 +237,15 @@ export class CapnhatchitiethoadonComponent implements OnInit {
         return;
       }
       this.chitiethoadonService.create(chitiethoadon).subscribe(res => {
-          this.closeModalReloadData();
-          this.toastr.success('Thêm mới thành công');
-          this.modalReference.dismiss();
-        },
-        err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+        this.closeModalReloadData();
+        this.toastr.success(res.success);
+        // this.toastr.success('Thêm mới thành công');
+        this.modalReference.dismiss();
+      },
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
     }
     if (this.isEdit) {
       this.chitiethoadonService.update(chitiethoadon.id, chitiethoadon).subscribe(res => {

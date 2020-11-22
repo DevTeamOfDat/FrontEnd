@@ -28,15 +28,35 @@
             </div>
          </div>
          <div class="col-md-12">
+         <div class="form-group">
+               <label >Tên nhân viên</label>
+               <input
+               type="text"
+               name="username"
+               class="form-control"
+               formControlName="username"
+               readonly
+               />
+            </div>
          </div>
       </div>
       <div class="row">
          <div class="col-md-12">
             <div class="form-group">
                <label>Email khách hàng</label>
-               <select class="form-control" name="" formControlName="ma_khach_hang" id="">
+               <select class="form-control" name="" [(ngModel)]="check_ma_khach_hang"  formControlName="ma_khach_hang" (change)="changeStatus($event)"  id="">
                   <option *ngFor="let e of arrbyKH" value="{{e.ma_tai_khoan}}">{{e.ho_ten}}</option>
                </select>
+               <div
+                  *ngIf="submitted && formGroup.controls['ma_tai_khoan'].errors?.required"
+                  >
+                  <div
+                     *ngIf="formGroup.controls['ma_tai_khoan'].errors?.required"
+                     style="color: red"
+                     >
+                     * Email khách hàng không được để trống
+                  </div>
+               </div>
             </div>
          </div>
          <div class="col-md-12">
@@ -81,10 +101,16 @@
             </div>
          </div>
       </div>
+            <div class="form-group">
+               <label>Mức khuyến mãi</label>
+               <select class="form-control" name="" formControlName="ma_voucher" id="">
+                  <option *ngFor="let e of danhsachvoucher" value="{{e.ma_voucher}}">{{e.muc_voucher}}</option>
+               </select>
+            </div>
       <div class="row">
          <div class="col-md-12">
-            <div class="form-group">
-               <label for="tong_tien">Tổng tiền</label>
+            <div class="form-group" [hidden]="isAdd">
+               <label for="tong_tien">Tổng tiền(VNĐ)</label>
                <input
                   type="text"
                   name=""
@@ -95,9 +121,9 @@
                   />
             </div>
          </div>
-         <div class="col-md-12">
+         <div class="col-md-12" [hidden]="isAdd">
             <div class="form-group">
-               <label for="thanh_tien">Thành tiền</label>
+               <label for="thanh_tien">Thành tiền(VNĐ)</label>
                <input
                   type="text"
                   name=""

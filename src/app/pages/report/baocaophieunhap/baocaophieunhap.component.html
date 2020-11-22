@@ -24,25 +24,32 @@
                      <button type="button" [appExport]="listFilterResult" fileName="phieuNhap" class="btn btn-success">
                 Xuất báo cáo
               </button>
-                <select [(ngModel)]="label" (change)="changeStatus($event.target.value)" class="custom-select col-md-3 col-lg-4 col-sm-12">
-                    <option  [selected]="isSelected" disabled>--</option>
-                    <option value="-1">Tất cả</option>
-                    <option value="0">Tháng</option>
-                    <option value="1">Quý</option>
-                    <option value="2">Năm</option>
-                </select>
-                
-                 <select [hidden]="ismonth" [(ngModel)]="update1" (change)="changeStatus1($event.target.value)" class="custom-select col-md-3 col-lg-3 col-sm-12">
-                    <option  [selected]="isSelected" >--</option>
-                    <option *ngFor="let web of update">{{web}}</option>
-                </select>
+                <select [(ngModel)]="label" (change)="changeStatus($event.target.value)"
+                     class="custom-select col-md-3 col-lg-4 col-sm-12">
+                     <option [selected]="isSelected" disabled>--</option>
+                     <option value="-1">Tất cả</option>
+                     <option value="0">Tháng</option>
+                     <option value="1">Quý</option>
+                     <option value="2">Năm</option>
+                  </select>
 
-                <select [hidden]="isyear" (change)="changeStatus2($event.target.value)" class="custom-select col-md-3 col-lg-3 col-sm-12">
-                    <option [selected]="isSelected" >--</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                </select>
+                  <select [hidden]="ismonth" (change)="changeStatus1($event.target.value)"
+                     class="custom-select col-md-3 col-lg-3 col-sm-12">
+                     <option [selected]="isSelected">--</option>
+                     <option *ngFor="let item of arr_thang">{{item}}</option>
+                  </select>
+
+                  <select [hidden]="isQuy" (change)="changeStatus3($event.target.value)"
+                     class="custom-select col-md-3 col-lg-3 col-sm-12">
+                     <option [selected]="isSelected">--</option>
+                     <option *ngFor="let item of arr_quy">{{item}}</option>
+                  </select>
+
+                  <select [hidden]="isyear" (change)="changeStatus2($event.target.value)"
+                     class="custom-select col-md-3 col-lg-3 col-sm-12">
+                     <option [selected]="isSelected">--</option>
+                     <option *ngFor="let item of arr_nam">{{item}}</option>
+                  </select>
                   </div>
                </div>
                <div class="row">

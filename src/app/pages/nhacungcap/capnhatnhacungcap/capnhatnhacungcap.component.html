@@ -96,9 +96,9 @@
       <div class="form-group">
         <label>Hình ảnh</label>
           <div class="profile-img">
-            <img [src]="urlPictureDefault"  alt="Ảnh đại diện"/>
+            <img [src]="urlPictureDefault" formControlName="hinh_anh"  alt="Ảnh đại diện"/>
           </div>
-          <div [hidden]="" id="profile-input" class="file btn btn-lg btn-primary">
+          <div [hidden]="isInfo" id="profile-input" class="file btn btn-lg btn-primary">
                   Change Photo
                   <input type="file" (change)="uploadImage($event)" name="file"/>
           </div>

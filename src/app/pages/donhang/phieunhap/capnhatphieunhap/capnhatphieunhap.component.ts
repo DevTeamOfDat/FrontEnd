@@ -110,6 +110,12 @@ export class CapnhatphieunhapComponent implements OnInit {
         this.isInfo = true;
         this.isEdit = false;
         this.isAdd = false;
+        if(this.model.ghi_chu === ""){
+          this.isCheck = true;
+        }
+        else{
+          this.isCheck = false;
+        }
         this.title = `Xem chi tiết thông tin phiếu nhập`;
          this.update_ma_phieu_nhap = this.model.ma_phieu_nhap;
         break;
@@ -135,12 +141,7 @@ export class CapnhatphieunhapComponent implements OnInit {
     this.model = model;
     this.submitted = false;
     this.updateFormType(type);
-    if(this.model.ghi_chu === null){
-      this.isCheck = true;
-    }
-    else{
-      this.isCheck = false;
-    }
+    
     if (model.ma_phieu_nhap === null || model.ma_phieu_nhap === undefined) {
       this.formGroup = this.fb.group({
         ma_phieu_nhap: [ null],
@@ -228,13 +229,14 @@ export class CapnhatphieunhapComponent implements OnInit {
         return;
       }
       this.phieunhapService.create(phieunhap).subscribe(res => {
-          this.closeModalReloadData();
-          this.toastr.success('Thêm mới thành công');
-          this.modalReference.dismiss();
-        },
-        err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+        this.closeModalReloadData();
+        this.toastr.success(res.success);
+        this.modalReference.dismiss();
+      },
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
     }
     if (this.isEdit) {
       this.phieunhapService.update(phieunhap.ma_phieu_nhap, phieunhap).subscribe(res => {

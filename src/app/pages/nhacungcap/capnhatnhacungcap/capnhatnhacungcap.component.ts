@@ -122,8 +122,9 @@ export class CapnhatnhacungcapComponent implements OnInit {
         hot_line: [{value: this.model.hot_line, disabled: this.isInfo}],
         email: [{value: this.model.email, disabled: this.isInfo}],
         so_dien_thoai: [{value: this.model.so_dien_thoai, disabled: this.isInfo}, [Validators.required]],
-        hinh_anh: [{value: this.model.hinh_anh, disabled: this.isInfo}],
+        urlPictureDefault: [{value: this.model.hinh_anh, disabled: this.isInfo}],
       });
+      this.urlPictureDefault=this.model.hinh_anh;
 
     }
   }
@@ -197,23 +198,25 @@ export class CapnhatnhacungcapComponent implements OnInit {
         return;
       }
       this.nhacungcapService.create(nhacungcap).subscribe(res => {
-          this.closeModalReloadData();
-          this.toastr.success('Thêm mới thành công');
-          this.modalReference.dismiss();
-        },
-        err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+        this.closeModalReloadData();
+        this.toastr.success(res.success);
+        this.modalReference.dismiss();
+      },
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
     }
     if (this.isEdit) {
       this.nhacungcapService.update(nhacungcap.ma_nha_cung_cap, nhacungcap).subscribe(res => {
-          this.closeModalReloadData();
-          this.toastr.success('Sửa thành công');
-          this.modalReference.dismiss();
-        },
-        err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+        this.closeModalReloadData();
+        this.toastr.success(res.success);
+        this.modalReference.dismiss();
+      },
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
     }
   }
 

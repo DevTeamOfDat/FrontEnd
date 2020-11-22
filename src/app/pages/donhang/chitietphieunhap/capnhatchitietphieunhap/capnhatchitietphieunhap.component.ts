@@ -38,6 +38,7 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
   isLoading=false;
   title = '';
   type: any;
+  error : any;
   model: chitietphieunhapModel;
   arrCheck = [];
   update_id:any;
@@ -236,12 +237,14 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
       }
       this.chitietphieunhapService.create(chitietphieunhap).subscribe(res => {
           this.closeModalReloadData();
-          this.toastr.success('Thêm mới thành công');
+          this.toastr.success(res.success);
+          // this.toastr.success('Thêm mới thành công');
           this.modalReference.dismiss();
         },
         err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+          this.toastr.error(err.error.error);
+        }
+        );
     }
     if (this.isEdit) {
       this.chitietphieunhapService.update(chitietphieunhap.ma_phieu_nhap, chitietphieunhap).subscribe(res => {
@@ -250,6 +253,7 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
           this.modalReference.dismiss();
         },
         err => {
+          
           this.toastr.error('Có lỗi xảy ra!');
         });
     }

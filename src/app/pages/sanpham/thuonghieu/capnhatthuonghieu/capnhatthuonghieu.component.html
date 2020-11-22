@@ -42,12 +42,12 @@
                   Change Photo
                   <input type="file" (change)="uploadImage($event)" name="file"/>
           </div>
-          <div *ngIf="submitted && formGroup.controls['ten_thuong_hieu'].errors?.required">
+          <div *ngIf="submitted && formGroup.controls['hinh_anh'].errors?.required">
           <div
-            *ngIf="formGroup.controls['ten_thuong_hieu'].errors?.required"
+            *ngIf="formGroup.controls['hinh_anh'].errors?.required"
             style="color: red"
           >
-            * Tên thương hiệu không được để trống
+            * Hình ảnh thương hiệu không được để trống
           </div>
         </div>
       </div>

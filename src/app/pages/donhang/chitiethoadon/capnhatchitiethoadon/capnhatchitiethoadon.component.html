@@ -30,24 +30,9 @@
             </div>
          </div>
          <div class="col-md-12">
-            <div class="form-group">
-               <label>Đặc trưng</label>
-               <select class="form-control" name="" formControlName="danh_sach_loai_dac_trung" id="" placeholder="Hãy chọn sản phẩm">
-                  <option *ngFor="let e of danhsachdactrungsanpham" value="{{e.danh_sach_loai_dac_trung}}">{{e.ten_dac_trung}}</option>
-               </select>
-               <div *ngIf="submitted && formGroup.controls['danh_sach_loai_dac_trung'].errors?.required">
-                  <div
-                     *ngIf="formGroup.controls['danh_sach_loai_dac_trung'].errors?.required"
-                     style="color: red"
-                     >
-                     * Danh sách loại đặc trưng không được để trống
-                  </div>
-               </div>
-            </div>
+            
          </div>
       </div>
-      <div class="row">
-         <div class="col-md-12">
             <div class="form-group">
                <label>Tên sản phẩm</label>
                <select [(ngModel)]="check_ma_hoa_don" (change)="changeStatus($event)" class="form-control" name="" formControlName="ma_san_pham" id="">
@@ -62,16 +47,17 @@
                   </div>
                </div>
             </div>
-         </div>
-         <div class="col-md-12">
             <div class="form-group">
                <label>Giá bán</label>
                <input
                   type="text"
                   name=""
                   class="form-control"
-                  formControlName="gia_ban"
+                  [value]="formGroup.get('gia_ban').value | currency:'VND'"
+                  formControlName="{{ gia_ban | currency:'VND'}}"
+                  [ngModelOptions]="{standalone: true}"
                   id="gia_ban"
+                  readonly
                   />
                <div
                   *ngIf="submitted && formGroup.controls['gia_ban'].errors?.required"
@@ -84,8 +70,21 @@
                   </div>
                </div>
             </div>
-         </div>
-      </div>
+            <div class="form-group">
+               <label>Đặc trưng</label>
+               <select class="form-control" name="" formControlName="danh_sach_loai_dac_trung" id="" placeholder="Hãy chọn sản phẩm">
+                 <option [selected]="isSelected" selected hidden disabled>Vui lòng chọn sản phẩm</option>
+                  <option *ngFor="let e of danhsachdactrungsanpham" value="{{e.danh_sach_loai_dac_trung}}">{{e.ten_dac_trung}}</option>
+               </select>
+               <div *ngIf="submitted && formGroup.controls['danh_sach_loai_dac_trung'].errors?.required">
+                  <div
+                     *ngIf="formGroup.controls['danh_sach_loai_dac_trung'].errors?.required"
+                     style="color: red"
+                     >
+                     * Đặc trưng không được để trống
+                  </div>
+               </div>
+            </div>
       <div class="row">
          <div class="col-md-12">
             <div class="form-group">

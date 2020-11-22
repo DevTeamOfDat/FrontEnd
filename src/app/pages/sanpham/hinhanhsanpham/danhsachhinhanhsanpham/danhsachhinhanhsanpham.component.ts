@@ -87,6 +87,7 @@ export class DanhsachhinhanhsanphamComponent implements OnInit {
     const selectedHometowns = this.listFilterResult
       .filter((hinhanhsanpham) => hinhanhsanpham.checked)
       .map((p) => p.id);
+      console.log(selectedHometowns);
     if (selectedHometowns.length > 0) {
       this.isDelete = false;
 

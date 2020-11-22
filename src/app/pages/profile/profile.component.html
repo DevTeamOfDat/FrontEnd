@@ -18,7 +18,6 @@
 		                <div class="col-md-12">
 		                    <form [formGroup]="formGroup" (ngSubmit)="save()">
                              <div class="form-group">
-                                <label>Hình ảnh</label>
                                 <div class="profile-img">
                                     <img [src]="urlPictureDefault"  alt="Ảnh đại diện"/>
                                 </div>
@@ -60,15 +59,15 @@
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="newpass" class="col-4 col-form-label">mật khẩu cũ</label> 
+                                <label for="newpass" class="col-4 col-form-label">Mật khẩu cũ</label> 
                                 <div class="col-8">
-                                  <input id="mat_khau_cu" name="mat_khau_cu"  [(ngModel)]="mat_khau_cu" formControlName="mat_khau_cu" placeholder="mật khẩu cũ" class="form-control here" type="password">
+                                  <input id="mat_khau_cu" name="mat_khau_cu"  [(ngModel)]="mat_khau_cu" formControlName="mat_khau_cu" placeholder="Mật khẩu cũ" class="form-control here" type="password">
                                 </div>
                               </div> 
                               <div class="form-group row">
-                                <label for="newpass" class="col-4 col-form-label">mật khẩu mới</label> 
+                                <label for="newpass" class="col-4 col-form-label">Mật khẩu mới</label> 
                                 <div class="col-8">
-                                  <input id="mat_khau_moi" name="mat_khau_moi"  [(ngModel)]="mat_khau_moi" formControlName="mat_khau_moi" placeholder="Confirm mật khẩu" class="form-control here" type="password">
+                                  <input id="mat_khau_moi" name="mat_khau_moi"  [(ngModel)]="mat_khau_moi" formControlName="mat_khau_moi" placeholder="Mật khẩu mới" class="form-control here" type="password">
                                 </div>
                               </div> 
                               <div class="form-group row">

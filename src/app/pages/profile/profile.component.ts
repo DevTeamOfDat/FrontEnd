@@ -95,11 +95,12 @@ export class ProfileComponent implements OnInit {
       }
       if(this.confirm_mat_khau === this.mat_khau_moi){
         this.taikhoanService.update(taikhoan).subscribe(res => {
-          this.toastr.success('Sửa thành công');
+          this.toastr.success(res.success);
         },
-        err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
       }else{
         this.toastr.error("mật khẩu mới không trùng khớp, vui lòng nhập lại");
       }

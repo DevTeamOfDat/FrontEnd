@@ -40,7 +40,6 @@
                      &nbsp;
                      &nbsp;
                      <select (change)="changeStatus($event.target.value)" class="custom-select col-md-4 col-lg-4 col-sm-12">
-                        <option [selected]="isSelected" disabled>--Chọn trạng thái--</option>
                         <option value="-1">Tất cả</option>
                         <option value="1">Chưa xóa</option>
                         <option value="0">Đã xóa</option>
@@ -89,7 +88,7 @@
                         <td [innerHTML]="e.ten_nhan_vien | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ten_nha_cung_cap | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ngay_nhap| highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.tong_tien | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.tong_tien | highlight : searchedKeyword | currency: 'VND':true"></td>
                         <td class="justify-content-center">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
@@ -116,7 +115,7 @@
                                  </button>
                               </div>
                               <div class="modal-body">
-                                 Bạn có chắc chắn muốn xóa thông tin của {{ e.ma_phieu_nhap }} ?
+                                 Bạn có chắc chắn muốn xóa thông tin của mã phiếu nhập {{ e.ma_phieu_nhap }} ?
                               </div>
                               <div class="modal-footer">
                                  <button

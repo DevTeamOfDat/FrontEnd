@@ -102,12 +102,12 @@ export class CapnhatvoucherComponent implements OnInit {
    
     if (model.ma_voucher === null || model.ma_voucher === undefined) {
       this.formGroup = this.fb.group({
-        ma_voucher: [ null, [Validators.required]],
+        muc_voucher: [ null, [Validators.required]],
         ma_khach_hang: [ null, [Validators.required]],
       });
     } else {
       this.formGroup = this.fb.group({
-        ma_voucher: [{value: this.model.ma_voucher, disabled: this.isInfo}, [Validators.required]],
+        muc_voucher: [{value: this.model.muc_voucher, disabled: this.isInfo}, [Validators.required]],
         ma_khach_hang: [{value: this.model.ma_khach_hang, disabled: this.isInfo}, [Validators.required]],
       });
     }
@@ -152,13 +152,12 @@ export class CapnhatvoucherComponent implements OnInit {
       voicher = {
         ma_voucher: this.model.ma_voucher,
         muc_voucher: this.formGroup.get('muc_voucher')?.value,
-        ma_khach_hang: this.model.ma_khach_hang,
+        ma_khach_hang: this.formGroup.get('ma_khach_hang')?.value,
       };
     } else {
       voicher = {
-        ma_voucher: this.model.ma_voucher,
         muc_voucher: this.formGroup.get('muc_voucher')?.value,
-        ma_khach_hang: this.model.ma_khach_hang,
+        ma_khach_hang: this.formGroup.get('ma_khach_hang')?.value,
       };
     }
     if (this.isAdd) {
@@ -173,23 +172,25 @@ export class CapnhatvoucherComponent implements OnInit {
         return;
       }
       this.voucherService.create(voicher).subscribe(res => {
-          this.closeModalReloadData();
-          this.toastr.success('Thêm mới thành công');
-          this.modalReference.dismiss();
-        },
-        err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+        this.closeModalReloadData();
+        this.toastr.success(res.success);
+        this.modalReference.dismiss();
+      },
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
     }
     if (this.isEdit) {
       this.voucherService.update(voicher.ma_voucher, voicher).subscribe(res => {
-          this.closeModalReloadData();
-          this.toastr.success('Sửa thành công');
-          this.modalReference.dismiss();
-        },
-        err => {
-          this.toastr.error('Có lỗi xảy ra!');
-        });
+        this.closeModalReloadData();
+        this.toastr.success(res.success);
+        this.modalReference.dismiss();
+      },
+      err => {
+        this.toastr.error(err.error.error);
+      }
+      );
     }
   }
 

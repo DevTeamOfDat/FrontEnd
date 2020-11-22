@@ -38,8 +38,7 @@
                      </button>
                      &nbsp;
                      &nbsp;
-                     <select (change)="changeStatus($event.target.value)" class="custom-select col-md-4 col-lg-4 col-sm-12">
-                        <option [selected]="isSelected" disabled>--Chọn trạng thái--</option>
+                     <select (change)="changeStatus($event.target.value)" class="custom-select col-md-4 col-lg-4 col-sm-12">                  
                         <option value="-1">Tất cả</option>
                         <option value="1">Chưa xóa</option>
                         <option value="0">Đã xóa</option>
@@ -85,7 +84,7 @@
                         <td [innerHTML]="e.ma_phieu_nhap | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ten_san_pham | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ten_dac_trung | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.gia_nhap | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.gia_nhap | highlight : searchedKeyword | currency:'VND'"></td>
                          <td [innerHTML]="e.so_luong | highlight : searchedKeyword"></td>
                         <td class="justify-content-center">
                            <div class="status"
@@ -113,7 +112,7 @@
                                  </button>
                               </div>
                               <div class="modal-body">
-                                 Bạn có chắc chắn muốn xóa thông tin của {{ e.id }} ?
+                                 Bạn có chắc chắn muốn xóa thông tin mã chi tiết phiếu nhập {{ e.id }}  ?
                               </div>
                               <div class="modal-footer">
                                  <button

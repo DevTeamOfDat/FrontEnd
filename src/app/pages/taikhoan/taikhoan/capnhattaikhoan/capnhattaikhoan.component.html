@@ -141,7 +141,7 @@
           <div class="form-group">
                <label>Loại tài khoản</label>
                <select class="form-control" name="" formControlName="loai_tai_khoan" id="">
-                  <option *ngFor="let e of danhsachnhacungcap" value="{{e.id}}">{{e.gia_tri}}</option>
+                  <option *ngFor="let e of danhsachloaitaikhoan" value="{{e.id}}">{{e.gia_tri}}</option>
                </select>
                <div *ngIf="submitted && formGroup.controls['loai_tai_khoan'].errors?.required">
                   <div
