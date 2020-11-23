@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit } from "@angular/core";
+import { Product } from "app/user/models/product";
+import { MessengerService } from "../../service/messenger.service";
 @Component({
-  selector: 'ngx-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  selector: "ngx-card",
+  templateUrl: "./card.component.html",
+  styleUrls: ["./card.component.css"],
 })
 export class CardComponent implements OnInit {
+  cartItem = [];
 
-  constructor() { }
+  cartTotal = 0;
+  constructor(private msg: MessengerService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.msg.getMsg().subscribe((product: Product) => {
+      
+      this.cartItem.push({
+        productName: product.name,
+        qty: 1,
+        price: product.price,
+      });
+
+      this.cartTotal = 0;
+      this.cartItem.forEach((item) => {
+        this.cartTotal += item.qty * item.price;
+      });
+    });
   }
-
 }

@@ -1,0 +1,38 @@
+.brand-list {
+  padding-top: 40px;
+}
+.brand-list .owl-nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.latest-product .owl-nav div:hover,
+.brand-wrapper .owl-nav div:hover,
+.related-products-wrapper .owl-nav div:hover {
+  color: #fff;
+  background: #f95f5f;
+}
+.brand-wrapper .owl-nav div {
+  border: 1px solid #fff;
+  color: #fff;
+  display: inline-block;
+  margin-left: 15px;
+  padding: 1px 10px;
+}
+.brand-wrapper .owl-nav div {
+  background: #fa8072;
+  color: #fff;
+  display: inline-block;
+  margin-left: 15px;
+  padding: 1px 10px;
+}
+.brands-area {
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  color: #fff;
+  padding: 20px 0 20px;
+}
+.promo-area .zigzag-bottom,
+.brands-area .zigzag-bottom {
+  background: #f4f4f4;
+}

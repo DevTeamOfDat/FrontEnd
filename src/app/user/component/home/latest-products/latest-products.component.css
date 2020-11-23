@@ -34,7 +34,8 @@
   padding: 80px 0 130px;
 }
 .single-product h2 {
-  font-size: 18px;
+  height: 40px;
+  font-size: 14px;
   line-height: 25px;
   margin-bottom: 10px;
   margin-top: 15px;
@@ -52,8 +53,6 @@
 }
 .single-product {
   overflow: hidden;
-}
-.single-product:hover {
 }
 .single-product:hover .product-hover a.add-to-cart-link {
   top: 32%;

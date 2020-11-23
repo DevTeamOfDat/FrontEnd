@@ -1,0 +1,39 @@
+.product-bit-title h2 {
+  font-family: raleway;
+  font-size: 50px;
+  font-weight: 200;
+  margin: 0;
+  padding: 50px 0;
+  color: #fff;
+}
+.flex-container {
+  display: flex;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(217, 228, 233);
+}
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 160px;
+  margin: 10px;
+  align-items: center;
+  justify-content: center;
+}
+p {
+  width: 100px;
+  height: 80px;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  margin: 5px;
+}
+.img {
+  width: 140px;
+  height: auto;
+}
+span {
+  margin: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: red;
+}

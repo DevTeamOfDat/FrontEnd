@@ -1,0 +1,316 @@
+<div class="container product-detail product-full">
+  <div class="row">
+    <div id="content" class="col-md-12">
+      <div class="row product-view product-info">
+        <div
+          class="content-product-left class-honizol col-md-4 col-sm-5 col-xs-12"
+        >
+          <div class="pd-content-box">
+            <div class="image-single-box">
+              <div *ngFor="let i of sanpham" class="large-image">
+                <img
+                  itemprop="image"
+                  class="product-image-zoom main-image"
+                  src="{{ i.image }}"
+                  title-product
+                />
+                <div class="box-label"></div>
+              </div>
+            </div>
+            <div
+              class="full_slider owl-carousel owl2-carousel owl2-theme owl2-loaded"
+              style="padding-left: 15px; padding-right: 15px"
+            >
+              <div class="owl2-stage-outer">
+                <div *ngFor="let i of sanpham" class="owl2-stage">
+                  <div
+                    class="owl2-item active"
+                    style="width: 72.667px; margin-right: 10px"
+                  >
+                    <a>
+                      <img src="{{ i.image }}" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-product-right col-md-8 col-sm-7 col-xs-12">
+          <div class="pd-content-box">
+            <div *ngFor="let i of sanpham" class="title-product">
+              <h1>{{ i.ten_san_pham }}</h1>
+            </div>
+            <!-- Review ---->
+
+            <div class="desc-price">
+              <div class="price-stock">
+                <!--End countdown box-->
+                <div
+                  *ngFor="let i of sanpham"
+                  class="product_page_price price"
+                  itemprop="offerDetails"
+                  itemscope=""
+                  itemtype="http://data-vocabulary.org/Offer"
+                >
+                  <div *ngIf="i.gia_moi != null || i.gia_moi != undefined">
+                    <span class="price-new">
+                      <span class="tprice">Sale price: </span>
+                      <span itemprop="price" id="price-old">{{
+                        i.gia_moi | currency: "VND"
+                      }}</span>
+                    </span>
+                    <div class="rprice">
+                      <span class="tprice">Drake Price: </span>
+                      <span class="price-old"
+                        ><del>{{ i.gia_ban | currency: "VND" }}</del></span
+                      >
+                    </div>
+                  </div>
+
+                  <div *ngIf="i.gia_moi === null || i.gia_moi === undefined">
+                    <span class="price-new">
+                      <span class="tprice">Sale price: </span>
+                      <span itemprop="price" id="price-old">{{
+                        i.gia_ban | currency: "VND"
+                      }}</span>
+                    </span>
+                    <div class="rprice">
+                      <span class="tprice">Drake Price: </span>
+                      <span class="price-old"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="promo-text">
+                  <p>MIỄN PHÍ VẬN CHUYỂN TOÀN QUỐC KHI ĐẶT HÀNG ONLINE</p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+
+            <div class="short-description">
+              Không phụ lòng mong mỏi của các fan, lần này Vans lại cho ra mắt
+              BST mới với họa tiết Tiger Floral bắt mắt. Sự kết hợp độc đáo của
+              hai họa tiết “Hoa” và “Hổ” tưởng chừng như không liên quan lại làm
+              nên một tổ hợp cực kì ăn ý và hài hòa. Kỹ thuật in Allover với
+              công nghệ hiện đại đã giúp thành quả sáng tạo của các nhà thiết kế
+              đến gần hơn với công chúng.
+            </div>
+            <div id="product">
+              <div class="option-box">
+                <div class="options">
+                  <div class="option-item">
+                    <div class="form-group required">
+                      <div class="select-box">
+                        <select
+                          name="option[5883]"
+                          id="input-option5883"
+                          class="form-control"
+                          style="font-weight: bold"
+                        >
+                          <option value="">CHỌN MÀU SIZE</option>
+                          <option
+                            *ngFor="let dactrung of dactrungsanpham"
+                            value="27647"
+                          >
+                            {{ dactrung.ten_dac_trung }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="option-item">
+                    <div class="form-group hide">
+                      <label class="control-label">Màu sắc</label>
+                      <div id="input-option5882">
+                        <div class="radio option_image radio-type-button">
+                          <label>
+                            <input
+                              type="radio"
+                              name="option[5882]"
+                              value="27635"
+                            />
+
+                            <span class="option-content-box">
+                              <img
+                                src="https://drake.vn/image/cache/catalog/Other/bang-mau/cach-chuan-mau-sac-trong-in-an-02-20x20.jpg"
+                                alt="Multi"
+                                class="img-thumbnail"
+                              />
+                              <span class="option-name">Multi</span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <span class="huongdanchonsize"
+                ><a
+                  target="_blank"
+                  href="https://drake.vn/huong-dan-cach-do-size-giay"
+                  ><i class="fa fa-question-circle"></i> Hướng dẫn chọn size</a
+                ></span
+              >
+              <form action="" class="cart">
+                <div class="quantity">
+                  <input
+                    type="number"
+                    size="4"
+                    class="input-text qty text"
+                    title="Qty"
+                    value="1"
+                    name="quantity"
+                    min="1"
+                    step="1"
+                  />
+                </div>
+                <button class="add_to_cart_button" type="submit">
+                  Thêm vào giỏ hàng
+                </button>
+              </form>
+              <div
+                class="modal fade"
+                id="popupchonsize"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="popupchonsize"
+                aria-hidden="true"
+                style="opacity: 1; overflow: visible"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Hướng dẫn chọn size
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <ul>
+                        <li>
+                          <b>Hướng dẫn chọn size Converse</b>
+                          <iframe
+                            width="450"
+                            height="250"
+                            src="https://www.youtube.com/embed/3Al7Hd8Kbo0"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen=""
+                          ></iframe>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="document"></div>
+
+              <div class="feedback">
+                <div class="titlebox">
+                  <h3>See more</h3>
+                </div>
+                <div class="feedback-box">
+                  <div
+                    class="fb-list gallery owl2-carousel owl2-theme owl2-loaded"
+                  >
+                    <div class="owl2-stage-outer">
+                      <div
+                        class="owl2-stage"
+                        style="
+                          transform: translate3d(0px, 0px, 0px);
+                          transition: all 0s ease 0s;
+                          width: 528.335px;
+                        "
+                      >
+                        <div
+                          class="owl2-item active"
+                          style="width: 100.667px; margin-right: 5px"
+                        >
+                          <div *ngIf="let item of sanpham" class="item">
+                            <a>
+                              <img src="{{ item.image }}" />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="khuyenmai"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="pd-tab">
+            <ul id="tab-review" class="nav nav-tabs">
+              <li><a href="#tab-review" data-toggle="tab">Đánh giá</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div >
+                <form class="form-horizontal" id="form-review">
+                  <div id="review"></div>
+                  <h2>Đưa ra đánh giá của bạn</h2>
+                  <div class="form-group required">
+                    <div class="col-sm-12">
+                      <input
+                        type="text"
+                        name="name"
+                        value=""
+                        id="input-name"
+                        class="form-control"
+                        placeholder="Tên của bạn:"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <div class="col-sm-12">
+                      <textarea
+                        name="text"
+                        rows="5"
+                        id="input-review"
+                        class="form-control"
+                        placeholder="Bình luận:"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <div class="buttons clearfix">
+                    <div class="pull-right">
+                      <button
+                        type="button"
+                        id="button-review"
+                        data-loading-text="Đang Xử lý..."
+                        class="btn btn-primary"
+                      >
+                        Gửi
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
