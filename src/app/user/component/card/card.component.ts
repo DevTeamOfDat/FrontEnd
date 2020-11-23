@@ -14,7 +14,8 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     this.msg.getMsg().subscribe((product: Product) => {
-      this.cartItem.unshift({
+      
+      this.cartItem.push({
         productName: product.name,
         qty: 1,
         price: product.price,

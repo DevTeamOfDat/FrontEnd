@@ -8,16 +8,17 @@ import { SanPhamService } from "app/services/san-pham/san-pham/san-pham.service"
   styleUrls: ["./latest-products.component.css"],
 })
 export class LatestProductsComponent implements OnInit {
-  products: Array<sanphamModel> = [];
+  danhsachsanpham: Array<sanphamModel> = [];
   constructor(private sanphamService: SanPhamService) {}
+  giamoi: sanphamModel[];
 
   ngOnInit(): void {
     this.fetchDanhsachsanpham();
   }
+
   fetchDanhsachsanpham() {
     this.sanphamService.getAll().subscribe((data) => {
-      this.products = data.data;
-      
+      this.danhsachsanpham = data.data;
     });
   }
 }
