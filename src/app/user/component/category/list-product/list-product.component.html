@@ -1,0 +1,36 @@
+<div class="flex-container">
+  <div
+    *ngFor="
+      let product of products
+        | paginate: { itemsPerPage: 8, currentPage: p, id: 'id' }
+    "
+  >
+    <div>
+      <img
+        style="margin-left: 5px"
+        src="../../../../assets/img/product-6.jpg"
+        class="img"
+      />
+      <div style="margin: 10px">
+        <a
+          routerLink="/user/dertail-product/{{ product.ma_san_pham }}/{{
+            product.ten_san_pham
+          }}"
+          >{{ product.ten_san_pham }}</a
+        >
+      </div>
+      <div *ngIf="product.gia_moi === null || product.gia_moi === undefined">
+        <span>Price</span> :<span>{{ product.gia_ban | currency: "VND" }}</span>
+      </div>
+      <div *ngIf="product.gia_moi != null || product.gia_moi != undefined">
+        <span>Price</span> :<span>{{ product.gia_moi | currency: "VND" }}</span>
+        <span>Price</span> :<span>
+          <del>{{ product.gia_ban | currency: "VND" }}</del></span
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<div style="margin-top: 20px">
+  <pagination-controls (pageChange)="p = $event" id="id"></pagination-controls>
+</div>

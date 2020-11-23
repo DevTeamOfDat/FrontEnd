@@ -7,6 +7,7 @@ import { VoucherComponent } from "./component/voucher/voucher.component";
 import { UserComponent } from "./user.component";
 import { DetailProductsComponent } from "./component/detail-products/detail-products.component";
 import { CategoryComponent } from "./component/category/category.component";
+import { ListProductComponent } from "./component/category/list-product/list-product.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: "voucher", component: VoucherComponent },
       { path: "cart", component: CardComponent },
       { path: "category", component: CategoryComponent },
+      { path: "product", component: ListProductComponent },
       {
         path: "dertail-product/:ma_san_pham/:ten_san_pham",
         component: DetailProductsComponent,

@@ -24,6 +24,10 @@ import { ProductListComponent } from "./component/home/product-list/product-list
 import { ProductItemComponent } from "./component/home/product-list/product-item/product-item.component";
 import { CartItemComponent } from "./component/card/cart-item/cart-item.component";
 import { CategoryComponent } from "./component/category/category.component";
+import { ListProductComponent } from "./component/category/list-product/list-product.component";
+import { FormsModule } from "@angular/forms";
+import { NhanXetComponent } from './component/nhan-xet/nhan-xet.component';
+import { HoaDonComponent } from './component/hoa-don/hoa-don.component';
 
 @NgModule({
   declarations: [
@@ -47,11 +51,15 @@ import { CategoryComponent } from "./component/category/category.component";
     ProductItemComponent,
     CartItemComponent,
     CategoryComponent,
+    ListProductComponent,
+    NhanXetComponent,
+    HoaDonComponent,
   ],
   imports: [
     MatDialogModule,
     UserRoutingModule,
     CommonModule,
+    FormsModule,
     NgxPaginationModule,
   ],
   providers: [],

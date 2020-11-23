@@ -17,17 +17,23 @@
       <div class="col-md-4">
         <div class="single-sidebar">
           <h2 class="sidebar-title">Tìm kiếm sản phẩm</h2>
-          <form action="">
-            <input type="text" placeholder="Search products..." />
-            <input type="submit" value="Search" />
-          </form>
+          <input
+            type="text"
+            (keyup)="doFilterProducts()"
+            [(ngModel)]="searchedKeyword"
+            placeholder="Search products..."
+          />
         </div>
 
         <div class="single-sidebar">
           <h2 class="sidebar-title">Danh sách</h2>
           <ul *ngFor="let category of categories">
             <li>
-              <a href="">{{ category.ten_loai_san_pham }}</a>
+              <a
+                (click)="doInsertProductList(category.ma_loai_san_pham)"
+                style="cursor: pointer"
+                >{{ category.ten_loai_san_pham }}</a
+              >
             </li>
           </ul>
         </div>
@@ -38,7 +44,7 @@
           <div
             *ngFor="
               let product of products
-                | paginate: { itemsPerPage: 8, currentPage: p, id: 'id' }
+                | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize
             "
           >
             <div>

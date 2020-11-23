@@ -269,22 +269,15 @@
                   <div id="review"></div>
                   <h2>Đưa ra đánh giá của bạn</h2>
                   <div class="form-group required">
-                    <div class="col-sm-12">
-                      <input
-                        type="text"
-                        name="name"
-                        value=""
-                        id="input-name"
-                        class="form-control"
-                        placeholder="Tên của bạn:"
-                      />
-                    </div>
+                    <div class="col-sm-12">                  
+                  </div>
                   </div>
                   <div class="form-group required">
                     <div class="col-sm-12">
                       <textarea
                         name="text"
                         rows="5"
+                        [(ngModel)]="review"
                         id="input-review"
                         class="form-control"
                         placeholder="Bình luận:"
@@ -296,6 +289,7 @@
                     <div class="pull-right">
                       <button
                         type="button"
+                        (click)="doInsertReview()"
                         id="button-review"
                         data-loading-text="Đang Xử lý..."
                         class="btn btn-primary"
