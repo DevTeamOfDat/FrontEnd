@@ -9,7 +9,7 @@ jQuery(document).ready(function($){
             loop:true,
             nav:true,
             margin:20,
-            responsiveClass:true,
+            responsiveClass:false,
             responsive:{
                 0:{
                     items:1,

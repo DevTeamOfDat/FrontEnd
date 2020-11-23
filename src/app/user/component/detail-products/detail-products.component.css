@@ -1,0 +1,284 @@
+#content .product-view 
+.content-product-left {
+    padding-right: 0;
+}
+
+#content .product-view 
+.content-product-right {
+    padding-left: 30px;
+}
+
+.product-view 
+.content-product-right {
+    overflow: hidden;
+}
+#content 
+.product-view 
+.content-product-right 
+.title-product {
+    margin-bottom: 10px;
+}
+#content 
+.product-view 
+.content-product-right 
+.box-review {
+    margin-bottom: 15px;
+}
+
+#content 
+.product-view 
+.content-product-right 
+.desc-price {
+    overflow: hidden;
+    padding-bottom: 15px;
+    display: table;
+}
+
+#content .product-view .content-product-right .short-description {
+    color: rgb(200, 195, 188);
+}
+
+#content .product-view .content-product-right .short-description {
+    color: #333;
+    font-size: 15px;
+    line-height: 24px;
+}
+
+#content .product-view .content-product-right #product {
+    border-top-color: rgb(57, 62, 64);
+}
+
+#content .product-view .content-product-right #product {
+    margin-top: 0;
+    padding-top: 15px;
+    border-top: 1px solid #dedede;
+}
+
+.huongdanchonsize {
+    margin-bottom: 15px;
+    display: block;
+}
+
+#popupchonsize {
+    opacity: 1 !important;
+    overflow: visible !important;
+}
+
+#popupchonsize {
+    opacity: 1 !important;
+    overflow: visible !important;
+}
+#content .product-view .content-product-right .quantity-box {
+    vertical-align: middle;
+}
+#content .product-view .content-product-right .quantity-box .quantity {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+
+#content .product-view .content-product-right .quantity-box label {
+    vertical-align: middle;
+    margin: 0;
+    padding-right: 30px;
+    font-weight: normal;
+    font-size: 14px;
+    color: #000;
+}
+
+#content .product-view .content-product-right .quantity-box .quantity-content {
+    vertical-align: middle;
+    border: 1px solid #f0f0f0;
+    position: relative;
+    width: 90px;
+    height: 33px;
+    border-radius: 0px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+#content .product-view .content-product-right .quantity-box .quantity-content .input-group-addon.product_quantity_down {
+    left: 0;
+    top: 0;
+    font-size: 35px;
+}
+
+#content .product-view .content-product-right .quantity-box .quantity-content .input-group-addon {
+    background: #FFF;
+    border: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 10;
+    line-height: 32px;
+    text-align: center;
+    width: 20px;
+    border-radius: 0;
+    cursor: pointer;
+    color: #b2b2b2;
+    -webkit-transition: ease all .4s;
+    -o-transition: ease all .4s;
+    transition: ease all .4s;
+}
+
+#content .product-view .content-product-right .quantity-box .quantity-content .form-control {
+    background: #FFF;
+    padding: 0 20px;
+    height: 32px;
+    line-height: 30px;
+    text-align: center;
+    color: #323232;
+    font-size: 14px;
+}
+
+.input-group .form-control:not(:first-child):not(:last-child), .input-group-addon:not(:first-child):not(:last-child), .input-group-btn:not(:first-child):not(:last-child) {
+    border-radius: 0;
+}
+
+.input-group .form-control, .input-group-addon, .input-group-btn {
+    display: table-cell;
+}
+
+.input-group .form-control {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+#content .product-view .content-product-right .quantity-box .quantity-content .input-group-addon.product_quantity_up {
+    right: 0;
+    top: 0;
+    font-size: 20px;
+}
+
+#content .product-view .content-product-right .quantity-box .quantity-content .input-group-addon {
+    background: #FFF;
+    border: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 10;
+    line-height: 32px;
+    text-align: center;
+    width: 20px;
+    border-radius: 0;
+    cursor: pointer;
+    color: #b2b2b2;
+    -webkit-transition: ease all .4s;
+    -o-transition: ease all .4s;
+    transition: ease all .4s;
+}
+
+#content .product-view .content-product-right .quantity-box .button-box {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+#content .product-view .content-product-right .quantity-box .button-box {
+    margin-top: 15px;
+}
+
+#content .product-view .content-product-right .quantity-box .button-box .button-pd, #content .product-view .content-product-right .quantity-box .button-box .wish_comp {
+    display: inline-block;
+}
+
+#content .product-view .content-product-right .quantity-box #button-cart {
+    background: #ee0b0b;
+    color: #FFF;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: bold;
+    height: 42px;
+    border-radius: 21px;
+    padding-left: 35px;
+    padding-right: 35px;
+    -webkit-transition: ease all .4s;
+    -o-transition: ease all .4s;
+    transition: ease all .4s;
+}
+
+.button, .btn {
+    padding: 9px 20px;
+    background: #555;
+    color: #fff;
+    border-radius: 3px;
+    border: none;
+    background: #e20c0c;
+    border-color: #e20c0c;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.btn, .form-control {
+    outline: none !important;
+}
+
+#content .product-view .content-product-right .quantity-box .button-box .button-pd, #content .product-view .content-product-right .quantity-box .button-box .wish_comp {
+    display: inline-block;
+}
+
+#content .product-view .content-product-right .quantity-box .wish_comp {
+    margin-left: 20px;
+}
+#content .product-view .content-product-right .quantity-box .wish_comp .btn {
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    color: #f8c052;
+    line-height: 30px;
+    padding: 0;
+    background: transparent;
+    font-size: 16px;
+}
+#content .product-view .content-product-right .quantity-box .btn {
+    height: 40px;
+    -webkit-transition: ease all .4s;
+    -o-transition: ease all .4s;
+    transition: ease all .4s;
+}
+#content .product-view .content-product-right .quantity-box .btn i {
+    margin: 0;
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

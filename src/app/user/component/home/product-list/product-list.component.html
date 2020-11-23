@@ -1,0 +1,17 @@
+<div class="maincontent-area">
+  <div class="zigzag-bottom"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="latest-product">
+          <h2 class="section-title">Latest Products</h2>
+          <div class="product-carousel">
+            <div *ngFor="let product of productList" class="single-product">
+              <ngx-product-item [productItem]="product"></ngx-product-item>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { HomeComponent } from './component/home/home.component';
 import { CardComponent } from './component/card/card.component';
 import { VoucherComponent } from './component/voucher/voucher.component';
 import { UserComponent } from './user.component';
+import { DetailProductsComponent } from './component/detail-products/detail-products.component';
 
 const routes: Routes = [{
     path: '',
@@ -14,7 +15,8 @@ const routes: Routes = [{
     children: [
         {path: 'home', component: HomeComponent },
         {path: 'voucher' , component: VoucherComponent},
-        {path: 'cart', component: CardComponent },
+      { path: 'cart', component: CardComponent },
+        {path: 'details' , component:DetailProductsComponent},
         {
           path: '',
           redirectTo: 'home',
