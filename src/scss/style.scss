@@ -57,7 +57,11 @@ table.table-striped.table-hover tbody tr:hover {
 .table th, td {
     text-align: center;
   }
-  
+
+.table .td{
+    text-overflow: clip;
+}
+
 table.table th i {
     font-size: 13px;
     margin: 0 5px;

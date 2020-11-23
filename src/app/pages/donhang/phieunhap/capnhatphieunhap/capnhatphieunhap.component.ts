@@ -90,6 +90,7 @@ export class CapnhatphieunhapComponent implements OnInit {
 
   fetchDanhsachnhacungcap(){
     this.isLoading =  true;
+    this.danhsachnhacungcap =[];
     this.nhacungcapService.getAll().subscribe(data => {
       this.checknhacungcap = data.data;
       for(let item of this.checknhacungcap){

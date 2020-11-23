@@ -109,7 +109,7 @@ export class DanhsachsanphamComponent implements OnInit {
         var dc = item.ten_san_pham.toLowerCase();
         var hot_line = item.ten_thuong_hieu.toLowerCase();
         var ten = item.ten_loai_san_pham.toLowerCase();
-        if (dc.includes(keyword) || hot_line.includes(keyword) || ten.includes(keyword)) {
+        if (dc.includes(keyword) || hot_line.includes(keyword)) {
           filterResult.push(item);
         }
       });

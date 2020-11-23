@@ -79,7 +79,7 @@ export class DanhsachphieunhapComponent implements OnInit {
         var ten = item.ten_nha_cung_cap.toLowerCase();
         var ten1 = item.ngay_nhap.toString();
         var ten2 = item.tong_tien.toString();
-        if (dc.includes(keyword) || hot_line.includes(keyword) || ten.includes(keyword) || ten1.includes(keyword) || ten2.includes(keyword)) {
+        if (dc.includes(keyword) || hot_line.includes(keyword) || ten.includes(keyword) ) {
           filterResult.push(item);
         }
       });

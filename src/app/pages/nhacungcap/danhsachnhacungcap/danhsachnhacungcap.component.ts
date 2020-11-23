@@ -63,7 +63,7 @@ export class DanhsachnhacungcapComponent implements OnInit {
         var dc = item.dia_chi.toLowerCase();
         var hot_line = item.hot_line.toLowerCase();
         var ten = item.ten.toLowerCase();
-        if (dc.includes(keyword) || hot_line.includes(keyword) || ten.includes(keyword)) {
+        if (hot_line.includes(keyword) || ten.includes(keyword)) {
           filterResult.push(item);
         }
       });

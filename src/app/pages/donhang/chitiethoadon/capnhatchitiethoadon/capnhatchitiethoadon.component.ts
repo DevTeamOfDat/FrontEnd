@@ -73,6 +73,7 @@ export class CapnhatchitiethoadonComponent implements OnInit {
 
   fetchDanhsachhoadon(){
     this.isLoading =  true;
+    this.danhsachhoadon =[];
     this.hoadonService.getAll().subscribe(data => {
       this.checkhoadon = data.data;
       for(let item of this.checkhoadon){

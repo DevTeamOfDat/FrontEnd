@@ -97,7 +97,7 @@ export class CapnhathoadonComponent implements OnInit {
 
   fetchDanhsachkhuyenmaisanpham(check_ma_khach_hang: any){
     this.isLoading =  true;
-    const arrr=[];
+    this.danhsachvoucher=[];
     this.voucherService.detail(check_ma_khach_hang).subscribe(data => {
       this.checkvoucher = data.data;
       for(let item of this.checkvoucher){

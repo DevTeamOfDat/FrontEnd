@@ -66,6 +66,7 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
 
   fetchDanhsachphieunhap(){
     this.isLoading =  true;
+    this.danhsachphieunhap=[];
     this.phieunhapService.getAll().subscribe(data => {
         this.checkphieunhap = data.data;
         for(let item of this.checkphieunhap){
