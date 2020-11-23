@@ -16,7 +16,7 @@
             <div class="product-carousel">
               <div *ngFor="let item of danhsachtintuc" class="single-product">
                 <div class="product-f-image">
-                  <img src="../../../../../assets/img/product-3.jpg" alt="" />
+                  <img src="{{ item.thumbnail }}" alt="" />
                   <p>{{ item.ngay_dang }}</p>
                   <a href="{{ item.url }}">
                     <h4>

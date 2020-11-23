@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 
 import { HomeComponent } from "./component/home/home.component";
 import { HeaderAreaComponent } from "./component/home/header-area/header-area.component";
-
+import { NgxPaginationModule } from "ngx-pagination";
 import { SiteBrandingAreaComponent } from "./component/home/site-branding-area/site-branding-area.component";
 import { MainMenuAreaComponent } from "./component/home/main-menu-area/main-menu-area.component";
 import { SlideAreaComponent } from "./component/home/slide-area/slide-area.component";
@@ -20,10 +20,10 @@ import { VoucherComponent } from "./component/voucher/voucher.component";
 import { UserRoutingModule } from "./user-routing.module";
 import { UserComponent } from "./user.component";
 import { DetailProductsComponent } from "./component/detail-products/detail-products.component";
-import { ProductListComponent } from './component/home/product-list/product-list.component';
-import { ProductItemComponent } from './component/home/product-list/product-item/product-item.component';
-import { CartItemComponent } from './component/card/cart-item/cart-item.component';
-
+import { ProductListComponent } from "./component/home/product-list/product-list.component";
+import { ProductItemComponent } from "./component/home/product-list/product-item/product-item.component";
+import { CartItemComponent } from "./component/card/cart-item/cart-item.component";
+import { CategoryComponent } from "./component/category/category.component";
 
 @NgModule({
   declarations: [
@@ -46,9 +46,14 @@ import { CartItemComponent } from './component/card/cart-item/cart-item.componen
     ProductListComponent,
     ProductItemComponent,
     CartItemComponent,
-    
+    CategoryComponent,
   ],
-  imports: [MatDialogModule, UserRoutingModule, CommonModule],
+  imports: [
+    MatDialogModule,
+    UserRoutingModule,
+    CommonModule,
+    NgxPaginationModule,
+  ],
   providers: [],
   bootstrap: [UserComponent],
 })
