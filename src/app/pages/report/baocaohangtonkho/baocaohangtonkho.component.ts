@@ -18,6 +18,7 @@ export class BaocaohangtonkhoComponent implements OnInit {
   closeResult: string;
   isLoading = false;
   searchedKeyword: string;
+  filterResultTemplist: hangtonkhoModel[] = [];
   isSelected = true;
   page = 1;
   pageSize = 5;
@@ -43,7 +44,8 @@ export class BaocaohangtonkhoComponent implements OnInit {
     this.reportService.reportHangTonKho().subscribe(data => {
       this.danhsachhangtonkho = data.data;
       this.listFilterResult = data.data;
-    },
+      this.listFilterResult.forEach((x) => (x.checked = false));
+      this.filterResultTemplist = this.listFilterResult;    },
     err => {
         this.isLoading = false;
       })

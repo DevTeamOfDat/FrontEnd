@@ -19,6 +19,7 @@ export class DanhsachhoadonComponent implements OnInit {
   closeResult: string;
   isLoading = false;
   searchedKeyword: string;
+  filterResultTemplist: hoadonModel[] = [];
   isSelected = true;
   page = 1;
   pageSize = 5;
@@ -43,7 +44,8 @@ export class DanhsachhoadonComponent implements OnInit {
     this.hoadonService.getAll().subscribe(data => {
       this.danhsachhoadon = data.data;
       this.listFilterResult = data.data;
-    },
+      this.listFilterResult.forEach((x) => (x.checked = false));
+      this.filterResultTemplist = this.listFilterResult;    },
     err => {
         this.isLoading = false;
       })
@@ -62,6 +64,27 @@ export class DanhsachhoadonComponent implements OnInit {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       }
     );
+  }
+
+  public filterByKeyword() {
+    var filterResult = [];
+    if (this.searchedKeyword.length == 0) {
+      this.listFilterResult = this.filterResultTemplist;
+    } else {
+      this.listFilterResult = this.filterResultTemplist;
+      var keyword = this.searchedKeyword.toLowerCase();
+      this.listFilterResult.forEach(item => {
+        var dc = item.ma_hoa_don.toString();
+        var hot_line = item.ten_nhan_vien.toLowerCase();
+        var ten = item.ten_khach_hang.toLowerCase();
+        var ten1 = item.ngay_lap.toString();
+        var ten2 = item.thanh_tien.toString();
+        if (dc.includes(keyword) || hot_line.includes(keyword) || ten.includes(keyword) || ten1.includes(keyword) || ten2.includes(keyword)) {
+          filterResult.push(item);
+        }
+      });
+      this.listFilterResult = filterResult;
+    }
   }
 
   private getDismissReason(reason: any): string {
@@ -144,18 +167,26 @@ export class DanhsachhoadonComponent implements OnInit {
     const modelDelete = {
       listId: listid
     };
+    for (var i = 0; i < this.listFilterResult.length; i++) {
+      if (this.listFilterResult[i].checked == true) {
+        this.listFilterResult[i].checked = false;
+      }
+    }
+    this.searchedKeyword = null;
+    this.filterResultTemplist = this.listFilterResult;
 
     this.hoadonService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200
         this.ngOnInit();
         this.changeModel();
-        this.toastr.success('Xóa thành công');
+        if (result.error) {
+          this.toastr.error(result.error);
+        } else {
+          this.toastr.success(result.success);
+        }
         this.modalReference.dismiss();
       },
-      (error) => {
-        this.toastr.error('Xóa thất bại');
-      }
     );
   }
 

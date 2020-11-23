@@ -25,7 +25,7 @@
                      <div class="col-sm-4">
                         <div class="search-box">
                            <i class="material-icons">&#xE8B6;</i>
-                           <input type="text" [(ngModel)]="searchedKeyword" class="form-control" placeholder="Search&hellip;">
+                           <input type="text" (keyup)="filterByKeyword()" [(ngModel)]="searchedKeyword" class="form-control" placeholder="Search&hellip;">
                         </div>
                      </div>
                      <button (click)="initModal({},'add')" type="button" class="btn btn-primary" ><i class="fas fa-user-plus"></i>Thêm phiếu nhập</button>
@@ -72,7 +72,7 @@
                      </tr>
                      <tr
                         *ngFor="
-                        let e of listFilterResult  | filter: searchedKeyword | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;
+                        let e of listFilterResult  |  slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;
                         let i = index
                         "
                         >
@@ -84,11 +84,11 @@
                            value="{{ e.ma_phieu_nhap }}"
                            />
                         <td>{{ i + (page-1)*pageSize + 1 }}</td>
-                        <td [innerHTML]="e.ma_phieu_nhap | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.ten_nhan_vien | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.ten_nha_cung_cap | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.ngay_nhap| highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.tong_tien | highlight : searchedKeyword | currency: 'VND':true"></td>
+                        <td [innerHTML]="e.ma_phieu_nhap "></td>
+                        <td [innerHTML]="e.ten_nhan_vien "></td>
+                        <td [innerHTML]="e.ten_nha_cung_cap "></td>
+                        <td [innerHTML]="e.ngay_nhap"></td>
+                        <td [innerHTML]="e.tong_tien  | currency: 'VND':true"></td>
                         <td class="justify-content-center">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"

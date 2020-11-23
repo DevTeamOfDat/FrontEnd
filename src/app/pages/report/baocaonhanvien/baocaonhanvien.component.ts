@@ -22,6 +22,7 @@ export class BaocaonhanvienComponent implements OnInit {
   closeResult: string;
   isLoading = false;
   searchedKeyword: string;
+  filterResultTemplist: baocaonhanvienModel[] = [];
   isSelected = true;
   page = 1;
   label: any;
@@ -59,7 +60,8 @@ export class BaocaonhanvienComponent implements OnInit {
     this.reportService.reportNhanvien(model).subscribe(data => {
       this.danhsachnhanvien = data.data;
       this.listFilterResult = data.data;
-    },
+      this.listFilterResult.forEach((x) => (x.checked = false));
+      this.filterResultTemplist = this.listFilterResult;    },
     err => {
         this.isLoading = false;
       })

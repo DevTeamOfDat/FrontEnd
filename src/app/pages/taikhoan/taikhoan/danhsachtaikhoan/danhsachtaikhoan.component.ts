@@ -20,6 +20,7 @@ export class DanhsachtaikhoanComponent implements OnInit {
   isLoading = false;
   isSelected = true;
   searchedKeyword: string;
+  filterResultTemplist: taikhoanModel[] = [];
   listFilterResult: taikhoanModel[] = [];
   page = 1;
   pageSize = 5;
@@ -43,7 +44,8 @@ export class DanhsachtaikhoanComponent implements OnInit {
     this.taikhoanService.getAll().subscribe(data => {
       this.danhsachtaikhoan = data.data;
       this.listFilterResult = data.data;
-    },
+      this.listFilterResult.forEach((x) => (x.checked = false));
+      this.filterResultTemplist = this.listFilterResult;    },
     err => {
         this.isLoading = false;
       })
@@ -62,6 +64,27 @@ export class DanhsachtaikhoanComponent implements OnInit {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       }
     );
+  }
+
+  public filterByKeyword() {
+    var filterResult = [];
+    if (this.searchedKeyword.length == 0) {
+      this.listFilterResult = this.filterResultTemplist;
+    } else {
+      this.listFilterResult = this.filterResultTemplist;
+      var keyword = this.searchedKeyword.toLowerCase();
+      this.listFilterResult.forEach(item => {
+        var dc = item.email.toLowerCase();
+        var hot_line = item.ho_ten.toLowerCase();
+        var ten = item.loai_tai_khoan.toLowerCase();
+        var ten1 = item.dia_chi.toLowerCase();
+        var ten2 = item.so_dien_thoai.toLowerCase();
+        if (dc.includes(keyword) || hot_line.includes(keyword) || ten.includes(keyword)|| ten1.includes(keyword) || ten2.includes(keyword)) {
+          filterResult.push(item);
+        }
+      });
+      this.listFilterResult = filterResult;
+    }
   }
 
   private getDismissReason(reason: any): string {
@@ -144,18 +167,26 @@ export class DanhsachtaikhoanComponent implements OnInit {
     const modelDelete = {
       listId: listid
     };
+    for (var i = 0; i < this.listFilterResult.length; i++) {
+      if (this.listFilterResult[i].checked == true) {
+        this.listFilterResult[i].checked = false;
+      }
+    }
+    this.searchedKeyword = null;
+    this.filterResultTemplist = this.listFilterResult;
 
     this.taikhoanService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200
         this.ngOnInit();
         this.changeModel();
-        this.toastr.success('Xóa thành công');
+        if (result.error) {
+          this.toastr.error(result.error);
+        } else {
+          this.toastr.success(result.success);
+        }
         this.modalReference.dismiss();
       },
-      (error) => {
-        this.toastr.error('Xóa thất bại');
-      }
     );
   }
 

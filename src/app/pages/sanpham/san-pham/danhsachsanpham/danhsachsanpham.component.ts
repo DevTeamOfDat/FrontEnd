@@ -21,6 +21,7 @@ export class DanhsachsanphamComponent implements OnInit {
   isSelected = true;
   searchedKeyword: string;
   listFilterResult: sanphamModel[] = [];
+  filterResultTemplist: sanphamModel[] = [];
   page = 1;
   pageSize = 5;
   constructor(
@@ -43,6 +44,8 @@ export class DanhsachsanphamComponent implements OnInit {
     this.sanphamService.getAll().subscribe(data => {
       this.danhsachsanpham = data.data;
       this.listFilterResult = data.data;
+      this.listFilterResult.forEach((x) => (x.checked = false));
+      this.filterResultTemplist = this.listFilterResult;  
     },
     err => {
         this.isLoading = false;
@@ -95,6 +98,25 @@ export class DanhsachsanphamComponent implements OnInit {
     }
   }
 
+  public filterByKeyword() {
+    var filterResult = [];
+    if (this.searchedKeyword.length == 0) {
+      this.listFilterResult = this.filterResultTemplist;
+    } else {
+      this.listFilterResult = this.filterResultTemplist;
+      var keyword = this.searchedKeyword.toLowerCase();
+      this.listFilterResult.forEach(item => {
+        var dc = item.ten_san_pham.toLowerCase();
+        var hot_line = item.ten_thuong_hieu.toLowerCase();
+        var ten = item.ten_loai_san_pham.toLowerCase();
+        if (dc.includes(keyword) || hot_line.includes(keyword) || ten.includes(keyword)) {
+          filterResult.push(item);
+        }
+      });
+      this.listFilterResult = filterResult;
+    }
+  }
+
   xoasanpham(item: any = null) {
     let selectedsanpham= [];
     if (item !== null && item !== undefined && item !== '') {
@@ -144,18 +166,26 @@ export class DanhsachsanphamComponent implements OnInit {
     const modelDelete = {
       listId: listid
     };
+    for (var i = 0; i < this.listFilterResult.length; i++) {
+      if (this.listFilterResult[i].checked == true) {
+        this.listFilterResult[i].checked = false;
+      }
+    }
+    this.searchedKeyword = null;
+    this.filterResultTemplist = this.listFilterResult;
 
     this.sanphamService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200
         this.ngOnInit();
         this.changeModel();
-        this.toastr.success('Xóa thành công');
+        if (result.error) {
+          this.toastr.error(result.error);
+        } else {
+          this.toastr.success(result.success);
+        }
         this.modalReference.dismiss();
       },
-      (error) => {
-        this.toastr.error('Xóa thất bại');
-      }
     );
   }
 }

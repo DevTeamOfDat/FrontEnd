@@ -24,7 +24,7 @@
                      <div class="col-sm-4">
                         <div class="search-box">
                            <i class="material-icons">&#xE8B6;</i>
-                           <input type="text" [(ngModel)]="searchedKeyword" class="form-control" placeholder="Search&hellip;">
+                           <input type="text" (keyup)="filterByKeyword()" [(ngModel)]="searchedKeyword" class="form-control" placeholder="Search&hellip;">
                         </div>
                      </div>
                      <button (click)="initModal({},'add')" type="button" class="btn btn-primary" ><i class="fas fa-user-plus"></i>Thêm tài khoản</button>
@@ -57,16 +57,16 @@
                      </tr>
                      <tr
                         *ngFor="
-                        let e of listFilterResult  | filter: searchedKeyword | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;
+                        let e of listFilterResult  |  slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;
                         let i = index
                         "
                         >
                        <td>{{ i + (page-1)*pageSize + 1 }}</td>
-                        <td [innerHTML]="e.email | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.ho_ten | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.loai_tai_khoan | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.dia_chi | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.so_dien_thoai | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.email "></td>
+                        <td [innerHTML]="e.ho_ten "></td>
+                        <td [innerHTML]="e.loai_tai_khoan "></td>
+                        <td [innerHTML]="e.dia_chi "></td>
+                        <td [innerHTML]="e.so_dien_thoai "></td>
                         <td>
                            <ng-template #mymodal let-modal>
                               <div class="modal-header">

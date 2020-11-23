@@ -24,7 +24,7 @@
                      <div class="col-sm-4">
                         <div class="search-box">
                            <i class="material-icons">&#xE8B6;</i>
-                           <input type="text" [(ngModel)]="searchedKeyword" class="form-control" placeholder="Search&hellip;">
+                           <input type="text" (keyup)="filterByKeyword()" [(ngModel)]="searchedKeyword" class="form-control" placeholder="Search&hellip;">
                         </div>
                      </div>
                      <button (click)="initModal({},'add')" type="button" class="btn btn-primary" ><i class="fas fa-user-plus"></i>Thêm sản phẩm</button>
@@ -69,7 +69,7 @@
                      </tr>
                      <tr
                         *ngFor="
-                        let e of listFilterResult  | filter: searchedKeyword | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;
+                        let e of listFilterResult   | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;
                         let i = index
                         "
                         >
@@ -81,9 +81,9 @@
                            value="{{ e.ma_san_pham }}"
                            />
                         <td>{{ i + (page-1)*pageSize + 1 }}</td>
-                        <td [innerHTML]="e.ten_san_pham | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.ten_thuong_hieu | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.ten_loai_san_pham | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.ten_san_pham "></td>
+                        <td [innerHTML]="e.ten_thuong_hieu"></td>
+                        <td [innerHTML]="e.ten_loai_san_pham"></td>
                         <td class="justify-content-center">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"

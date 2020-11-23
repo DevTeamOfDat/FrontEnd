@@ -22,6 +22,7 @@ export class BaocaohoadonComponent implements OnInit {
   closeResult: string;
   isLoading = false;
   searchedKeyword: string;
+  filterResultTemplist: baocaohoadonModel[] = [];
   isSelected = true;
   page = 1;
   label: any;
@@ -55,7 +56,8 @@ export class BaocaohoadonComponent implements OnInit {
     this.reportService.reportHoaDon(model).subscribe(data => {
       this.danhsachhoadon = data.data;
       this.listFilterResult = data.data;
-    },
+      this.listFilterResult.forEach((x) => (x.checked = false));
+      this.filterResultTemplist = this.listFilterResult;    },
       err => {
         this.isLoading = false;
       })

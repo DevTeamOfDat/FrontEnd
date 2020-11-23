@@ -24,7 +24,7 @@
                      <div class="col-sm-4">
                         <div class="search-box">
                            <i class="material-icons">&#xE8B6;</i>
-                           <input type="text" [(ngModel)]="searchedKeyword" class="form-control" placeholder="Search&hellip;">
+                           <input type="text" (keyup)="filterByKeyword()" [(ngModel)]="searchedKeyword" class="form-control" placeholder="Search&hellip;">
                         </div>
                      </div>
                      <button (click)="initModal({},'add')" type="button" class="btn btn-primary" ><i class="fas fa-user-plus"></i>Thêm đặc trưng</button>
@@ -49,14 +49,14 @@
                      </tr>
                      <tr
                         *ngFor="
-                        let e of listFilterResult  | filter: searchedKeyword | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;
+                        let e of listFilterResult  |  slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;
                         let i = index
                         "
                         >
                        
                         <td>{{ i + (page-1)*pageSize + 1 }}</td>      
-                        <td [innerHTML]="e.ten_dac_trung | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.mo_ta | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.ten_dac_trung "></td>
+                        <td [innerHTML]="e.mo_ta "></td>
                         <td class="justify-content-center">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
@@ -77,9 +77,9 @@
                   </tbody>
                </table>
             </div>
-            <div class="ngb">
+            <div class="col-12 ngb">
                <ngb-pagination [ellipses]="true" [rotate]="true" [boundaryLinks]="true" [(page)]="page"
-               [pageSize]="pageSize" [collectionSize]="listFilterResult.length"></ngb-pagination>
+               [pageSize]="pageSize" style="display='flex'; margin:'0 auto';" [collectionSize]="listFilterResult.length"></ngb-pagination>
             </div>
          </div>
       </div>

@@ -20,6 +20,7 @@ export class DanhsachnhanxetComponent implements OnInit {
   isLoading = false;
   isSelected = true;
   searchedKeyword: string;
+  filterResultTemplist: nhanxetModel[] = [];
   listFilterResult: nhanxetModel[] = [];
   page = 1;
   pageSize = 5;
@@ -43,7 +44,8 @@ export class DanhsachnhanxetComponent implements OnInit {
     this.nhanxetService.getAll().subscribe(data => {
       this.danhsachnhanxet = data.data;
       this.listFilterResult = data.data;
-    },
+      this.listFilterResult.forEach((x) => (x.checked = false));
+      this.filterResultTemplist = this.listFilterResult;    },
     err => {
         this.isLoading = false;
       })
@@ -144,18 +146,26 @@ export class DanhsachnhanxetComponent implements OnInit {
     const modelDelete = {
       listId: listid
     };
+    for (var i = 0; i < this.listFilterResult.length; i++) {
+      if (this.listFilterResult[i].checked == true) {
+        this.listFilterResult[i].checked = false;
+      }
+    }
+    this.searchedKeyword = null;
+    this.filterResultTemplist = this.listFilterResult;
 
     this.nhanxetService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200
         this.ngOnInit();
         this.changeModel();
-        this.toastr.success('Xóa thành công');
+        if (result.error) {
+          this.toastr.error(result.error);
+        } else {
+          this.toastr.success(result.success);
+        }
         this.modalReference.dismiss();
       },
-      (error) => {
-        this.toastr.error('Xóa thất bại');
-      }
     );
   }
 

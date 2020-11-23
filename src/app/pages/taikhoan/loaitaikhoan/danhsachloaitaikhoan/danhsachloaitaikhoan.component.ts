@@ -20,6 +20,7 @@ export class DanhsachloaitaikhoanComponent implements OnInit {
   isLoading = false;
   isSelected = true;
   searchedKeyword: string;
+  filterResultTemplist: loaitaikhoanModel[] = [];
   listFilterResult: loaitaikhoanModel[] = [];
   page = 1;
   pageSize = 5;
@@ -43,7 +44,8 @@ export class DanhsachloaitaikhoanComponent implements OnInit {
     this.loaitaikhoanService.getAll().subscribe(data => {
       this.danhsachloaitaikhoan = data.data;
       this.listFilterResult = data.data;
-    },
+      this.listFilterResult.forEach((x) => (x.checked = false));
+      this.filterResultTemplist = this.listFilterResult;    },
     err => {
         this.isLoading = false;
       })
@@ -140,22 +142,48 @@ export class DanhsachloaitaikhoanComponent implements OnInit {
     }
   }
 
+  public filterByKeyword() {
+    var filterResult = [];
+    if (this.searchedKeyword.length == 0) {
+      this.listFilterResult = this.filterResultTemplist;
+    } else {
+      this.listFilterResult = this.filterResultTemplist;
+      var keyword = this.searchedKeyword.toLowerCase();
+      this.listFilterResult.forEach(item => {
+        var dc = item.gia_tri.toLowerCase();
+        var hot_line = item.mo_ta.toLowerCase();
+        if (dc.includes(keyword) || hot_line.includes(keyword) ) {
+          filterResult.push(item);
+        }
+      });
+      this.listFilterResult = filterResult;
+    }
+  }
+
   public delete(listid: any) {
     const modelDelete = {
       listId: listid
     };
+    for (var i = 0; i < this.listFilterResult.length; i++) {
+      if (this.listFilterResult[i].checked == true) {
+        this.listFilterResult[i].checked = false;
+      }
+    }
+    this.searchedKeyword = null;
+    this.filterResultTemplist = this.listFilterResult;
 
     this.loaitaikhoanService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200
         this.ngOnInit();
         this.changeModel();
-        this.toastr.success('Xóa thành công');
+        if (result.error) {
+          this.toastr.error(result.error);
+        } else {
+          this.toastr.success(result.success);
+        }
         this.modalReference.dismiss();
       },
-      (error) => {
-        this.toastr.error('Xóa thất bại');
-      }
     );
   }
 

@@ -19,6 +19,7 @@ export class DanhsachtrangthaiComponent implements OnInit {
   closeResult: string;
   isLoading = false;
   searchedKeyword: string;
+  filterResultTemplist: trangthaiModel[] = [];
   isSelected = true;
   page = 1;
   pageSize = 5;
@@ -43,7 +44,8 @@ export class DanhsachtrangthaiComponent implements OnInit {
     this.trangthaiService.getAll().subscribe(data => {
       this.danhsachtrangthai = data.data;
       this.listFilterResult = data.data;
-    },
+      this.listFilterResult.forEach((x) => (x.checked = false));
+      this.filterResultTemplist = this.listFilterResult;    },
     err => {
         this.isLoading = false;
       })
@@ -144,18 +146,26 @@ export class DanhsachtrangthaiComponent implements OnInit {
     const modelDelete = {
       listId: listid
     };
+    for (var i = 0; i < this.listFilterResult.length; i++) {
+      if (this.listFilterResult[i].checked == true) {
+        this.listFilterResult[i].checked = false;
+      }
+    }
+    this.searchedKeyword = null;
+    this.filterResultTemplist = this.listFilterResult;
 
     this.trangthaiService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200
         this.ngOnInit();
         this.changeModel();
-        this.toastr.success('Xóa thành công');
+        if (result.error) {
+          this.toastr.error(result.error);
+        } else {
+          this.toastr.success(result.success);
+        }
         this.modalReference.dismiss();
       },
-      (error) => {
-        this.toastr.error('Xóa thất bại');
-      }
     );
   }
 

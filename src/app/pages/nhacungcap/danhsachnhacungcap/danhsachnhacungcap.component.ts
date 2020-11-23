@@ -23,6 +23,7 @@ export class DanhsachnhacungcapComponent implements OnInit {
   listFilterResult: nhacungcapModel[] = [];
   page = 1;
   pageSize = 5;
+  filterResultTemplist: nhacungcapModel[] = [];
   constructor(
     private modalService: NgbModal,
     private nhacungcapService: NhaCungCapService,
@@ -38,15 +39,36 @@ export class DanhsachnhacungcapComponent implements OnInit {
 
   
 
-  fetchDanhsachnhacungcap(){
-    this.isLoading =  true;
+  fetchDanhsachnhacungcap() {
+    this.isLoading = true;
     this.nhacungcapService.getAll().subscribe(data => {
       this.danhsachnhacungcap = data.data;
       this.listFilterResult = data.data;
+      this.listFilterResult.forEach((x) => (x.checked = false));
+      this.filterResultTemplist = this.listFilterResult;
     },
-    err => {
+      err => {
         this.isLoading = false;
       })
+  }
+
+  public filterByKeyword() {
+    var filterResult = [];
+    if (this.searchedKeyword.length == 0) {
+      this.listFilterResult = this.filterResultTemplist;
+    } else {
+      this.listFilterResult = this.filterResultTemplist;
+      var keyword = this.searchedKeyword.toLowerCase();
+      this.listFilterResult.forEach(item => {
+        var dc = item.dia_chi.toLowerCase();
+        var hot_line = item.hot_line.toLowerCase();
+        var ten = item.ten.toLowerCase();
+        if (dc.includes(keyword) || hot_line.includes(keyword) || ten.includes(keyword)) {
+          filterResult.push(item);
+        }
+      });
+      this.listFilterResult = filterResult;
+    }
   }
 
   
@@ -144,18 +166,33 @@ export class DanhsachnhacungcapComponent implements OnInit {
     const modelDelete = {
       listId: listid
     };
+    for (var i = 0; i < this.listFilterResult.length; i++) {
+      if (this.listFilterResult[i].checked == true) {
+        this.listFilterResult[i].checked = false;
+      }
+    }
+    this.searchedKeyword = null;
+    this.filterResultTemplist = this.listFilterResult;
+    for (var i = 0; i < this.listFilterResult.length; i++) {
+      if (this.listFilterResult[i].checked == true) {
+        this.listFilterResult[i].checked = false;
+      }
+    }
+    this.searchedKeyword = null;
+    this.filterResultTemplist = this.listFilterResult;
 
     this.nhacungcapService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200
         this.ngOnInit();
         this.changeModel();
-        this.toastr.success('Xóa thành công');
+        if (result.error) {
+          this.toastr.error(result.error);
+        } else {
+          this.toastr.success(result.success);
+        }
         this.modalReference.dismiss();
       },
-      (error) => {
-        this.toastr.error('Xóa thất bại');
-      }
     );
   }
 

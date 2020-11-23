@@ -20,6 +20,7 @@ export class DanhsachngaykhuyenmaiComponent implements OnInit {
   isLoading = false;
   isSelected = true;
   searchedKeyword: string;
+  filterResultTemplist: ngaykhuyenmaiModel[] = [];
   listFilterResult: ngaykhuyenmaiModel[] = [];
   page = 1;
   pageSize = 5;
@@ -43,11 +44,31 @@ export class DanhsachngaykhuyenmaiComponent implements OnInit {
     this.ngaykhuyenmaiService.getAll().subscribe(data => {
       this.danhsachngaykhuyenmai = data.data;
       this.listFilterResult = data.data;
-    },
+      this.listFilterResult.forEach((x) => (x.checked = false));
+      this.filterResultTemplist = this.listFilterResult;    },
     err => {
         this.isLoading = false;
       })
   }
+
+  public filterByKeyword() {
+    var filterResult = [];
+    if (this.searchedKeyword.length == 0) {
+      this.listFilterResult = this.filterResultTemplist;
+    } else {
+      this.listFilterResult = this.filterResultTemplist;
+      var keyword = this.searchedKeyword.toLowerCase();
+      this.listFilterResult.forEach(item => {
+        var dc = item.ngay_gio.toString();
+        if (dc.includes(keyword) ) {
+          filterResult.push(item);
+        }
+      });
+      this.listFilterResult = filterResult;
+    }
+  }
+
+  
 
   
   open(content: any) {
@@ -144,18 +165,26 @@ export class DanhsachngaykhuyenmaiComponent implements OnInit {
     const modelDelete = {
       listId: listid
     };
+    for (var i = 0; i < this.listFilterResult.length; i++) {
+      if (this.listFilterResult[i].checked == true) {
+        this.listFilterResult[i].checked = false;
+      }
+    }
+    this.searchedKeyword = null;
+    this.filterResultTemplist = this.listFilterResult;
 
     this.ngaykhuyenmaiService.delete(modelDelete).subscribe(
       (result) => {
         // status: 200
         this.ngOnInit();
         this.changeModel();
-        this.toastr.success('Xóa thành công');
+        if (result.error) {
+          this.toastr.error(result.error);
+        } else {
+          this.toastr.success(result.success);
+        }
         this.modalReference.dismiss();
       },
-      (error) => {
-        this.toastr.error('Xóa thất bại');
-      }
     );
   }
 

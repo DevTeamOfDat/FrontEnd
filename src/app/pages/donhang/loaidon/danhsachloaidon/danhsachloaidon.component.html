@@ -68,7 +68,7 @@
                      </tr>
                      <tr
                         *ngFor="
-                        let e of listFilterResult  | filter: searchedKeyword | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;
+                        let e of listFilterResult  |  slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;
                         let i = index
                         "
                         >
@@ -79,9 +79,9 @@
                            (ngModelChange)="changeModel()"
                            value="{{ e.id }}"
                            />
-                        <td [innerHTML]="e.id | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.gia_tri | highlight : searchedKeyword"></td>
-                        <td [innerHTML]="e.mo_ta | highlight : searchedKeyword"></td>
+                        <td [innerHTML]="e.id "></td>
+                        <td [innerHTML]="e.gia_tri "></td>
+                        <td [innerHTML]="e.mo_ta "></td>
                         <td class="justify-content-center">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
