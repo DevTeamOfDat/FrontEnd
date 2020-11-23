@@ -13,6 +13,6 @@ export interface hoadonModel{
     ten_khach_hang?: string,
     gia_tri_trang_thai?: string,
     gia_tri_loai_don?: string,
-    isActive? : boolean,
+    isActive? : number,
     checked?:  boolean
  }

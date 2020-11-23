@@ -83,7 +83,7 @@
                         <td [innerHTML]="e.dia_chi "></td>
                         <td [innerHTML]="e.so_dien_thoai "></td>
                         <td [innerHTML]="e.loai_tai_khoan "></td>
-                        <td [innerHTML]="e.tong_tien "></td>
+                        <td [innerHTML]="e.tong_tien | currency:'VND' "></td>
                         <td [innerHTML]="e.ngay_lap "></td>
                      </tr>
                   </tbody>

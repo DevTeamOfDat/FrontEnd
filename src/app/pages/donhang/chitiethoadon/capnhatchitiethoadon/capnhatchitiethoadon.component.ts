@@ -23,6 +23,7 @@ export class CapnhatchitiethoadonComponent implements OnInit {
   @Input() danhsachchitiethoadon: Array<chitiethoadonModel>;
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
   danhsachhoadon: Array<hoadonModel> = [];
+  checkhoadon: Array<hoadonModel> = [];
   danhsachsanpham: Array<sanphamModel> = [];
   danhsachdactrungsanpham: Array<dactrungsanphamModel> = [];
 
@@ -73,8 +74,14 @@ export class CapnhatchitiethoadonComponent implements OnInit {
   fetchDanhsachhoadon(){
     this.isLoading =  true;
     this.hoadonService.getAll().subscribe(data => {
-      this.danhsachhoadon = data.data;
-    },
+      this.checkhoadon = data.data;
+      for(let item of this.checkhoadon){
+        if(item.isActive===1){
+            this.danhsachhoadon.push(item);
+        }
+      }
+    
+  },
     err => {
         this.isLoading = false;
       })

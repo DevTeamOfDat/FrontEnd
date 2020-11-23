@@ -102,6 +102,7 @@ export class CapnhattintucComponent implements OnInit {
         ngay_dang: [ this.datePipe.transform(Date.now(),"yyyy/MM/dd")],
         
       });
+      this.urlPictureDefault = avatarDefault;
     } else {
       this.formGroup = this.fb.group({
         tieu_de: [{value: this.model.tieu_de, disabled: this.isInfo}, [Validators.required]],
@@ -111,6 +112,11 @@ export class CapnhattintucComponent implements OnInit {
         url : [{value: this.model.url, disabled: this.isInfo}],
         ngay_dang: [{value: this.model.ngay_dang, disabled: this.isInfo}],
       });
+      if(this.model.thumbnail===""){
+        this.urlPictureDefault = avatarDefault;
+      }else{
+        this.urlPictureDefault = this.model.thumbnail;
+      }
 
 
     }
@@ -164,7 +170,6 @@ export class CapnhattintucComponent implements OnInit {
       
     } else {
       tintuc = {
-        id: this.model.id,
         tieu_de: this.formGroup.get('tieu_de')?.value,
         noi_dung: this.formGroup.get('noi_dung')?.value,
         highlight:this.formGroup.get('highlight')?.value,

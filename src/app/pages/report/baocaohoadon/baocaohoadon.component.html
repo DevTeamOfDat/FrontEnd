@@ -78,7 +78,7 @@
                         <td>{{ i + (page-1)*pageSize + 1 }}</td>       
                         <td [innerHTML]="e.ma_hoa_don"></td>
                         <td [innerHTML]="e.gia_tri_loai_don"></td>
-                        <td [innerHTML]="e.thanh_tien "></td>
+                        <td [innerHTML]="e.thanh_tien | currency:'VND'"></td>
                         <td [innerHTML]="e.ngay_lap "></td>
                         <td class="justify-content-center">
                            <div class="status"

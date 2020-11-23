@@ -26,6 +26,7 @@ export class CapnhatphieunhapComponent implements OnInit {
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
   danhsachtaikhoan: Array<taikhoanModel> = [];
   danhsachnhacungcap: Array<nhacungcapModel> = [];
+  checknhacungcap: Array<nhacungcapModel> = [];
   danhsachtrangthai: Array<trangthaiModel> = [];
   arrbyKH: Array<taikhoanModel> = [];
   arrbyNV: Array<taikhoanModel> = [];
@@ -90,8 +91,14 @@ export class CapnhatphieunhapComponent implements OnInit {
   fetchDanhsachnhacungcap(){
     this.isLoading =  true;
     this.nhacungcapService.getAll().subscribe(data => {
-      this.danhsachnhacungcap = data.data;
-    },
+      this.checknhacungcap = data.data;
+      for(let item of this.checknhacungcap){
+        if(item.isActive===1){
+            this.danhsachnhacungcap.push(item);
+        }
+      }
+    
+  },
     err => {
         this.isLoading = false;
       })
@@ -165,7 +172,7 @@ export class CapnhatphieunhapComponent implements OnInit {
         ghi_chu: [{value: this.model.ghi_chu, disabled: this.isInfo}],
 
       });
-
+      console.log(this.formGroup);
     }
   }
 

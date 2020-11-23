@@ -37,17 +37,18 @@ export class DanhsachvoucherComponent implements OnInit {
   }
 
   public filterByKeyword() {
+
     var filterResult = [];
     if (this.searchedKeyword.length == 0) {
       this.listFilterResult = this.filterResultTemplist;
     } else {
       this.listFilterResult = this.filterResultTemplist;
       var keyword = this.searchedKeyword.toLowerCase();
+      console.log(keyword);
       this.listFilterResult.forEach(item => {
         var dc = item.muc_voucher.toString();
-        var hot_line = item.ten_khach_hang.toLowerCase();
         
-        if (dc.includes(keyword) || hot_line.includes(keyword) ) {
+        if (dc.includes(keyword) ) {
           filterResult.push(item);
         }
       });

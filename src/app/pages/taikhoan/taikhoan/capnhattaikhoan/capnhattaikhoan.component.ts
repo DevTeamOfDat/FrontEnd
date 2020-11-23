@@ -112,10 +112,11 @@ export class CapnhattaikhoanComponent implements OnInit {
         ho_ten: [ null, [Validators.required]],
         dia_chi: [ null],
         so_dien_thoai: [ null, [Validators.required]],
-        hinh_anh : [ null],
+        
         loai_tai_khoan: [ null, [Validators.required]],
         
       });
+      this.urlPictureDefault = avatarDefault;
     } else {
       this.formGroup = this.fb.group({
         email:  [{value: this.model.email, disabled: this.isInfo}, [Validators.required]],
@@ -126,7 +127,14 @@ export class CapnhattaikhoanComponent implements OnInit {
         hinh_anh : [{value: this.model.hinh_anh, disabled: this.isInfo}],
         loai_tai_khoan:  [{value: this.model.loai_tai_khoan, disabled: this.isInfo}, [Validators.required]],
       });
-
+      console.log(this.formGroup);
+      if(this.model.hinh_anh==="" || this.model.hinh_anh === undefined){
+        this.urlPictureDefault = avatarDefault;
+      }
+      else{
+        this.urlPictureDefault = this.model.hinh_anh;
+      }
+      
 
     }
   }

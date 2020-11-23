@@ -99,6 +99,13 @@ export class CapnhatthuonghieuComponent implements OnInit {
         ten_thuong_hieu: [{value: this.model.ten_thuong_hieu, disabled: this.isInfo}, [Validators.required]],
         hinh_anh: [{value: this.model.hinh_anh, disabled: this.isInfo},[Validators.required]],
       });
+      if(this.model.hinh_anh===""){
+        this.urlPictureDefault = avatarDefault;
+      }
+      else{
+        this.urlPictureDefault=this.model.hinh_anh;
+      }
+     
 
 
     }
@@ -165,6 +172,7 @@ export class CapnhatthuonghieuComponent implements OnInit {
       }
       this.thuonghieuService.create(thuonghieu).subscribe(res => {
         this.closeModalReloadData();
+        console.log(thuonghieu);
         this.toastr.success(res.success);
         this.modalReference.dismiss();
       },

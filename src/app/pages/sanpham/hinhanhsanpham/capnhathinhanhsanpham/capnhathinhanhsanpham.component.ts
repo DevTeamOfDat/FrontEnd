@@ -105,18 +105,22 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
    
     if (model.id === null || model.id === undefined) {
       this.formGroup = this.fb.group({
-        id: [ null, [Validators.required]],
         ma_san_pham: [ null, [Validators.required]],
-        hinh_anh: [ null],
+        hinh_anh:[ null, [Validators.required]],
         
       });
+      this.urlPictureDefault = avatarDefault;
     } else {
       this.formGroup = this.fb.group({
-        id: [{value: this.model.id, disabled: this.isInfo}, [Validators.required]],
         ma_san_pham: [{value: this.model.ma_san_pham, disabled: this.isInfo}, [Validators.required]],
-        hinh_anh: [{value: this.model.hinh_anh, disabled: this.isInfo}],
+        hinh_anh:[{value: this.model.hinh_anh, disabled: this.isInfo}, [Validators.required]],
 
       });
+      if(this.model.hinh_anh===""){
+        this.urlPictureDefault = avatarDefault;
+      }else{
+        this.urlPictureDefault = this.model.hinh_anh;
+      }
 
 
     }
@@ -153,6 +157,7 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
     let check = false;
     let hinhanhsanpham: hinhanhsanphamModel;
     this.submitted = true;
+    console.log(this.formGroup);
     if (this.formGroup.invalid) {
       this.toastr.error('Kiểm tra thông tin các trường đã nhập');
       return;
@@ -165,12 +170,14 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
       };
     } else {
       hinhanhsanpham = {
-        id: this.formGroup.get('id')?.value,
+        id: this.model.id,
         ma_san_pham: this.formGroup.get('ma_san_pham')?.value,
         hinh_anh: this.urlPictureDefault,
       };
+      
     }
     if (this.isAdd) {
+      console.log(hinhanhsanpham);
       for (let i = 0; i < this.arrCheck.length; i++) {
         if (this.arrCheck[i].id === hinhanhsanpham.id) {
           check = true;

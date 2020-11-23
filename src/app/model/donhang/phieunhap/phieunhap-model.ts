@@ -8,6 +8,6 @@ export interface phieunhapModel{
     ten_nhan_vien?: string,
     ghi_chu?:string,
     ten_nha_cung_cap?: string,
-    isActive? : boolean,
+    isActive? : number,
     checked?:  boolean
  }

@@ -22,6 +22,7 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
   @ViewChild('content') public childModal!: ModalDirective;
   @Input() danhsachchitietphieunhap: Array<chitietphieunhapModel>;
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
+  checkphieunhap: Array<phieunhapModel> = [];
   danhsachphieunhap: Array<phieunhapModel> = [];
   danhsachdactrung: Array<dactrungModel> = [];
   danhsachsanpham: Array<sanphamModel> = [];
@@ -65,7 +66,13 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
   fetchDanhsachphieunhap(){
     this.isLoading =  true;
     this.phieunhapService.getAll().subscribe(data => {
-      this.danhsachphieunhap = data.data;
+        this.checkphieunhap = data.data;
+        for(let item of this.checkphieunhap){
+          if(item.isActive===1){
+              this.danhsachphieunhap.push(item);
+          }
+        }
+      
     },
     err => {
         this.isLoading = false;

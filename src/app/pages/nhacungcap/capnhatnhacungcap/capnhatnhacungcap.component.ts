@@ -112,9 +112,9 @@ export class CapnhatnhacungcapComponent implements OnInit {
         hot_line : [ null],
         email: [ null],
         so_dien_thoai: [ null, [Validators.required]],
-        hinh_anh: [ null],
         
       });
+      this.urlPictureDefault = avatarDefault;
     } else {
       this.formGroup = this.fb.group({
         ten: [{value: this.model.ten, disabled: this.isInfo}, [Validators.required]],
@@ -122,10 +122,15 @@ export class CapnhatnhacungcapComponent implements OnInit {
         hot_line: [{value: this.model.hot_line, disabled: this.isInfo}],
         email: [{value: this.model.email, disabled: this.isInfo}],
         so_dien_thoai: [{value: this.model.so_dien_thoai, disabled: this.isInfo}, [Validators.required]],
-        urlPictureDefault: [{value: this.model.hinh_anh, disabled: this.isInfo}],
       });
-      this.urlPictureDefault=this.model.hinh_anh;
+      if(this.model.hinh_anh===""){
+        this.urlPictureDefault = avatarDefault;
+      }
+      else{
+        this.urlPictureDefault=this.model.hinh_anh;
 
+      }
+      
     }
   }
 

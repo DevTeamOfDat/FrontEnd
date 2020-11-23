@@ -6,7 +6,7 @@ export interface nhacungcapModel{
     email? :string,
     so_dien_thoai? :string,
     hinh_anh?: string,
-    isActive? : boolean,
+    isActive? : number,
     checked?:  boolean,
     [key: string]: any;
  }
