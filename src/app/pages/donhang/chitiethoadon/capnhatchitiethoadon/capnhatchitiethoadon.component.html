@@ -53,7 +53,7 @@
                   type="text"
                   name=""
                   class="form-control"
-                  [value]="formGroup.get('gia_ban').value | currency:'VND'"
+                  value="{{ gia_ban | currency:'VND'}}"
                   formControlName="{{ gia_ban | currency:'VND'}}"
                   [ngModelOptions]="{standalone: true}"
                   id="gia_ban"

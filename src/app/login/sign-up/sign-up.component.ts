@@ -24,15 +24,21 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!localStorage.getItem('foo')) { 
+      localStorage.setItem('foo', 'no reload') 
+      location.reload() 
+    } else {
+      localStorage.removeItem('foo') 
+    }
   }
 
   createForm() {
     this.formRegister = this.fb.group({
       email: [null, [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)]],
       mat_khau: [null, [Validators.required, Validators.pattern(new RegExp(/^(.{8,})$/))]],
-      ho_ten: [null, [Validators.required]],
-      dia_chi: [null, [Validators.required]],
-      so_dien_thoai: [ null, [Validators.required, Validators.pattern(new RegExp('[0-9]{10}'))]],
+      ho_ten: [null, ],
+      dia_chi: [null, ],
+      so_dien_thoai: [ null, [Validators.pattern(new RegExp('[0-9]{10}'))]],
       confirm_mat_khau: [null, [Validators.required, Validators.pattern(new RegExp(/^(.{8,})$/))]], 
     });
   }

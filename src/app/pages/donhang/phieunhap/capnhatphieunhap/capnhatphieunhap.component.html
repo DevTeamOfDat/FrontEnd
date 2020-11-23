@@ -101,7 +101,7 @@
                   type="text"
                   name=""
                   class="form-control"
-                  [value]="formGroup.get('tong_tien').value | currency:'VND'"
+                  value="{{ tong_tien | currency:'VND'}}"
                   formControlName="{{ tong_tien | currency:'VND'}}"
                   id="tong_tien"
                   readonly

@@ -20,6 +20,12 @@ export class SignInComponent implements OnInit {
   }
   ngOnInit(): void {
     this.createForm();
+    if (!localStorage.getItem('foo')) { 
+      localStorage.setItem('foo', 'no reload') 
+      location.reload() 
+    } else {
+      localStorage.removeItem('foo') 
+    }
   }
   createForm() {
     this.formLogin = this.fb.group({

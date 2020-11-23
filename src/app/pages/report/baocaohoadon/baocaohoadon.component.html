@@ -59,8 +59,7 @@
                      <tr> 
                         <th>STT</th>
                         <th>Mã hóa đơn </th>
-                        <th>Giá trị loại đơn</th>
-                        <th>Giá trị trạng thái</th>
+                        <th>Loại đơn</th>
                         <th>Thành tiền(VNĐ)</th>
                         <th>Ngày lập</th>
                         <th>Trạng thái</th>
@@ -79,7 +78,6 @@
                         <td>{{ i + (page-1)*pageSize + 1 }}</td>       
                         <td [innerHTML]="e.ma_hoa_don"></td>
                         <td [innerHTML]="e.gia_tri_loai_don"></td>
-                        <td [innerHTML]="e.gia_tri_trang_thai "></td>
                         <td [innerHTML]="e.thanh_tien "></td>
                         <td [innerHTML]="e.ngay_lap "></td>
                         <td class="justify-content-center">
