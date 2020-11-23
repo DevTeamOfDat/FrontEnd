@@ -76,11 +76,11 @@
                         <td>
                            <input
                            type="checkbox"
-                           [(ngModel)]="listFilterResult[i].checked"
+                           [(ngModel)]="listFilterResult[i + (page-1)*pageSize].checked"
                            (ngModelChange)="changeModel()"
                            value="{{ e.ma_san_pham }}"
                            />
-                        <td>{{ i + 1 }}</td>
+                        <td>{{ i + (page-1)*pageSize + 1 }}</td>
                         <td [innerHTML]="e.ten_san_pham | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ten_thuong_hieu | highlight : searchedKeyword"></td>
                         <td [innerHTML]="e.ten_loai_san_pham | highlight : searchedKeyword"></td>

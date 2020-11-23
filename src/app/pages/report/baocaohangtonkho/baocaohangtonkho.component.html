@@ -50,7 +50,7 @@
                         "
                         >
                        
-                        <td>{{ i + 1 }}</td>        
+                        <<td>{{ i + (page-1)*pageSize + 1 }}</td>      
                         <td [innerHTML]="e.ten_san_pham"></td>
                         <td [innerHTML]="e.ten_thuong_hieu"></td>
                         <td [innerHTML]="e.ten_loai_san_pham "></td>

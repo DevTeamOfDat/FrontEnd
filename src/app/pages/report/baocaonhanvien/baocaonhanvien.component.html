@@ -77,7 +77,7 @@
                         "
                         >
                        
-                        <td>{{ i + 1 }}</td>        
+                        <td>{{ i + (page-1)*pageSize + 1 }}</td>       
                         <td [innerHTML]="e.email"></td>
                         <td [innerHTML]="e.ho_ten"></td>
                         <td [innerHTML]="e.dia_chi "></td>

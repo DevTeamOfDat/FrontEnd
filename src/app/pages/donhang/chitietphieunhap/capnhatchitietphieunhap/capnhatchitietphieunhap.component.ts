@@ -210,7 +210,7 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
         id: this.model.id,
         ma_phieu_nhap:this.formGroup.get('ma_phieu_nhap')?.value,
         ma_san_pham: this.formGroup.get('ma_san_pham')?.value,
-        danh_sach_loai_dac_trung: [this.formGroup.get('size')?.value,this.formGroup.get('mau')?.value],
+        danh_sach_loai_dac_trung: [this.formGroup.get('mau')?.value,this.formGroup.get('size')?.value],
         gia_nhap: this.formGroup.get('gia_nhap')?.value,
         so_luong: this.formGroup.get('so_luong')?.value,
       };
@@ -219,7 +219,7 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
         id: this.model.id,
         ma_phieu_nhap:this.formGroup.get('ma_phieu_nhap')?.value,
         ma_san_pham: this.formGroup.get('ma_san_pham')?.value,
-        danh_sach_loai_dac_trung: [this.formGroup.get('size')?.value,this.formGroup.get('mau')?.value],
+        danh_sach_loai_dac_trung: [this.formGroup.get('mau')?.value,this.formGroup.get('size')?.value],
         gia_nhap: this.formGroup.get('gia_nhap')?.value,
         so_luong: this.formGroup.get('so_luong')?.value,
       };

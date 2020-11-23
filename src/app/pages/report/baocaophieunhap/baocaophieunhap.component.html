@@ -76,7 +76,7 @@
                         "
                         >
                        
-                        <td>{{ i + 1 }}</td>        
+                        <td>{{ i + (page-1)*pageSize + 1 }}</td>      
                         <td [innerHTML]="e.ma_phieu_nhap"></td>
                         <td [innerHTML]="e.ten_nhan_vien"></td>
                         <td [innerHTML]="e.ten_nha_cung_cap "></td>
