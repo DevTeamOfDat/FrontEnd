@@ -199,7 +199,7 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
       );
     }
     if (this.isEdit) {
-      this.hinhanhsanphamService.update(hinhanhsanpham.id, hinhanhsanpham).subscribe(res => {
+      this.hinhanhsanphamService.update(hinhanhsanpham.ma_san_pham, hinhanhsanpham).subscribe(res => {
         this.closeModalReloadData();
         this.toastr.success(res.success);
         this.modalReference.dismiss();

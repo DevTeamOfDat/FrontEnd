@@ -26,6 +26,7 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
   danhsachphieunhap: Array<phieunhapModel> = [];
   danhsachdactrung: Array<dactrungModel> = [];
   danhsachsanpham: Array<sanphamModel> = [];
+  checksanpham: Array<sanphamModel> = [];
   arrbysize: Array<dactrungModel> = [];
   arrbymau: Array<dactrungModel> = [];
   checkButton = false;
@@ -108,8 +109,14 @@ export class CapnhatchitietphieunhapComponent implements OnInit {
   fetchDanhsachsanpham(){
     this.isLoading =  true;
     this.sanphamService.getAll().subscribe(data => {
-      this.danhsachsanpham = data.data;
-    },
+      this.checksanpham = data.data;
+      for(let item of this.checksanpham){
+        if(item.isActive===1){
+            this.danhsachsanpham.push(item);
+        }
+      }
+    
+  },
     err => {
         this.isLoading = false;
       })

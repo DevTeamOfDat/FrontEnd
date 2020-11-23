@@ -3,6 +3,6 @@ export interface voucherModel{
     ma_khach_hang? : Date,
     muc_voucher?: number,
     ten_khach_hang?: string,
-    isActive? : boolean,
+    isActive? : number,
     checked?:  boolean
  }

@@ -27,7 +27,7 @@
                            <input type="text" (keyup)="filterByKeyword()" [(ngModel)]="searchedKeyword" class="form-control" placeholder="Search&hellip;">
                         </div>
                      </div>
-                     <button (click)="initModal({},'add')" type="button" class="btn btn-primary" ><i class="fas fa-user-plus"></i>Thêm đặc trưng</button>
+                     <button (click)="initModal({},'add')" type="button" class="btn btn-primary" ><i class="fas fa-user-plus"></i>Thêm thương hiệu</button>
                      <button
                      type="button"
                      [hidden]="isDelete"
@@ -83,7 +83,7 @@
 
                         <td [innerHTML]="e.ten_thuong_hieu "></td>
                         <td> <img [src]="e.hinh_anh" alt="" style="width:30px;height:30px"> </td>
-                        <td class="justify-content-center">
+                        <td class="justify-content-center" style="display:flex;">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
                               *ngIf="e.isActive===1">Chưa xóa

@@ -7,6 +7,6 @@ export interface sanphamModel{
     so_luong? :number,
     ten_thuong_hieu? : string,
     ten_loai_san_pham?: string,
-    isActive? : boolean,
+    isActive? : number,
     checked?:  boolean
  }

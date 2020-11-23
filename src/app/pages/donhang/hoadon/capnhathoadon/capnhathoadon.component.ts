@@ -29,6 +29,7 @@ export class CapnhathoadonComponent implements OnInit {
   @Output() eventEmit: EventEmitter<any> = new EventEmitter<any>();
   danhsachtaikhoan: Array<taikhoanModel> = [];
   danhsachvoucher: Array<voucherModel> = [];
+  checkvoucher: Array<voucherModel> = [];
   danhsachloaidon: Array<loaidonModel> = [];
   danhsachtrangthai: Array<trangthaiModel> = [];
   arrbyKH: Array<taikhoanModel> = [];
@@ -98,8 +99,14 @@ export class CapnhathoadonComponent implements OnInit {
     this.isLoading =  true;
     const arrr=[];
     this.voucherService.detail(check_ma_khach_hang).subscribe(data => {
-      this.danhsachvoucher = data.data;
-    },   
+      this.checkvoucher = data.data;
+      for(let item of this.checkvoucher){
+        if(item.isActive===1){
+            this.danhsachvoucher.push(item);
+        }
+      }
+    
+  },   
     err => {
         this.isLoading = false;
       })

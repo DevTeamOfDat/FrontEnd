@@ -80,7 +80,7 @@
                         <td [innerHTML]="e.gia_tri_loai_don"></td>
                         <td [innerHTML]="e.thanh_tien | currency:'VND'"></td>
                         <td [innerHTML]="e.ngay_lap "></td>
-                        <td class="justify-content-center">
+                        <td class="justify-content-center" style="display:flex;">
                            <div class="status"
                               style="background-color: green; height: 30px;width: 70%;text-align: center; border-radius: 5px;line-height: 30px;vertical-align: middle;"
                               *ngIf="e.trang_thai==='Hoàn thành'">Hoàn thành

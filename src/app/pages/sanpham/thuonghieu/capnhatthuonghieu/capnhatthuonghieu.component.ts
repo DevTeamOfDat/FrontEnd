@@ -94,6 +94,7 @@ export class CapnhatthuonghieuComponent implements OnInit {
         hinh_anh: [ null,[Validators.required]],
         
       });
+      this.urlPictureDefault = avatarDefault;
     } else {
       this.formGroup = this.fb.group({
         ten_thuong_hieu: [{value: this.model.ten_thuong_hieu, disabled: this.isInfo}, [Validators.required]],
