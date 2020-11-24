@@ -110,12 +110,15 @@
                           style="font-weight: bold"
                         >
                           <option value="">CHỌN MÀU SIZE</option>
-                          <option
-                            *ngFor="let dactrung of dactrungsanpham"
-                            value="27647"
-                          >
+                          <option *ngFor="let dactrung of dactrungsanpham">
                             {{ dactrung.ten_dac_trung }}
                           </option>
+                        </select>
+                      </div>
+                      <div style="margin-top: 15px">
+                        <label for="cars">Chọn Voucher:</label>
+                        <select *ngFor="let item of allVoucher" class="cars">
+                          <option value="volvo">{{ item.muc_voucher }}</option>
                         </select>
                       </div>
                     </div>
@@ -169,7 +172,7 @@
                   />
                 </div>
                 <button class="add_to_cart_button" type="submit">
-                  Thêm vào giỏ hàng
+                  Mua hàng
                 </button>
               </form>
               <div
@@ -264,13 +267,12 @@
             </ul>
 
             <div class="tab-content">
-              <div >
+              <div>
                 <form class="form-horizontal" id="form-review">
                   <div id="review"></div>
                   <h2>Đưa ra đánh giá của bạn</h2>
                   <div class="form-group required">
-                    <div class="col-sm-12">                  
-                  </div>
+                    <div class="col-sm-12"></div>
                   </div>
                   <div class="form-group required">
                     <div class="col-sm-12">

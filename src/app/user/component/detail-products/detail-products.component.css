@@ -198,3 +198,6 @@ a:focus {
   color: rgb(239, 87, 52);
   font-size: 24px;
 }
+.cars {
+  margin-left: 10px;
+}

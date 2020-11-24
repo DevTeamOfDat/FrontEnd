@@ -26,8 +26,8 @@ import { CartItemComponent } from "./component/card/cart-item/cart-item.componen
 import { CategoryComponent } from "./component/category/category.component";
 import { ListProductComponent } from "./component/category/list-product/list-product.component";
 import { FormsModule } from "@angular/forms";
-import { NhanXetComponent } from './component/nhan-xet/nhan-xet.component';
-import { HoaDonComponent } from './component/hoa-don/hoa-don.component';
+import { NhanXetComponent } from "./component/nhan-xet/nhan-xet.component";
+import { HoaDonComponent } from "./component/hoa-don/hoa-don.component";
 
 @NgModule({
   declarations: [
