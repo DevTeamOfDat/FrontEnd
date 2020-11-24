@@ -173,7 +173,7 @@ export class CapnhatthuonghieuComponent implements OnInit {
       }
       this.thuonghieuService.create(thuonghieu).subscribe(res => {
         this.closeModalReloadData();
-        console.log(thuonghieu);
+        (thuonghieu);
         this.toastr.success(res.success);
         this.modalReference.dismiss();
       },

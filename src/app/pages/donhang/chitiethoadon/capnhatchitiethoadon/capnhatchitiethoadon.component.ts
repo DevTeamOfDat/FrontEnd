@@ -67,7 +67,7 @@ export class CapnhatchitiethoadonComponent implements OnInit {
     this.fetchDanhsachkdactrungsanpham(event.target.value);
     this.sanphamService.detail(event.target.value).subscribe(data => {
       this.gia_ban = data.data.gia_ban;
-      console.log(this.gia_ban);
+      (this.gia_ban);
     },)
   }
 

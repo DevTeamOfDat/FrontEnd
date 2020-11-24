@@ -18,7 +18,7 @@ export class BrandAreaComponent implements OnInit {
   fetchBrands() {
     this.brandsService.getAll().subscribe((data) => {
       this.brands = data.data;
-      console.log(this.brands);
+      (this.brands);
     });
   }
 }

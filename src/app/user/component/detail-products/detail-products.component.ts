@@ -39,7 +39,7 @@ export class DetailProductsComponent implements OnInit {
   fetchDactrung() {
     this.dactrungsanphamService.detail(this.id).subscribe((data) => {
       this.dactrungsanpham = data.data;
-      console.log("dactrung" + this.dactrungsanpham);
+      ("dactrung" + this.dactrungsanpham);
     });
   }
 }

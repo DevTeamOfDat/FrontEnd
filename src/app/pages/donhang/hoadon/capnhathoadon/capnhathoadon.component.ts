@@ -78,7 +78,7 @@ export class CapnhathoadonComponent implements OnInit {
   fetchgetInfo(){
     this.nhanvienService.getInfo().subscribe(data => {
       this.username = data.data.ho_ten;
-      console.log(this.username);
+      (this.username);
     },)
   }
   fetchDanhsachkhachhang(){

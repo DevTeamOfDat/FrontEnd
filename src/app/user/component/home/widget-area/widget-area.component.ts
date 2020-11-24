@@ -18,7 +18,7 @@ export class WidgetAreaComponent implements OnInit {
   fetchDanhsachsanpham() {
     this.tintucService.getAll().subscribe((data) => {
       this.danhsachtintuc = data.data;
-      console.log(this.danhsachtintuc);
+      (this.danhsachtintuc);
     });
   }
 }

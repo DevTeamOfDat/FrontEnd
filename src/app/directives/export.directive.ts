@@ -14,7 +14,7 @@ export class ExportDirective {
 
   // tslint:disable-next-line:typedef
   @HostListener('click', ['$event']) onClick($event) {
-    console.log('clicked: ' + $event);
+    ('clicked: ' + $event);
     this.exportService.exportExcel(this.listExcel, this.fileName);
   }
 

@@ -157,14 +157,14 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
     let check = false;
     let hinhanhsanpham: hinhanhsanphamModel;
     this.submitted = true;
-    console.log(this.formGroup);
+    (this.formGroup);
     if (this.formGroup.invalid) {
       this.toastr.error('Kiểm tra thông tin các trường đã nhập');
       return;
     }
     if (this.isEdit) {
       hinhanhsanpham = {
-        id: this.formGroup.get('id')?.value,
+        id: this.model.id,
         ma_san_pham: this.formGroup.get('ma_san_pham')?.value,
         hinh_anh: this.urlPictureDefault,
       };
@@ -177,7 +177,7 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
       
     }
     if (this.isAdd) {
-      console.log(hinhanhsanpham);
+      (hinhanhsanpham);
       for (let i = 0; i < this.arrCheck.length; i++) {
         if (this.arrCheck[i].id === hinhanhsanpham.id) {
           check = true;
@@ -199,7 +199,7 @@ export class CapnhathinhanhsanphamComponent implements OnInit {
       );
     }
     if (this.isEdit) {
-      this.hinhanhsanphamService.update(hinhanhsanpham.ma_san_pham, hinhanhsanpham).subscribe(res => {
+      this.hinhanhsanphamService.update(hinhanhsanpham.id, hinhanhsanpham).subscribe(res => {
         this.closeModalReloadData();
         this.toastr.success(res.success);
         this.modalReference.dismiss();

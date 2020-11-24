@@ -89,7 +89,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       localStorage.clear();
       this.router.navigate(['/signin']);
       // Do something on Log out
-      console.log('Log out Clicked ')
+      ('Log out Clicked ')
     } else if ( title === 'Profile' ) {
       // Do something on Profile
       this.router.navigate(['admin/profile']);

@@ -127,7 +127,7 @@ export class CapnhattaikhoanComponent implements OnInit {
         hinh_anh : [{value: this.model.hinh_anh, disabled: this.isInfo}],
         loai_tai_khoan:  [{value: this.model.loai_tai_khoan, disabled: this.isInfo}, [Validators.required]],
       });
-      console.log(this.formGroup);
+      (this.formGroup);
       if(this.model.hinh_anh==="" || this.model.hinh_anh === undefined){
         this.urlPictureDefault = avatarDefault;
       }

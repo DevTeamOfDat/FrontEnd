@@ -173,7 +173,7 @@ export class CapnhatphieunhapComponent implements OnInit {
         ghi_chu: [{value: this.model.ghi_chu, disabled: this.isInfo}],
 
       });
-      console.log(this.formGroup);
+      (this.formGroup);
     }
   }
 
